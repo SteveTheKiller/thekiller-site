@@ -2,7 +2,11 @@
 title: "Steve the Killer"
 ---
 
-Field tech. Homelab operator. Film shooter.
+![Steve](/images/profile2.jpg)
+
+Field tech. Musician.
+
+Homelab operator. Film shooter.
 
 Based in Los Angeles.
 

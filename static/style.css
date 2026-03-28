@@ -33,3 +33,25 @@
 .gallery-grid img:hover {
   transform: scale(1.03);
 }
+
+img[src="/images/profile2.jpg"] {
+  max-width: 300px;
+  border: 4px solid var(--accent) !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  float: right;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  margin-top: -30px;
+}
+
+img[src="/images/profile2.jpg"]:hover {
+  transform: scale(1.03);
+}
+
+/* Logo title fix */
+.logo {
+  color: var(--background) !important;
+}
