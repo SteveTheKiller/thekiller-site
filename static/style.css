@@ -62,3 +62,7 @@ body.photos .logo a {
   color: var(--accent) !important;
   border-color: var(--accent);
 }
+
+.menu--mobile {
+  display: none !important;
+}
