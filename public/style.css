@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 8px;
-  margin-top: 20px;
+  margin-top: 0px;
 }
 
 .gallery-grid img {
@@ -53,5 +53,12 @@ img[src="/images/profile2.jpg"]:hover {
 
 /* Logo title fix */
 .logo {
-  color: var(--background) !important;
+  color: var(--background);
+}
+
+body.photos .logo,
+body.photos .logo a {
+  background: var(--background) !important;
+  color: var(--accent) !important;
+  border-color: var(--accent);
 }

@@ -12,6 +12,9 @@
   display: block;
 }
 
+.index-content {
+  margin-top: 0 !important;
+}
 /* ── Mobile fixes ────────────────────────────────── */
 
 .menu__dropdown li a {
@@ -50,4 +53,37 @@
     white-space: nowrap;
   }
 
+}
+
+/* ── Nav ────────────────────────────────── */
+
+.menu--desktop {
+  display: none;
+}
+
+.navigation-menu {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.navigation-menu a {
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-family: inherit;
+  font-size: inherit;
+  padding: 5px 10px;
+  text-decoration: none;
+}
+
+.navigation-menu a.active {
+  background: var(--accent);
+  color: var(--background);
+}
+
+body.photos .logo,
+body.photos .logo a {
+  background: var(--accent) !important;
+  color: var(--background) !important;
+  border-color: var(--background);
 }

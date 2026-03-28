@@ -1,0 +1,5 @@
+<nav class="navigation-menu">
+  {{ range $.Site.Menus.main }}
+    <a href="{{ .URL }}" {{ if .Params.NewTab }}target="_blank"{{ end }} {{ if strings.HasPrefix $.RelPermalink .URL }}class="active"{{ end }}>{{ .Name }}</a>
+  {{ end }}
+</nav>
