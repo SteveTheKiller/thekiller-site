@@ -1,0 +1,24 @@
+baseURL = "https://thekiller.net/"
+languageCode = "en-us"
+title = "Steve the Killer"
+theme = "terminal"
+
+[params]
+  themeColor = "orange"
+  fullWidthTheme = false
+  centerTheme = false
+  title = "Steve the Killer"
+  customCSS = ["css/custom.css"]
+  menuItems = [
+    { name = "Photos", url = "/photos/" }
+  ]
+
+[[menu.main]]
+  name = "Photos"
+  url = "/photos/"
+  weight = 1
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

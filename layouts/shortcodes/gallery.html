@@ -1,0 +1,5 @@
+<div class="gallery">
+  {{ range .Page.Resources.Match "*.jpg" }}
+  <img src="{{ .RelPermalink }}" loading="lazy">
+  {{ end }}
+</div>
