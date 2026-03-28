@@ -6,7 +6,7 @@ title: "Steve the Killer"
 
 Field tech. Musician.
 
-Homelab operator. Film shooter.
+Homelab operator. 35mm shooter.
 
 Based in Los Angeles.
 
