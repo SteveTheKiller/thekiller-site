@@ -11,3 +11,43 @@
   object-fit: cover;
   display: block;
 }
+
+/* ── Mobile fixes ────────────────────────────────── */
+
+.menu__dropdown li a {
+  word-break: normal;
+  white-space: nowrap;
+}
+
+.menu__dropdown {
+  min-width: max-content;
+}
+
+@media (max-width: 600px) {
+
+  img[src="/images/profile2.jpg"] {
+    float: none !important;
+    display: block;
+    margin: 0 auto 1.5rem auto !important;
+    max-width: 90% !important;
+    margin-top: 0 !important;
+  }
+
+  div.index-content hr + p {
+    font-size: 0.82em;
+    line-height: 1.8;
+  }
+
+  div.index-content hr + p a {
+    white-space: nowrap;
+  }
+
+  .footer .copyright {
+    font-size: 0.82em;
+  }
+
+  .footer .copyright p {
+    white-space: nowrap;
+  }
+
+}
