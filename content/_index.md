@@ -4,9 +4,9 @@ title: "Steve the Killer"
 
 ![Steve](/images/profile2.jpg)
 
-Field tech. Musician.
+Field tech. Analog film enthusiast.
 
-Homelab operator. 35mm shooter.
+Homelab operator. Musician.
 
 Based in Los Angeles.
 
