@@ -8,6 +8,7 @@ theme = "terminal"
   fullWidthTheme = false
   centerTheme = false
   title = "Steve the Killer"
+  subtitle = "Field tech. Analog film enthusiast. Based in Los Angeles."
   customCSS = ["css/custom.css"]
   menuItems = [
     { name = "Photos", url = "/photos/" }
