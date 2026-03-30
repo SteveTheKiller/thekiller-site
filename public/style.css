@@ -51,6 +51,15 @@ img[src="/images/profile2.jpg"]:hover {
   transform: scale(1.03);
 }
 
+@media (max-width: 750px) {
+  img[src="/images/profile2.jpg"] {
+    float: none !important;
+    display: block !important;
+    margin: 1rem auto !important;
+    margin-top: 0 !important;
+  }
+}
+
 /* Logo title fix */
 .logo {
   color: var(--background);
