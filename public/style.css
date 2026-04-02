@@ -44,7 +44,7 @@ img[src="/images/profile2.jpg"] {
   float: right;
   margin-left: 20px;
   margin-bottom: 20px;
-  margin-top: -30px;
+  margin-top: 0px;
 }
 
 img[src="/images/profile2.jpg"]:hover {
@@ -75,3 +75,9 @@ body.photos .logo a {
 .menu--mobile {
   display: none !important;
 }
+
+p:has(a[href*="tools.thekiller.net"]) {
+  margin-top: 6rem;
+  margin-bottom: 4rem;
+}
+

@@ -10,13 +10,7 @@ Homelab operator. Musician.
 
 Based in Los Angeles.
 
-<br>
-<br>
-<br>
-
 [killer-tools](https://tools.thekiller.net) · Web tools & utilities
-
-<br>
 
 ---
 
