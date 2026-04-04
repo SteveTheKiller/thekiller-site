@@ -14,4 +14,5 @@ Based in Los Angeles.
 
 ---
 
-[GitHub](https://github.com/SteveTheKiller) · [Instagram](https://instagram.com/smilaise) · [Telegram](https://t.me/StevetheKiller) · [Email](mailto:steve@thekiller.net) · [Buy Me a Coffee](https://buymeacoffee.com/StevetheKiller)
+[GitHub](https://github.com/SteveTheKiller) · [Instagram](https://instagram.com/smilaise) · [Telegram](https://t.me/StevetheKiller) · [Email](mailto:steve@thekiller.net)  
+[Buy Me a Coffee](https://buymeacoffee.com/StevetheKiller)

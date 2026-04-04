@@ -44,7 +44,7 @@ img[src="/images/profile2.jpg"] {
   float: right;
   margin-left: 20px;
   margin-bottom: 20px;
-  margin-top: 0px;
+  margin-top: 10px;
 }
 
 img[src="/images/profile2.jpg"]:hover {
@@ -78,6 +78,6 @@ body.photos .logo a {
 
 p:has(a[href*="killertools.net"]) {
   margin-top: 6rem;
-  margin-bottom: 4rem;
+  margin-bottom: 6rem;
 }
 
