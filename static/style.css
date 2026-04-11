@@ -77,7 +77,7 @@ body.photos .logo a {
 }
 
 p:has(a[href*="killertools.net"]) {
-  margin-top: 6rem;
-  margin-bottom: 6rem;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
 }
 
