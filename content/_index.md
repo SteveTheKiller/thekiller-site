@@ -14,6 +14,8 @@ Based in Los Angeles.
 
 [KillerScan](https://scan.killertools.net) · Network scanner for field techs
 
+[KillerPDF](https://pdf.killertools.net) · Portable PDF Editor
+
 ---
 
 [GitHub](https://github.com/SteveTheKiller) · [Facebook](https://www.facebook.com/SteveTheKiller/) · [Telegram](https://t.me/StevetheKiller) · [Email](mailto:steve@thekiller.net)  
