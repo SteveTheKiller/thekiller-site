@@ -12,9 +12,9 @@ Based in Los Angeles.
 
 [Killer Tools](https://killertools.net) · Web tools & utilities
 
-[KillerScan](https://scan.killertools.net) · Network scanner for field techs
+[KillerScan](https://scan.killertools.net) · Network scanner
 
-[KillerPDF](https://pdf.killertools.net) · Portable PDF Editor
+[KillerPDF](https://killerPDF.net) · Portable PDF Editor
 
 ---
 
