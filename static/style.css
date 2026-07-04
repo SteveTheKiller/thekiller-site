@@ -1,3 +1,31 @@
+/* ── Page fade on navigation (same 0.28s pageFadeIn as the KillerTools sites) ── */
+@keyframes pageFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.content {
+  animation: pageFadeIn 0.28s ease both;
+}
+
+/* ── Grunge typewriter wordmark (same font as the KillerTools apps/sites) ── */
+@font-face {
+  font-family: 'KillerScan';
+  src: url('/fonts/KillerScan.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.logo,
+.logo a {
+  font-family: 'KillerScan', 'Courier New', monospace;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+.logo {
+  font-size: 1.85em;
+  line-height: 1;
+}
+
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -51,6 +79,16 @@ img[src="/images/profile2.jpg"]:hover {
   transform: scale(1.03);
 }
 
+/* Drop the intro text a few px so its first line tops out level with the
+   portrait (which sits at margin-top 10px + border). Padding, not margin,
+   so it can't collapse into the paragraph gap. Desktop only - on mobile the
+   photo is centered above the text. */
+@media (min-width: 751px) {
+  .index-content p:nth-of-type(2) {
+    padding-top: 14px;
+  }
+}
+
 @media (max-width: 750px) {
   img[src="/images/profile2.jpg"] {
     float: none !important;
@@ -81,39 +119,55 @@ p:has(a[href*="killertools.net"]) {
   margin-bottom: 2rem;
 }
 
-/* ── Background ──────────────────────────────── */
+/* ── Background: old CRT ─────────────────────── */
 
 :root {
   --background: #26211a;
 }
 
-/* ── Scanlines ────────────────────────────────── */
+/* Tube glow: a faint warm phosphor bloom in the upper middle, and the base
+   color falling off toward the corners like a lit picture tube. */
+body {
+  background:
+    radial-gradient(ellipse 90% 60% at 50% 35%, rgba(255, 180, 60, 0.07), transparent 65%),
+    radial-gradient(ellipse at center, #2c261d 0%, #26211a 55%, #15110b 100%);
+  background-attachment: fixed;
+}
 
+/* Scanlines: ONE fine pitch, darkening (real scanlines are the dark gaps
+   between phosphor rows - two bright overlapping pitches made the moire
+   stripes). Very low opacity so text stays readable. */
 body::after {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 9999;
-  background:
-    repeating-linear-gradient(
-      to bottom,
-      rgba(255, 180, 60, 0.07) 0px,
-      rgba(255, 180, 60, 0.07) 1px,
-      transparent 1px,
-      transparent 4px
-    ),
-    repeating-linear-gradient(
-      to bottom,
-      rgba(255, 180, 60, 0.04) 0px,
-      rgba(255, 180, 60, 0.04) 1px,
-      transparent 1px,
-      transparent 3px
-    );
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.18) 0px,
+    rgba(0, 0, 0, 0.18) 1px,
+    transparent 1px,
+    transparent 3px
+  );
 }
 
+/* Vignette: corners fall off into shadow like the curved edge of the glass. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  background: radial-gradient(ellipse at center,
+    transparent 55%,
+    rgba(0, 0, 0, 0.18) 82%,
+    rgba(0, 0, 0, 0.42) 100%);
+}
+
+/* Images sit under the scanlines/vignette so photos read as part of the tube. */
 img {
   position: relative;
-  z-index: 10000;
+  z-index: 9000;
 }
 

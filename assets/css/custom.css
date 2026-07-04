@@ -15,6 +15,22 @@
 .index-content {
   margin-top: 0 !important;
 }
+
+/* ── Home: GPLv3 tools block ─────────────────────── */
+/* Extra air above the label, dimmed text; the link list under it is one
+   paragraph with hard line breaks, so it stays tight on its own. */
+.tools-label {
+  margin-top: 3.4em !important;
+  margin-bottom: 0 !important;
+  opacity: 0.55;
+  font-size: 0.9em;
+  letter-spacing: 0.5px;
+}
+
+/* Pull the link list right up under the label (beats the theme's paragraph margin) */
+.tools-label + p {
+  margin-top: 0.4em !important;
+}
 /* ── Mobile fixes ────────────────────────────────── */
 
 .menu__dropdown li a {

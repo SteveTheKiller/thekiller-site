@@ -10,12 +10,11 @@ Homelab operator. Musician.
 
 Based in Los Angeles.
 
-[Killer Tools](https://KillerTools.net) · Web tools & utilities
+<p class="tools-label">GPLv3 Tools:</p>
 
-[KillerScan](https://KillerScan.net) · Network scanner
-
-[KillerPDF](https://KillerPDF.net) · Portable PDF Editor
-
+[Killer Tools](https://KillerTools.net) · Web tools & utilities\
+[KillerScan](https://KillerScan.net) · Portable Network scanner\
+[KillerPDF](https://KillerPDF.net) · Portable PDF Editor\
 [KillerFind](https://KillerFind.net) · Portable File Search
 
 ---
