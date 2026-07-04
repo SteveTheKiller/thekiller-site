@@ -16,7 +16,7 @@ Based in Los Angeles.
 
 [KillerPDF](https://KillerPDF.net) · Portable PDF Editor
 
-[KillerFind](https://KillerFind.net) · Portable PDF Editor
+[KillerFind](https://KillerFind.net) · Portable File Search
 
 ---
 
