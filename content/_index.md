@@ -10,15 +10,16 @@ Homelab operator. Musician.
 
 Based in Los Angeles.
 
-<br>
-<br>
-[Killer Tools](https://killertools.net) · Web tools & utilities
+[Killer Tools](https://KillerTools.net) · Web tools & utilities
 
-[KillerScan](https://scan.killertools.net) · Network scanner
+[KillerScan](https://KillerScan.net) · Network scanner
 
-[KillerPDF](https://killerPDF.net) · Portable PDF Editor
+[KillerPDF](https://KillerPDF.net) · Portable PDF Editor
+
+[KillerFind](https://KillerFind.net) · Portable PDF Editor
 
 ---
 
-[GitHub](https://github.com/SteveTheKiller) · [Facebook](https://www.facebook.com/SteveTheKiller/) · [Telegram](https://t.me/StevetheKiller) · [Email](mailto:steve@thekiller.net)  
-[Buy Me a Coffee](https://buymeacoffee.com/StevetheKiller)
+[GitHub](https://github.com/SteveTheKiller) · [Facebook](https://www.facebook.com/SteveTheKiller/) · [Telegram](https://t.me/StevetheKiller)
+
+[Email](mailto:steve@thekiller.net) · [Buy Me a Coffee](https://buymeacoffee.com/StevetheKiller)
