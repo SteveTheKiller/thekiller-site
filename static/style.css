@@ -14,11 +14,46 @@
   font-display: block;
 }
 
+@font-face {
+  font-family: 'CFPunkForever';
+  src: url('/fonts/CFPunkForever.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'PunkEvent';
+  src: url('/fonts/PunkEvent.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
 .logo,
 .logo a {
   font-family: 'KillerScan', 'Courier New', monospace;
   font-weight: normal;
   letter-spacing: 1px;
+}
+
+/* S in Steve + K in Killer use CF Punk Forever, 1.5x the other letters */
+.logo .cf {
+  font-family: 'CFPunkForever', 'KillerScan', 'Courier New', monospace;
+  font-size: 1.5em;
+  line-height: 0;               /* big caps overflow instead of growing the bar */
+  vertical-align: baseline;
+}
+
+/* space before the "K" so "the Killer" isn't jammed together */
+.logo .cf.gap {
+  margin-left: 0.45em;
+}
+
+/* "the" uses PunkEvent, with a gap so it clears "Steve" */
+.logo .pe {
+  font-family: 'PunkEvent', 'KillerScan', 'Courier New', monospace;
+  margin-left: 0.35em;
 }
 
 .logo {
