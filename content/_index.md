@@ -15,7 +15,8 @@ Based in Los Angeles.
 [Killer Tools](https://KillerTools.net) · Web tools & utilities\
 [KillerScan](https://KillerScan.net) · Portable Network scanner\
 [KillerPDF](https://KillerPDF.net) · Portable PDF Editor\
-[KillerFind](https://KillerFind.net) · Portable File Search
+[KillerFind](https://KillerFind.net) · Portable File Search\
+[KillerNotes](https://KillerNotes.net) · Portable Encrypted Notepad
 
 ---
 
