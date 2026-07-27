@@ -12,11 +12,11 @@ Based in Los Angeles.
 
 <p class="tools-label">GPLv3 Tools:</p>
 
-[Killer Tools](https://KillerTools.net) · Web tools & utilities\
-[KillerScan](https://KillerScan.net) · Portable Network scanner\
+[Killer Tools](https://KillerTools.net) · Web Tools & Utilities\
+[KillerScan](https://KillerScan.net) · Portable Network Scanner\
 [KillerPDF](https://KillerPDF.net) · Portable PDF Editor\
 [KillerNotes](https://KillerNotes.net) · Portable Encrypted Notepad\
-[KillerShell](https://KillerShell.net) · Portable Shell for Power-users
+[KillerShell](https://KillerShell.net) · Portable Shell for Power-Users
 
 ---
 
