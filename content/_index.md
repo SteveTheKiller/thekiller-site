@@ -16,7 +16,8 @@ Based in Los Angeles.
 [KillerScan](https://KillerScan.net) · Portable Network Scanner\
 [KillerPDF](https://KillerPDF.net) · Portable PDF Editor\
 [KillerNotes](https://KillerNotes.net) · Portable Encrypted Notepad\
-[KillerShell](https://KillerShell.net) · Portable Shell for Power-Users
+[KillerShell](https://KillerShell.net) · Portable Shell for Power-Users\
+[The Killendar](https://Killendar.net) · Portable Encrypted Calendar
 
 ---
 
