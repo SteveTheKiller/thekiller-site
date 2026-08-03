@@ -16,7 +16,7 @@ title: "Photos"
   <a class="glightbox" href="/images/satacassette.jpg"><img src="/images/satacassette.jpg"></a>
   <a class="glightbox" href="/images/telephotolens.jpg"><img src="/images/telephotolens.jpg"></a>
   <a class="glightbox" href="/images/servers_back.jpg"><img src="/images/servers_back.jpg"></a>
-  <a class="glightbox" href="/images/cameras_display.jpg"><img src="/images/cameras_display.jpg"></a>
+  <a class="glightbox" href="/images/cam_station.jpg"><img src="/images/cam_station.jpg"></a>
 </div>
 
 <script>
