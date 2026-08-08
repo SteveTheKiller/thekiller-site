@@ -6,7 +6,7 @@ theme = "terminal"
 [params]
   themeColor = "orange"
   fullWidthTheme = false
-  centerTheme = false
+  centerTheme = true
   title = "Steve the Killer"
   subtitle = "Field tech. Analog film enthusiast. Based in Los Angeles."
   customCSS = ["css/custom.css"]
