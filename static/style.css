@@ -154,55 +154,229 @@ p:has(a[href*="killertools.net"]) {
   margin-bottom: 2rem;
 }
 
-/* ── Background: old CRT ─────────────────────── */
+/* ── Amber CRT: P3 phosphor on a neutral black tube ─────────────────────── */
 
+/* The glass is neutral - black to charcoal, no brown. All the warmth comes
+   from the phosphor itself (the text), not from the background. */
 :root {
-  --background: #26211a;
+  --background: #0b0b0b;   /* unlit glass */
+  --foreground: #d99a1f;   /* dim amber - body text */
+  --accent: #ffb642;       /* bright amber - links, logo, borders */
+
+  --amber: #ffb000;        /* reference P3 amber */
+  --charcoal: #1c1c1c;     /* gradient high point */
 }
 
-/* Tube glow: a faint warm phosphor bloom in the upper middle, and the base
-   color falling off toward the corners like a lit picture tube. */
+/* Tube: neutral charcoal falling off to black toward the corners, with one
+   very faint phosphor bloom in the upper middle. */
 body {
   background:
-    radial-gradient(ellipse 90% 60% at 50% 35%, rgba(255, 180, 60, 0.07), transparent 65%),
-    radial-gradient(ellipse at center, #2c261d 0%, #26211a 55%, #15110b 100%);
+    radial-gradient(ellipse 90% 60% at 50% 35%, rgba(255, 176, 0, 0.045), transparent 65%),
+    radial-gradient(ellipse at center, var(--charcoal) 0%, #121212 55%, #000 100%);
   background-attachment: fixed;
+  color: var(--foreground);
 }
 
-/* Scanlines: ONE fine pitch, darkening (real scanlines are the dark gaps
-   between phosphor rows - two bright overlapping pitches made the moire
-   stripes). Very low opacity so text stays readable. */
-body::after {
-  content: "";
+/* Phosphor bloom on the text itself. Two shadows: a tight core halo and a
+   wider soft bleed. This is the single thing that sells "amber CRT" - real
+   phosphor smears light into the pixels around it. */
+body {
+  text-shadow:
+    0 0 1px rgba(255, 176, 0, 0.35),
+    0 0 6px rgba(255, 150, 0, 0.16);
+}
+
+/* Anything that should read as "lit harder" gets brighter phosphor + more bleed. */
+h1, h2, h3, h4, h5, h6,
+strong, b,
+a {
+  color: var(--accent);
+  text-shadow:
+    0 0 1px rgba(255, 182, 66, 0.55),
+    0 0 8px rgba(255, 150, 0, 0.28);
+}
+
+/* Home logo is knockout - dark letters punched out of a lit amber slab, like
+   an inverse-video field. It must NOT inherit the amber link color or the
+   phosphor glow, or the letters vanish into the block behind them. */
+.logo,
+.logo a {
+  color: var(--background);
+  text-shadow: none;
+}
+
+/* Photos page flips it: the slab goes dark and the letters light up, so
+   there the glow is exactly right. */
+body.photos .logo,
+body.photos .logo a {
+  color: var(--accent) !important;
+  text-shadow:
+    0 0 1px rgba(255, 182, 66, 0.55),
+    0 0 8px rgba(255, 150, 0, 0.28);
+}
+
+hr {
+  border-color: rgba(255, 176, 0, 0.3);
+  box-shadow: 0 0 6px rgba(255, 150, 0, 0.15);
+}
+
+/* The "GPLv3 Tools:" label was dimmed with opacity, which also kills the
+   phosphor glow and reads as muddy on the darker tube. Use a real dimmer
+   amber at full opacity instead, so it still glows - just less. */
+.tools-label {
+  opacity: 1;
+  color: #b8842a;
+  text-shadow:
+    0 0 1px rgba(255, 176, 0, 0.3),
+    0 0 6px rgba(255, 150, 0, 0.14);
+}
+
+::selection {
+  background: var(--amber);
+  color: #000;
+  text-shadow: none;
+}
+
+/* ── Overlay stack (markup in layouts/_default/baseof.html) ───────────────
+   Everything below is decorative, fixed, and pointer-events:none so it never
+   eats a click. Layer order bottom to top:
+     9000  images (sit under the glass, like everything else on screen)
+     9997  glare      - reflection off the curved front glass
+     9998  vignette   - corners falling into shadow
+     9999  mask       - shadow mask + scanlines
+    10000  sweep      - the slow refresh band rolling down
+    10001  flicker    - brightness instability
+    10002  power      - one-shot power-on flash
+   ------------------------------------------------------------------------ */
+
+.crt,
+.crt > div {
   position: fixed;
   inset: 0;
   pointer-events: none;
+}
+
+.crt {
+  z-index: 9997;
+}
+
+/* Shadow mask + scanlines. The vertical pitch is the phosphor triad grille,
+   the horizontal pitch is the dark gap between scan rows. Both stay very low
+   contrast so body text is still comfortable to read for more than 10s. */
+.crt__mask {
   z-index: 9999;
-  background: repeating-linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.18) 0px,
-    rgba(0, 0, 0, 0.18) 1px,
-    transparent 1px,
-    transparent 3px
-  );
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.22) 0px,
+      rgba(0, 0, 0, 0.22) 1px,
+      transparent 1px,
+      transparent 3px
+    ),
+    repeating-linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.14) 0px,
+      rgba(0, 0, 0, 0.14) 1px,
+      transparent 1px,
+      transparent 3px
+    );
 }
 
-/* Vignette: corners fall off into shadow like the curved edge of the glass. */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
+/* The refresh band: a soft bright horizontal wipe drifting down the tube,
+   the way a phone camera sees a CRT. Slow and faint - it should register as
+   atmosphere, not as a loading bar. */
+.crt__sweep {
+  z-index: 10000;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(255, 176, 0, 0.035) 45%,
+    rgba(255, 200, 90, 0.06) 50%,
+    rgba(255, 176, 0, 0.035) 55%,
+    transparent 100%
+  );
+  background-size: 100% 22vh;
+  background-repeat: no-repeat;
+  animation: crtSweep 9s linear infinite;
+}
+
+@keyframes crtSweep {
+  from { background-position: 0 -25vh; }
+  to   { background-position: 0 125vh; }
+}
+
+/* Brightness instability. A flat amber wash whose opacity wobbles a hair -
+   cheaper than animating the text and it can't cause a text reflow. */
+.crt__flicker {
+  z-index: 10001;
+  background: rgba(255, 176, 0, 0.015);
+  animation: crtFlicker 5.5s steps(1, end) infinite;
+}
+
+@keyframes crtFlicker {
+  0%,  100% { opacity: 0.30; }
+  7%        { opacity: 0.85; }
+  9%        { opacity: 0.25; }
+  23%       { opacity: 0.60; }
+  24%       { opacity: 0.20; }
+  55%       { opacity: 0.75; }
+  57%       { opacity: 0.30; }
+  81%       { opacity: 0.55; }
+  83%       { opacity: 0.28; }
+}
+
+/* Reflection off the front glass: one broad soft highlight up and to the
+   left, like a window behind you in the room. */
+.crt__glare {
+  z-index: 9997;
+  background:
+    radial-gradient(ellipse 55% 40% at 22% 8%, rgba(255, 255, 255, 0.035), transparent 70%),
+    radial-gradient(ellipse 80% 60% at 50% 30%, rgba(255, 200, 120, 0.02), transparent 75%);
+}
+
+/* Vignette: the curved edge of the glass eating light at the corners.
+   Slightly heavier than before now that the tube is neutral black. */
+.crt__vignette {
   z-index: 9998;
   background: radial-gradient(ellipse at center,
-    transparent 55%,
-    rgba(0, 0, 0, 0.18) 82%,
-    rgba(0, 0, 0, 0.42) 100%);
+    transparent 52%,
+    rgba(0, 0, 0, 0.22) 80%,
+    rgba(0, 0, 0, 0.55) 100%);
 }
 
-/* Images sit under the scanlines/vignette so photos read as part of the tube. */
+/* Power-on: the tube strikes, blooms, and settles. Runs once on load.
+   Short on purpose - anything longer than half a second is a toll booth. */
+.crt__power {
+  z-index: 10002;
+  background: #ffdca8;
+  opacity: 0;
+  animation: crtPowerOn 0.55s ease-out 1 both;
+}
+
+@keyframes crtPowerOn {
+  0%   { opacity: 0.5;  transform: scaleY(0.004); }
+  35%  { opacity: 0.28; transform: scaleY(0.02); }
+  60%  { opacity: 0.12; transform: scaleY(1); }
+  100% { opacity: 0;    transform: scaleY(1); }
+}
+
+/* Images sit under the glass so photos read as part of the tube, not as
+   stickers pasted on top of it. */
 img {
   position: relative;
   z-index: 9000;
+}
+
+/* Respect the setting. Kill every moving layer, keep the static look. */
+@media (prefers-reduced-motion: reduce) {
+  .crt__sweep,
+  .crt__flicker,
+  .crt__power,
+  .content {
+    animation: none !important;
+  }
+
+  .crt__power { opacity: 0; }
+  .crt__flicker { opacity: 0.3; }
 }
 
