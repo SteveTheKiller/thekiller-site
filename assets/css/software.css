@@ -1,0 +1,1100 @@
+/* ── Software: the CRT slideshow ──────────────────────────────────────────
+   Five apps, one per channel. The page-wide CRT layers (baseof.html) already
+   cover this, so nothing here re-draws scanlines - the tube here is the BEZEL
+   and the phosphor glow, not the glass.
+   Palette is the site's: --background #0b0b0b, --foreground dim amber,
+   --accent #ffb642. */
+
+/* UNIFORM WIDTH. This page sits in the theme's container exactly like Home and
+   Photos - same left and right edges as the header, on every page. Do not
+   reintroduce a breakout here (margin-left:50% + translateX(-50%) or a vw
+   width): that is what made the content 198px wider per side than the header
+   and put every edge on the page out of agreement with every other. */
+.pf {
+  --pf-edge: color-mix(in srgb, var(--accent) 26%, transparent);
+  width: 100%;
+}
+
+/* ── Bezel: the moulded case around the tube ── */
+.pf-bezel {
+  position: relative;
+  border: 1px solid var(--pf-edge);
+  border-radius: 12px;
+  padding: 8px;
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--accent) 5%, transparent),
+      transparent 40%),
+    #070707;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.6) inset,
+    0 24px 60px rgba(0, 0, 0, 0.55);
+}
+
+/* ── Screen: fixed-ratio window the slides live inside ── */
+.pf-screen {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #050505;
+  /* Stacked layout. Tall enough that the SHOT dominates: the details block is
+     content-sized (~300px), so a shorter tube left the screenshot smaller than
+     the text under it. */
+  aspect-ratio: 8 / 8.4;
+  /* Phosphor bloom hugging the inside of the glass */
+  box-shadow:
+    0 0 60px color-mix(in srgb, var(--accent) 9%, transparent) inset,
+    0 0 0 1px rgba(0, 0, 0, 0.8) inset;
+}
+
+/* ── Stage: the tube, with the app tabs running down its right side ── */
+.pf-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 168px;
+  gap: 10px;
+  align-items: start;
+}
+
+/* ── Slides ──
+   Screenshot on TOP, details underneath. Side by side, the text column was
+   only 300px and the app wordmark could not fit in it. */
+.pf-slide {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.32s ease, visibility 0s linear 0.32s;
+}
+
+.pf-slide.is-on {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.32s ease, visibility 0s;
+}
+
+/* ── Screenshot stack: fills its column ── */
+.pf-shots {
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.pf-shot {
+  position: absolute;
+  /* Inset + contain: `cover` was cropping hard into the middle of each app
+     window, so you saw a zoomed fragment instead of the application. Contain
+     shows the whole shot, letterboxed against the tube. */
+  inset: 10px;
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  object-fit: contain;
+  object-position: center;
+  border: 0 !important;      /* see the note on .pf-wm */
+  padding: 0 !important;     /* theme adds 8px to images; shrinks the shot */
+  cursor: zoom-in;
+  opacity: 0;
+  /* Sits under the page's glass; slightly warmed so a cool app theme still
+     reads as though it is being displayed on an amber tube */
+  filter: saturate(0.88) contrast(1.04);
+  transition: opacity 0.7s ease;
+  /* Beat the theme's global `img { z-index: 9000 }` so shots stay in the tube */
+  z-index: 1 !important;
+}
+
+.pf-shot.is-on { opacity: 1; }
+
+/* Vignette + scanline bias over the screenshot only, so the app UI reads as
+   *displayed* rather than pasted in */
+.pf-shots::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.45) 100%),
+    linear-gradient(180deg, rgba(255, 176, 0, 0.05), transparent 30%);
+}
+
+/* ── Plate: the details, under the shot and the full width of the glass ── */
+.pf-plate {
+  position: relative;
+  z-index: 3;
+  padding: 14px 20px 18px;
+  background: #040404;
+  border-top: 1px solid var(--pf-edge);
+  overflow: hidden;
+}
+
+/* 8-bit amber wordmark. image-rendering keeps the cells hard at any size. */
+.pf-wm {
+  display: block;
+  /* Full plate width now, so the mark can breathe */
+  max-height: 44px;
+  /* The theme puts `border: 4px solid var(--accent) !important` on every img.
+     On the wordmark that draws a box around the pixel art and reads as a
+     squashed, boxed logo; on the screenshots it frames the image BOX (which
+     with object-fit:contain is nowhere near the visible picture) and gets
+     clipped at the tube edge. Off, in both places. */
+  border: 0 !important;
+  /* Fit inside BOTH limits, aspect ratio intact. A fixed height instead of a
+     max meant the long names overflowed the panel - "The Killendar" is 7.9:1,
+     so 58px tall is 458px wide against a 342px panel, which pushed a
+     horizontal scrollbar into the plate and cut the name off. Capping height
+     AND width lets each mark land as large as it can without spilling. */
+  height: auto !important;
+  width: auto !important;
+  max-height: 58px;
+  max-width: 100% !important;
+  /* .pf-plate is a COLUMN flex container, so its default align-items:stretch
+     was forcing this to the full panel width and stretching the pixel art
+     sideways. width:auto alone cannot win against a flex stretch. */
+  align-self: flex-start;
+  padding: 0 !important;
+  margin: 0 0 12px;
+  image-rendering: pixelated;
+  z-index: 3 !important;
+  /* Light bloom only - a heavy glow fills the gaps between cells and undoes
+     the pixel edges */
+  filter: drop-shadow(0 0 5px color-mix(in srgb, var(--accent) 30%, transparent));
+}
+
+.pf-tag {
+  margin: 0 0 6px;
+  font-size: 0.9em;
+  opacity: 0.72;
+}
+
+.pf-ver { opacity: 0.6; font-size: 0.85em; }
+
+/* Copy well: content-sized, tall enough that nothing ever scrolls. The old
+   fixed height + drift is retired; the JS drift no-ops when it all fits. */
+.pf-copy {
+  position: relative;
+  margin: 0 0 10px;
+}
+
+.pf-copy-inner {
+  will-change: transform;
+  transition: transform 3.5s ease;
+}
+
+.pf-blurb {
+  margin: 0 0 10px;
+  max-width: 62ch;
+  font-size: 0.92em;
+  line-height: 1.55;
+}
+
+.pf-why {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 0.88em;
+  line-height: 1.55;
+  opacity: 0.78;
+}
+
+/* Stats row and the two links on ONE line, links pinned to the right edge */
+.pf-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2em;
+  flex-wrap: wrap;
+}
+
+.pf-stats {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em;
+}
+
+.pf-stats li {
+  border: 1px solid var(--pf-edge);
+  padding: 0.1em 0.55em;
+  font-size: 0.74em;
+  opacity: 0.85;
+}
+
+.pf-links { margin: 0 0 0 auto; font-size: 0.86em; white-space: nowrap; }
+.pf-links a { margin-left: 1.2em; margin-right: 0; }
+
+/* ── Signal glitch on channel change ── */
+.pf-glitch {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255, 200, 120, 0.16) 0px,
+      rgba(255, 200, 120, 0.16) 2px,
+      transparent 2px,
+      transparent 5px
+    );
+}
+
+.pf.is-switching .pf-glitch {
+  animation: pfGlitch 0.32s steps(2, end) 1 both;
+}
+
+@keyframes pfGlitch {
+  0%   { opacity: 0.9; transform: translateY(-2%) scaleY(1.03); }
+  40%  { opacity: 0.5; transform: translateY(1.5%) scaleY(0.99); }
+  100% { opacity: 0;   transform: translateY(0) scaleY(1); }
+}
+
+/* The whole tube twitches for a frame as the channel lands */
+.pf.is-switching .pf-screen {
+  animation: pfRoll 0.32s ease-out 1 both;
+}
+
+@keyframes pfRoll {
+  0%   { filter: brightness(1.5) saturate(0.4); transform: translateY(-3px); }
+  35%  { filter: brightness(0.82); transform: translateY(2px); }
+  100% { filter: none; transform: none; }
+}
+
+/* ── On-screen display: channel readout ── */
+.pf-osd {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  z-index: 4;
+  font-size: 0.74em;
+  letter-spacing: 1.5px;
+  color: var(--accent);
+  opacity: 0.62;
+  text-shadow: 0 0 8px color-mix(in srgb, var(--accent) 60%, transparent);
+  pointer-events: none;
+}
+
+/* ── App tabs: a vertical stack down the right of the tube ── */
+/* Right column: app tabs on top, built-with marks filling the space below them
+   so the page does not need a full-width footer row under the tube. */
+.pf-side {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.pf-dots {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+}
+
+.pf-dot {
+  flex: 0 0 auto;
+  text-align: left;
+  background: transparent;
+  border: 1px solid var(--pf-edge);
+  color: var(--foreground);
+  font: inherit;
+  font-size: 0.8em;
+  letter-spacing: 0.5px;
+  padding: 7px 10px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.pf-dot:hover { opacity: 1; border-color: var(--accent); }
+
+.pf-dot.is-on {
+  opacity: 1;
+  color: var(--accent);
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+/* (.pf-hint removed - the tabs make the interaction obvious) */
+
+/* ── Intro: the three language marks strike in, then dock to the bar ── */
+.pf-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 10050;
+  display: none;               /* JS shows it, once per session */
+  align-items: center;
+  justify-content: center;
+  gap: 7vw;
+  background: rgba(4, 4, 4, 0.92);
+  pointer-events: none;        /* decorative - never blocks a click */
+}
+
+.pf-intro img {
+  height: clamp(70px, 14vh, 130px);
+  width: auto !important;
+  max-width: none !important;
+  border: 0 !important;
+  padding: 0 !important;
+  filter: drop-shadow(0 0 12px color-mix(in srgb, var(--accent) 45%, transparent));
+  opacity: 0;
+}
+
+.pf-intro.is-playing { display: flex; }
+
+/* Strike-in: the tube-power treatment, staggered per mark */
+.pf-intro.is-playing img {
+  animation: pfStrike 0.34s ease-out both;
+}
+.pf-intro.is-playing img:nth-child(2) { animation-delay: 0.12s; }
+.pf-intro.is-playing img:nth-child(3) { animation-delay: 0.24s; }
+
+@keyframes pfStrike {
+  0%   { opacity: 0; transform: scaleY(0.05); filter: brightness(2.2); }
+  55%  { opacity: 1; transform: scaleY(1.04); }
+  100% { opacity: 1; transform: scaleY(1); }
+}
+
+/* Dock: marks fly up toward the bar and shrink; the backdrop lets go */
+.pf-intro.is-docking { background: transparent; transition: background 0.4s ease; }
+.pf-intro.is-docking img {
+  animation: none;
+  opacity: 0;
+  transform: translateY(-36vh) scale(0.22);
+  transition: transform 0.42s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.42s ease;
+}
+
+/* ── The docked language bar ── */
+/* Three equal columns, so the row spans the content exactly: the first button
+   starts at the left content edge and the last ends at the right one. Centred
+   as a cluster (what this was) aligned the bar with nothing on the page. */
+.pf-langbar {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: center;
+  gap: 0;
+  margin: 0 0 10px;
+}
+
+/* Icon and label on ONE line: stacked, the bar was three rows tall and ate a
+   large band of the page for three words. */
+.pf-lang {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: transparent;
+  border: 0;
+  padding: 3px 4px;
+  cursor: pointer;
+  text-decoration: none;
+  opacity: 0.62;
+  transition: opacity 0.15s ease;
+}
+
+.pf-lang:hover { opacity: 1; }
+
+.pf-lang img {
+  height: 22px;
+  width: auto !important;
+  max-width: none !important;
+  border: 0 !important;
+  padding: 0 !important;
+  /* The theme's 25px vertical image margin made this bar 78px tall for a 22px
+     icon. */
+  margin: 0 !important;
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--accent) 35%, transparent));
+}
+
+/* The active family: full brightness with an accent rule underneath */
+.pf-lang[aria-pressed="true"] {
+  opacity: 1;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 1px;
+}
+
+.pf-lang span {
+  font-size: 0.72em;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  color: var(--foreground);
+}
+
+/* While the intro plays, the bar waits, then fades in as the marks dock */
+.pf.intro-live .pf-langbar { opacity: 0; }
+.pf.intro-docked .pf-langbar { opacity: 1; transition: opacity 0.4s ease 0.15s; }
+
+/* ── Web family: animated slideshow. All cards share ONE grid cell, so the
+   container stays as tall as the tallest card and nothing reflows as the show
+   advances; software.js moves `is-on` between them on a timer. Reduced motion
+   and no-JS both unstack into a plain list (media query below / noscript). ── */
+.pf-web {
+  display: grid;
+  position: relative;      /* anchors the static overlay and the arrows */
+}
+
+/* CRT static between cards: same scanline material as the app tube's glitch,
+   doubled up and jittered. It bursts to full over the swap, so the incoming
+   card fades in UNDER the noise and the change reads as tuning, not a cut. */
+.pf-web-static {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  border-radius: 8px;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255, 200, 120, 0.16) 0px,
+      rgba(255, 200, 120, 0.16) 2px,
+      transparent 2px,
+      transparent 5px
+    ),
+    repeating-linear-gradient(
+      105deg,
+      rgba(255, 200, 120, 0.08) 0px,
+      rgba(255, 200, 120, 0.08) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+}
+
+.pf-web.is-tuning .pf-web-static {
+  animation: pfWebStatic 0.5s steps(3, end) 1 both;
+}
+
+@keyframes pfWebStatic {
+  0%   { opacity: 0.95; transform: translateY(-1.5%) scaleY(1.02); }
+  30%  { opacity: 0.6;  transform: translateY(1%)    scaleY(0.99); }
+  65%  { opacity: 0.75; transform: translateY(-0.5%) scaleY(1.01); }
+  100% { opacity: 0;    transform: none; }
+}
+
+/* Manual tuning: the arrow pair sits INSIDE the card, bottom-right corner,
+   where the stack's tallest-card sizing leaves plenty of dead room */
+.pf-web-arrow {
+  position: absolute;
+  bottom: 14px;
+  z-index: 6;
+  width: 34px;
+  height: 30px;
+  padding: 0;
+  font: inherit;
+  font-size: 1.3em;
+  line-height: 1;
+  color: var(--accent);
+  background: #050505;
+  border: 1px solid var(--pf-edge);
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.15s ease, border-color 0.15s ease;
+}
+
+.pf-web-arrow:hover {
+  opacity: 1;
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+.pf-web-arrow[data-dir="-1"] { right: 58px; }
+.pf-web-arrow[data-dir="1"]  { right: 18px; }
+
+.pf-web-card {
+  grid-area: 1 / 1;
+  border: 1px solid var(--pf-edge);
+  border-radius: 8px;
+  background: #050505;
+  padding: 16px 18px;
+  opacity: 0;
+  visibility: hidden;
+  transition: border-color 0.15s ease, opacity 0.45s ease,
+              visibility 0s linear 0.45s;
+}
+
+.pf-web-card.is-on {
+  opacity: 1;
+  visibility: visible;
+  transition: border-color 0.15s ease, opacity 0.45s ease, visibility 0s;
+}
+
+.pf-web-card:hover { border-color: color-mix(in srgb, var(--accent) 55%, transparent); }
+
+.pf-web-card h3 {
+  margin: 0 0 2px;
+  font-size: 1.05em;
+  letter-spacing: 0.5px;
+}
+
+.pf-web-card h3 a { text-decoration: none; }
+.pf-web-card h3 a:hover { text-decoration: underline; }
+
+/* What each site is built with, top-right of its card */
+.pf-web-langs {
+  float: right;
+  display: flex;
+  gap: 8px;
+  margin: 2px 0 6px 10px;
+}
+
+.pf-web-langs img {
+  height: 30px;
+  width: auto !important;
+  max-width: none !important;
+  border: 0 !important;
+  padding: 0 !important;
+  opacity: 0.95;
+  filter: drop-shadow(0 0 5px color-mix(in srgb, var(--accent) 30%, transparent));
+}
+
+/* Site directory under the description: one per line, no wrapped underlines */
+.pf-web-sites {
+  list-style: none;
+  margin: 0 0 10px;
+  padding: 0;
+  font-size: 0.88em;
+}
+
+.pf-web-sites li {
+  margin: 0;
+  line-height: 1.85;
+}
+
+.pf-web-sites a { white-space: nowrap; }
+
+/* The showcase lines: technologies as links, then where the site runs */
+.pf-web-tech {
+  margin: 10px 0 4px;
+  font-size: 0.8em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+}
+
+.pf-web-tech span { white-space: nowrap; }
+
+.pf-web-host {
+  margin: 0;
+  font-size: 0.8em;
+  opacity: 0.75;
+}
+
+/* ── PowerShell flowchart: two modules on top, scripts hanging off
+   KillerScripts. Connectors are plain elements and borders, no images. ── */
+.pf-flow {
+  --flow-line: color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+.pf-flow-mods {
+  display: grid;
+  /* minmax(0,1fr), NOT 1fr: plain 1fr resolves to minmax(auto,1fr), and `auto`
+     is min-content - which for the nowrap `Install-Module ...` line is the full
+     command width. That pushed the right-hand card ~100px past the container
+     and the page edge, so the section never lined up with the header. */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.pf-flow-mod {
+  border: 1px solid var(--pf-edge);
+  border-radius: 8px;
+  background: #050505;
+  /* Horizontal padding trimmed so the nowrap install command fits one row */
+  padding: 14px 10px;
+  position: relative;
+  /* Size container for the install command's cqi font scaling below */
+  container-type: inline-size;
+}
+
+.pf-flow-mod h3 {
+  margin: 0 0 4px;
+  font-size: 1.05em;
+  letter-spacing: 0.5px;
+}
+
+.pf-flow-mod h3 a { text-decoration: none; }
+.pf-flow-mod h3 a:hover { text-decoration: underline; }
+
+.pf-flow-blurb {
+  margin: 0 0 8px;
+  font-size: 0.85em;
+  opacity: 0.75;
+}
+
+.pf-flow-install {
+  display: block;
+  border: 1px solid var(--pf-edge);
+  border-radius: 5px;
+  padding: 5px 6px;
+  /* Tracks the CARD width (cqi), so between full desktop and the 640px stack
+     point the one-line command shrinks with its card instead of clipping at
+     the box edge; 0.74em caps it at the size it always was. */
+  font-size: min(0.74em, 2.8cqi);
+  color: var(--accent);
+  background: #030303;
+  /* ONE row on desktop: with the card and box horizontal padding trimmed the
+     command fits, so nowrap holds it to a single line. The 640px media query
+     below turns wrapping back on - stacked cards are usually wide enough, but
+     a very narrow phone must wrap rather than bleed out of the box. */
+  white-space: nowrap;
+  line-height: 1.5;
+}
+
+/* Tokens never break internally: wrapping (mobile) happens only at the spaces
+   BETWEEN spans, so "Install-Module" and "-Scope CurrentUser" stay whole */
+.pf-flow-install span { white-space: nowrap; }
+
+/* Stem drops from the CENTER of the KillerScripts (right) column... */
+.pf-flow-stem {
+  width: 1px;
+  height: 14px;
+  background: var(--flow-line);
+  margin-left: 75%;   /* centre of the right-hand column */
+}
+
+/* ── Bench: script list on the left, terminal on the right ── */
+.pf-ps-bench {
+  display: grid;
+  grid-template-columns: 232px minmax(0, 1fr);
+  gap: 12px;
+  align-items: stretch;
+  margin-top: 0;
+}
+
+/* Two columns of nine - all 18 fit, so there is no scrollbar to style or
+   fight. A scrolling list also hid most of the collection behind a drag. */
+.pf-ps-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: min-content;
+  gap: 4px;
+  align-content: start;
+}
+
+.pf-ps-pick {
+  text-align: left;
+  background: transparent;
+  border: 1px solid var(--pf-edge);
+  border-radius: 5px;
+  padding: 5px 10px;
+  font: inherit;
+  font-size: 0.8em;
+  letter-spacing: 1px;
+  color: var(--accent);
+  cursor: pointer;
+  opacity: 0.72;
+  transition: opacity 0.12s ease, border-color 0.12s ease, background 0.12s ease;
+}
+
+.pf-ps-pick:hover {
+  opacity: 1;
+  border-color: var(--accent);
+}
+
+.pf-ps-pick.is-on {
+  opacity: 1;
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+/* Links at the right end of the terminal's title bar. They were sitting in one
+   bordered strip and read as a single button; now each is a separate pill. */
+.pf-ps-caplinks {
+  float: right;
+  display: inline-flex;
+  gap: 8px;
+  font-size: 0.92em;
+  letter-spacing: 0.5px;
+}
+
+.pf-ps-caplinks a {
+  border: 1px solid color-mix(in srgb, var(--ps-accent) 35%, transparent);
+  border-radius: 4px;
+  padding: 1px 8px;
+  text-decoration: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.pf-ps-caplinks a:hover {
+  border-color: var(--ps-accent);
+  background: color-mix(in srgb, var(--ps-accent) 12%, transparent);
+}
+
+/* The script's own Write-HLine, rebuilt char by char (see software.js).
+   No letter-spacing and a size that fits all 90 console columns: the rule is
+   meant to read as one textured line, and any added tracking turns it into
+   loose dots. */
+.pf-ps-rule {
+  margin: 6px 0 4px 20px !important;
+  font-size: 0.72em;
+  letter-spacing: 0;
+  white-space: pre;
+  overflow: hidden;
+  opacity: 0.95;
+}
+
+/* The module's expanded acronym, under its name */
+.pf-flow-exp {
+  display: block;
+  font-size: 0.62em;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  opacity: 0.55;
+  margin-top: 3px;
+}
+
+/* Every family panel is the SAME width as every other and as the tube. An
+   earlier max-width here made the PowerShell panel narrower than the rest,
+   so its edges lined up with nothing on the page. */
+
+@media (max-width: 640px) {
+  .pf-flow-mods { grid-template-columns: 1fr; }
+  /* Stacked modules: the stem drops from the lower (KillerScripts) box centre */
+  .pf-flow-stem { margin-left: 50%; }
+  /* List above the terminal, three narrow columns */
+  .pf-ps-bench { grid-template-columns: 1fr; }
+  .pf-ps-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  /* Wrap the install command again: stacked cards fit it on most phones, but
+     the narrowest ones need the two-line fallback. No word-break - the nowrap
+     token spans mean it can only ever wrap BETWEEN whole tokens. */
+  .pf-flow-install { white-space: normal; }
+  /* Family bar: tighter type and no tracking, so the three labels stay in
+     their columns instead of overrunning each other */
+  .pf-lang { gap: 5px; min-width: 0; padding: 3px 2px; }
+  .pf-lang span { font-size: 0.62em; letter-spacing: 0; }
+}
+
+/* ── PowerShell terminal showcase (typed by software.js) ── */
+.pf-ps-demo {
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.pf-ps-screen {
+  flex: 1 1 auto;
+  /* FIXED height: the scrollback holds a varying number of wrapped lines, so
+     an auto height resized the window on every printed entry. Locked, with
+     justify-content:flex-end + overflow:hidden, older lines clip off the top
+     like a real console instead of growing the frame. */
+  height: 360px;
+  padding: 4px 14px 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.pf-ps-screen p {
+  margin: 2px 0 0;
+  font-size: 0.9em;
+}
+
+/* Text is ALWAYS the terminal amber. These used var(--ps-accent), which
+   psMark sets on the whole terminal - so selecting a script recolored every
+   command and title already in the scrollback, which is why the window looked
+   randomly colored. The per-script colors belong to the rule only. */
+.pf-ps-screen .pf-ps-cmd {
+  color: var(--accent);
+  margin-top: 10px;
+}
+.pf-ps-screen .pf-ps-out { opacity: 0.78; margin-left: 20px; }
+.pf-ps-screen .pf-ps-title {
+  opacity: 1;
+  color: var(--accent);
+}
+/* The line being typed carries a block caret at its end */
+.pf-ps-live::after {
+  content: "";
+  display: inline-block;
+  width: 9px;
+  height: 1em;
+  vertical-align: text-bottom;
+  margin-left: 2px;
+  background: var(--accent);
+  animation: pfCaret 1.1s steps(1, end) infinite;
+}
+
+/* ── PowerShell terminal (shared frame styles) ── */
+.pf-ps {
+  margin: 0;
+}
+
+/* --ps-accent is set per script by software.js from that script's own
+   $AccentCol; it defaults to the site amber, which is what PowerShell
+   "Yellow" maps to. Every accent-dependent declaration lives HERE, in the
+   last .pf-ps-term rule - an earlier rule setting border-color loses to this
+   block's `border` shorthand at equal specificity, which is exactly the bug
+   that made the colors do nothing. */
+.pf-ps-term {
+  --ps-accent: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--ps-accent) 30%, transparent);
+  border-radius: 8px;
+  background: #050505;
+  padding: 0 0 14px;
+  overflow: hidden;
+  box-shadow: 0 0 40px color-mix(in srgb, var(--ps-accent) 8%, transparent) inset;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.pf-ps-term .pf-ps-cap {
+  border-bottom-color: color-mix(in srgb, var(--ps-accent) 30%, transparent);
+  transition: border-color 0.35s ease;
+}
+
+.pf-ps-term .pf-ps-cap span {
+  border-color: color-mix(in srgb, var(--ps-accent) 45%, transparent);
+  color: var(--ps-accent);
+  transition: color 0.35s ease, border-color 0.35s ease;
+}
+
+.pf-ps-cap {
+  padding: 8px 14px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--pf-edge);
+  font-size: 0.78em;
+  letter-spacing: 1px;
+  opacity: 0.7;
+}
+
+.pf-ps-cap span {
+  display: inline-block;
+  border: 1px solid var(--pf-edge);
+  padding: 0 5px;
+  margin-right: 8px;
+}
+
+.pf-ps-cmd {
+  margin: 10px 14px 2px;
+  color: var(--accent);
+  font-size: 0.92em;
+}
+
+.pf-ps-cmd b { letter-spacing: 0.5px; }
+
+.pf-ps-out {
+  margin: 0 14px 4px 34px;
+  font-size: 0.86em;
+  opacity: 0.8;
+  max-width: 74ch;
+}
+
+.pf-ps-caret {
+  display: inline-block;
+  width: 9px;
+  height: 1em;
+  vertical-align: text-bottom;
+  background: var(--accent);
+  animation: pfCaret 1.1s steps(1, end) infinite;
+}
+
+@keyframes pfCaret { 50% { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-intro { display: none !important; }
+  .pf-ps-caret { animation: none; }
+}
+
+/* ── Full-screen image viewer (built in; see the note in software.js) ── */
+.pf-viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 10100;          /* above the CRT stack, which is hidden anyway */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(4, 4, 4, 0.96);
+  cursor: zoom-out;
+}
+
+.pf-v-img {
+  max-width: 92vw;
+  max-height: 88vh;
+  width: auto !important;
+  height: auto !important;
+  border: 1px solid var(--pf-edge) !important;
+  padding: 0 !important;
+  cursor: default;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.7);
+}
+
+.pf-viewer button {
+  position: absolute;
+  background: transparent;
+  border: 0;
+  color: var(--accent);
+  font-family: inherit;
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 0.15s ease;
+  line-height: 1;
+}
+
+.pf-viewer button:hover { opacity: 1; }
+
+.pf-v-close {
+  top: 18px;
+  right: 24px;
+  font-size: 2.2rem;
+}
+
+.pf-v-nav {
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 3rem;
+  padding: 0 18px;
+}
+
+.pf-v-prev { left: 8px; }
+.pf-v-next { right: 8px; }
+
+.pf-v-count {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  margin: 0;
+  text-align: center;
+  font-size: 0.8em;
+  letter-spacing: 1.5px;
+  color: var(--accent);
+  opacity: 0.6;
+}
+
+@media (max-width: 560px) {
+  .pf-v-nav { font-size: 2.2rem; padding: 0 10px; }
+}
+
+/* ── Colophon above the site footer ── */
+.pf-colophon {
+  margin: 16px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--pf-edge);
+  font-size: 0.85em;
+}
+
+.pf-colophon p {
+  margin: 0 0 6px;
+  opacity: 0.8;
+  line-height: 1.65;
+}
+
+.pf-colophon p:last-child { margin-bottom: 0; }
+
+/* In the right column the marks stack one per line instead of running across */
+.pf-colophon-side {
+  margin: 0;
+  padding-top: 10px;
+  font-size: 0.8em;
+}
+
+.pf-colophon-side .pf-built {
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  gap: 7px;
+  margin-bottom: 9px;
+}
+
+/* The theme gives every img a 25px vertical margin, which stacked to 72px per
+   row once these ran vertically. */
+.pf-built a img { margin: 0; flex: 0 0 auto; }
+
+.pf-colophon-side .pf-built-text {
+  line-height: 1.9;
+  font-size: 0.92em;
+}
+
+.pf-colophon-side .pf-built-text a {
+  display: block;
+  width: max-content;
+  white-space: nowrap;
+}
+
+/* Built-with: icon + label per technology, each a link to its own site */
+.pf-built {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 22px;
+  margin-bottom: 10px;
+}
+
+.pf-built a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  text-decoration: none;
+  opacity: 0.75;
+  transition: opacity 0.15s ease;
+}
+
+.pf-built a:hover { opacity: 1; }
+
+.pf-built img {
+  height: 22px;
+  width: auto !important;
+  max-width: none !important;
+  border: 0 !important;
+  padding: 0 !important;
+}
+
+.pf-built span {
+  font-size: 0.92em;
+  letter-spacing: 0.5px;
+  color: var(--foreground);
+  white-space: nowrap;
+}
+
+/* The three with no mark in the icon set */
+.pf-built-text {
+  font-size: 0.92em;
+  opacity: 0.7 !important;
+}
+
+/* ── Below a wide desktop: the side panel would eat too much of the width,
+   so the tube stacks - screenshot on top, text beneath, still inside the
+   glass. ── */
+@media (max-width: 900px) {
+  /* Content-sized tube. With the copy well auto-height, a fixed aspect ratio
+     left no room in the plate's row and the SHOT collapsed to nothing. The
+     slides stack in one grid cell instead (same trick as .pf-web), so the
+     tube grows to its tallest slide, and the shot block carries its own
+     aspect so the absolutely-stacked shots always have real height. */
+  .pf-screen { aspect-ratio: auto; display: grid; }
+  .pf-slide { position: static; grid-area: 1 / 1; }
+  .pf-shots { aspect-ratio: 16 / 10; }
+  /* Tabs drop below the tube and wrap into a row */
+  .pf-stage { grid-template-columns: 1fr; }
+  .pf-dots { flex-direction: row; flex-wrap: wrap; }
+  .pf-dot { flex: 1 1 40%; text-align: center; }
+}
+
+@media (max-width: 560px) {
+  .pf-wm { height: 28px; }
+  .pf-blurb { font-size: 0.85em; }
+  .pf-dots { gap: 6px; }
+  .pf-dot { flex: 1 1 40%; font-size: 0.74em; }
+  /* Family bar goes icons-only BEFORE the labels can collide */
+  .pf-lang span { display: none; }
+  .pf-lang { gap: 0; }
+  /* Matches the stacked header's button gap, so the icon row clears the nav
+     rather than sitting tight under it */
+  .pf-langbar { margin-top: 10px; }
+}
+
+/* ── Respect the setting: no glitch, no roll, instant channel change ── */
+@media (prefers-reduced-motion: reduce) {
+  /* Web slideshow parks: cards unstack into a plain list, all visible, and
+     the static burst and tuning arrows have nothing to do */
+  .pf-web { display: block; }
+  .pf-web-card { opacity: 1; visibility: visible; margin-bottom: 14px; }
+  .pf-web-static, .pf-web-arrow { display: none; }
+  .pf-slide,
+  .pf-shot { transition: none; }
+  .pf.is-switching .pf-glitch,
+  .pf.is-switching .pf-screen { animation: none; }
+}

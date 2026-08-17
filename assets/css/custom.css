@@ -31,6 +31,16 @@
 .tools-label + p {
   margin-top: 0.4em !important;
 }
+
+/* Home: the app link list used to sit between the intro and the rule and
+   supplied both the air and the float clearance. With that list moved to
+   /software/, the rule has to do the clearing itself or it rides up beside
+   the portrait. */
+.index-content hr {
+  clear: both;
+  margin-top: 3.4em;
+  margin-bottom: 2em;
+}
 /* ── Mobile fixes ────────────────────────────────── */
 
 .menu__dropdown li a {
@@ -71,7 +81,78 @@
 
 }
 
+/* ── Footer: GitHub mark instead of "Source on GitHub" ── */
+.footer .copyright {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.footer__gh {
+  display: inline-flex;
+  align-items: center;
+  /* No underline or link color - the mark IS the link */
+  border: 0;
+  line-height: 0;
+  opacity: 0.6;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.footer__gh svg {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
+  display: block;
+}
+
+.footer__gh:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+/* ── Lightbox (GLightbox, shared by /photos/ and /software/) ──
+   The CRT stack is six animated fixed layers. Composited over a full-screen
+   image they pin the renderer, so they come off while an image is open. */
+html.lightbox-open .crt {
+  display: none !important;
+}
+
+/* Keep the overlay on-theme rather than GLightbox's default white furniture */
+.glightbox-container .gslide-description {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.glightbox-container .gslide-title {
+  color: var(--accent);
+}
+
 /* ── Nav ────────────────────────────────── */
+
+/* The bar pattern (.header__logo::after) ran the full remaining width and butted
+   straight into the first nav button.
+   Anchored to the RIGHT edge, not the left: the pattern is a 10px period (8px
+   gap + 2px bar) and the strip's width is flex-derived, so a left-anchored
+   pattern ends on a random point in its cycle and the visible gap drifts by up
+   to 8px as the window resizes. Tiling from the right puts a bar flush on the
+   right edge at every width, which makes the gap exactly margin-right - and
+   that matches the gap set between the nav buttons below. */
+/* Specificity, not source order: the theme declares this in header.css with a
+   `background:` SHORTHAND (which resets size and position) and that file sorts
+   after custom.css in the bundle, so a matching-specificity rule here silently
+   loses. `.header .header__logo::after` outranks it at any position. */
+.header .header__logo::after {
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0 8px,
+    var(--accent) 8px 10px
+  );
+  background-size: 10px 100%;
+  background-repeat: repeat-x;
+  background-position: right center;
+  margin-right: 20px;
+}
 
 .menu--desktop {
   display: none;
@@ -92,15 +173,67 @@
   text-decoration: none;
 }
 
+/* Matches .header__logo::after's margin-right, so the gap between the buttons
+   and the gap from the last bar to the first button read as one rhythm */
+.navigation-menu a + a {
+  margin-left: 20px;
+}
+
 .navigation-menu a.active {
   background: var(--accent);
   color: var(--background);
 }
 
-body.photos .logo,
-body.photos .logo a {
-  background: var(--accent) !important;
-  color: var(--background) !important;
-  border-color: var(--background);
+/* (The photos-page logo inversion was removed - see the note in style.css.
+   The logo is the same lit amber slab on every page now.) */
+
+/* The strip is the header's shock absorber: it gives up width before anything
+   else does, and because the pattern tiles from the RIGHT the bars drop off
+   the left edge ONE AT A TIME as the window narrows, until there are none
+   left. `flex: 0 1 auto` + `min-width: 0` is what lets it shrink to nothing
+   (the theme's `width: 100%` alone has a min-content floor and would fight the
+   wordmark for space instead of yielding). No breakpoint needed - it is
+   continuous, and by the stack point below it has already gone. */
+.header .header__logo::after {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+/* ── Skinny header: the wordmark stands ALONE on the top row, centered and
+   filling the width, nav drops to its own row below. Side by side, the
+   ransom-note logo wrapped into a jumbled two-line box and the buttons broke
+   mid-word. ── */
+@media (max-width: 640px) {
+  .header__inner { flex-wrap: wrap; }
+
+  .header__logo { flex: 1 1 100%; }
+  .header__logo > a { width: 100%; }
+
+  .logo {
+    width: 100%;
+    /* .logo is a flex row (theme header.css), so centering is justify-content,
+       not text-align */
+    justify-content: center;
+    box-sizing: border-box;
+    /* Scales with the screen so "Steve the Killer" always sits on ONE line */
+    font-size: clamp(1.05em, 5.6vw, 1.85em);
+  }
+
+  .navigation-menu {
+    flex: 1 1 100%;
+    margin: 10px 0 0;
+    /* Stacked, the buttons sit edge to edge and read as one wide control */
+    gap: 10px;
+  }
+
+  /* The two buttons split the row; never break inside a word again */
+  .navigation-menu a {
+    flex: 1 1 0;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  /* The desktop 20px left margin would stack on top of the gap */
+  .navigation-menu a + a { margin-left: 0; }
 }
 

@@ -1,0 +1,409 @@
+# Software data - the single source of truth for /software/.
+#
+# The page renders entirely FROM this file, so a new app or site is an edit here
+# and nothing else. Versions and dates are the real ones from each app's csproj;
+# keep them current at release time.
+#
+# TODO markers are facts only Steve has - fill them in and delete the marker.
+
+sections:
+
+  - id: apps
+    label: Windows apps
+    blurb: >-
+      Five native Windows applications. Each one ships as a single
+      self-contained exe, runs portable or installs itself, is code-signed and
+      verified in-app, speaks eleven languages, and is GPLv3. No account, no
+      subscription, no telemetry.
+    items:
+
+      - name: KillerPDF
+        slug: killerpdf
+        shots: 4
+        tagline: Free PDF editor
+        version: 1.7.3
+        released: 2026-08-15
+        url: https://killerpdf.net
+        repo: https://github.com/SteveTheKiller/KillerPDF
+        stack: [C#, WPF, .NET Framework 4.8, PDFium, Tesseract]
+        blurb: >-
+          Views, edits, OCRs, fills and signs. Four view modes across unlimited
+          tabs, split panes, in-place text editing, annotations, forms and
+          digital signatures, page organization and print preview.
+        # FILLER, condensed from pdf-landing/about.html. Replace with final copy.
+        why: >-
+          I got tired of closing the same Adobe ticket. Install it, repair it,
+          license it, work around it: hours every week that never felt like they
+          were actually fixing anything. So I wrote a PDF app that just works,
+          ships as one .exe, and never asks the user to log in.
+        stats:
+          - 11 languages
+          - 12 themes
+          - ~16 MB exe
+
+      - name: KillerShell
+        slug: killershell
+        shots: 4
+        tagline: Free shell for power users
+        version: 1.2.2
+        released: 2026-08-10
+        url: https://killershell.net
+        repo: https://github.com/SteveTheKiller/KillerShell
+        stack: [C#, WPF, .NET Framework 4.8]
+        blurb: >-
+          File browser, search, terminal, text editor and admin toolkit in one
+          window. Process management, live performance monitor, event viewer,
+          registry editor and storage analyzer, each one key away.
+        # FILLER, condensed from shell-landing/about.html. Replace with final copy.
+        why: >-
+          At an MSP the day is not one big problem but a hundred small ones, each
+          with a client waiting. Windows search made you wait on an index, and the
+          heavier tools wanted a license before they would look inside a single
+          folder. Save a few seconds on every ticket and by Friday you have bought
+          back hours.
+        stats:
+          - 11 languages
+          - 12 themes
+
+      - name: KillerNotes
+        slug: killernotes
+        shots: 4
+        tagline: Free encrypted notepad
+        version: 1.2.1
+        released: 2026-08-10
+        url: https://killernotes.net
+        repo: https://github.com/SteveTheKiller/KillerNotes
+        stack: [C#, WPF, .NET Framework 4.8, SQLite, SQLCipher]
+        blurb: >-
+          Notes in one file you own, optionally encrypted at rest with AES-256.
+          Offline dictation with local speech recognition, syntax highlighting,
+          inline images and recordings, groups, tags and instant search.
+        # FILLER, condensed from notes-landing/about.html. Replace with final copy.
+        why: >-
+          My notes hold client credentials and the keys to a hundred networks. The
+          options were cloud notebooks that want an account and sync it somewhere
+          you cannot see, or a folder of .txt files with no search and no pictures.
+          That belongs in one encrypted file that answers to me.
+        stats:
+          - AES-256 at rest
+          - 11 languages
+          - 12 themes
+
+      - name: KillerScan
+        slug: killerscan
+        shots: 4
+        tagline: Free network scanner
+        version: 1.6.1
+        released: 2026-08-12
+        url: https://killerscan.net
+        repo: https://github.com/SteveTheKiller/KillerScan
+        stack: [C#, WPF, .NET Framework 4.8]
+        blurb: >-
+          Sweeps a subnet and tells you what answered: hostnames, MAC vendors,
+          open ports and services. Built for the first ten minutes on an
+          unfamiliar network.
+        # FILLER, condensed from scan-landing/about.html. Replace with final copy.
+        why: >-
+          I walk onto a network I have never seen and the first question is always
+          the same: what is actually on here? The existing answers were heavy
+          suites that wanted an agent, a server or a login before they would tell
+          you a single MAC address. So I wrote the tool that answers it in seconds.
+        stats:
+          - 11 languages
+          - 12 themes
+          - Headless CLI
+
+      - name: The Killendar
+        slug: killendar
+        shots: 4
+        tagline: Free encrypted calendar
+        version: 1.1.0
+        released: 2026-08-10
+        url: https://killendar.net
+        repo: https://github.com/SteveTheKiller/Killendar
+        stack: [C#, WPF, .NET Framework 4.8, SQLite, SQLCipher]
+        blurb: >-
+          Month, week, day and agenda views with no account, no sync and nothing
+          phoning home. Repeating appointments, color categories, iCalendar and
+          CSV both ways, optional AES-256 encryption.
+        # FILLER, condensed from killendar-landing/about.html. Replace with final copy.
+        why: >-
+          It started off as a joke. I could not think of a killer feature worth
+          releasing it for. Then it occurred to me that being lightweight, and not
+          wanting anything from you, might be the feature. Every calendar I could
+          have used instead wanted an account, just to remember that the dentist is
+          on Thursday.
+        stats:
+          - AES-256 at rest
+          - 11 languages
+          - 12 themes
+
+  - id: web
+    label: Web
+    blurb: >-
+      Seven sites. killertools.net is a Vue 3 application; the app landing
+      pages and this site are static HTML.
+    items:
+
+      - name: killertools.net
+        langs: [vue]
+        tagline: Browser tools for IT techs
+        url: https://killertools.net
+        repo: https://github.com/SteveTheKiller/killer-tools-site
+        stack: [Vue 3, TypeScript, Vite, naive-ui]
+        blurb: >-
+          86 tools that run entirely in the browser: PowerShell command builder,
+          M365 SKU decoder, Exchange NDR lookup, subnet calculators, converters,
+          generators.
+        stats:
+          - 86 tools
+          - 12 themes
+          - Installable PWA
+        tech:
+          - { pre: "based on", name: IT-Tools, url: "https://github.com/CorentinTh/it-tools" }
+          - { name: Vue 3, url: "https://vuejs.org" }
+          - { name: Vite, url: "https://vitejs.dev" }
+          - { name: TypeScript, url: "https://www.typescriptlang.org" }
+          - { name: naive-ui, url: "https://www.naiveui.com" }
+        hosting: { name: GitHub Pages, url: "https://pages.github.com" }
+
+      - name: Killer App Websites
+        tagline: One landing page per app
+        langs: [html5, css3]
+        sites:
+          - { name: killerpdf.net, url: "https://killerpdf.net" }
+          - { name: killershell.net, url: "https://killershell.net" }
+          - { name: killernotes.net, url: "https://killernotes.net" }
+          - { name: killerscan.net, url: "https://killerscan.net" }
+          - { name: killendar.net, url: "https://killendar.net" }
+        stack: [HTML, CSS, JavaScript]
+        blurb: >-
+          One landing page per app, each with its own technical and about pages,
+          hand-written in HTML, CSS and JavaScript. Eleven languages and twelve
+          themes each.
+        stats:
+          - 5 sites
+          - 11 languages
+          - 12 themes
+        tech:
+          - { name: HTML5, url: "https://developer.mozilla.org/docs/Web/HTML" }
+          - { name: CSS, url: "https://developer.mozilla.org/docs/Web/CSS" }
+          - { name: JavaScript, url: "https://developer.mozilla.org/docs/Web/JavaScript" }
+        hosting: { name: Cloudflare Pages, url: "https://pages.cloudflare.com" }
+
+      - name: thekiller.net
+        langs: [hugo, markdown]
+        tagline: This site
+        url: https://thekiller.net
+        stack: [Hugo, Markdown, HTML]
+        blurb: >-
+          Built with Hugo, the static site generator: content is written in
+          Markdown, layouts are Go-templated HTML, and the build compiles it
+          all to plain static pages. The CRT treatment is pure CSS.
+        tech:
+          - { name: Hugo, url: "https://gohugo.io" }
+          - { name: Markdown, url: "https://commonmark.org" }
+        hosting: { name: GitHub Pages, url: "https://pages.github.com" }
+
+  - id: scripts
+    label: Scripts and modules
+    blurb: >-
+      The field work that started all of it. PowerShell written for real tickets
+      on real networks, then cleaned up and published.
+    # The two published modules; the scripts hang off KillerScripts in the
+    # flowchart on /software/. Script names mirror the killer-scripts repo's
+    # descriptions.json - refresh here when a script is added there.
+    modules:
+      # Descriptions are Steve's own, from killer-modules.vue on killertools.net.
+      - name: KillerPivot
+        expansion: Per-Identity Validated Org-Toggle
+        install: Install-Module KillerPivot -Scope CurrentUser
+        # The module title links to the Gallery listing it installs from
+        url: https://www.powershellgallery.com/packages/KillerPivot
+        blurb: >-
+          Switch between Microsoft 365 tenants in PowerShell without firing
+          commands at the wrong one. It disables the auth broker to force a real
+          sign-in prompt, then asks the session which tenant it actually landed
+          in and verifies it before you touch anything.
+      - name: KillerScripts
+        install: Install-Module KillerScripts -Scope CurrentUser
+        url: https://www.powershellgallery.com/packages/KillerScripts
+        blurb: >-
+          Every tool in the killer-scripts repo, available as a command in any
+          PowerShell session. Each script is pulled fresh from GitHub the moment
+          you run it, with a local cache as an offline fallback. All 18 get their
+          own command and a short alias, so typing urt runs the Universal Rename
+          Tool.
+    scripts:
+      - name: AMORT
+        rule: [cyan, white, yellow, darkgray]
+        accent: yellow
+        term: cyan
+        title: "Advanced Maintenance, Optimization, and Repair Tool"
+        desc: "Automated Windows 10/11 tune-up for MSP field and remote deployment."
+      - name: BEAM
+        rule: [darkcyan, white, yellow, darkgray]
+        accent: yellow
+        term: darkcyan
+        title: "Bulk Endpoint App Mover"
+        desc: "Deploys any .exe or .msi to Entra-joined devices as an Intune Win32 app."
+      - name: BERET
+        rule: [red, white, yellow, darkgray]
+        accent: yellow
+        term: red
+        title: "BitLocker Encryption, Recovery, & Escrow Tool"
+        desc: "Interactive BitLocker lifecycle manager with TPM enforcement and AD/Entra ID key escrow."
+      - name: DEBLOAT
+        rule: [white, darkred, yellow, darkgray]
+        accent: yellow
+        term: darkred
+        title: "Deployment Environment Bloatware Liquidator & Optimized Automated Toolkit"
+        desc: "Standardizes Windows 11 by removing OEM bloat and enforcing privacy and UI hardening."
+      - name: DEFEND
+        rule: [cyan, white, cyan, darkgray]
+        accent: cyan
+        title: "Definition Enforcement & Full Endpoint Network Defense"
+        desc: "Audits kernel-level security including TPM, Secure Boot, HVCI, and Defender."
+      - name: DEPOT
+        rule: [darkred, yellow, yellow, darkgray]
+        accent: yellow
+        term: darkred
+        title: "Deployment & Endpoint Provisioning Operations Tool"
+        desc: "Full new-machine provisioning with silent app deployment and self-delete on completion."
+      - name: FACTS
+        rule: [magenta, yellow, green, darkgray]
+        accent: green
+        title: "Foxit Audit and Control Task Script"
+        desc: "Audits Foxit PDF installations and permanently blocks auto-updates via registry hardening."
+      - name: MACE
+        rule: [red, white, red, darkgray]
+        accent: red
+        title: "Microsoft Application Cleanse & Eradication"
+        desc: "Completely removes OneDrive, New Outlook, Office/M365, and Teams from a Windows endpoint."
+      - name: ODD
+        rule: [magenta, yellow, darkgray]
+        accent: yellow
+        term: magenta
+        title: "Output Device Diagnostic"
+        desc: "Inventories all physical, USB, and Bluetooth audio devices with health status and driver info."
+      - name: ORCA
+        rule: [cyan, white, yellow, darkgray]
+        accent: yellow
+        term: cyan
+        title: "Outlook Reset & Configuration Assistant"
+        desc: "Resets broken Outlook installations for one or all user profiles, classic or new."
+      - name: PRINT
+        rule: [green, darkyellow, darkgray]
+        accent: yellow
+        term: darkgreen
+        title: "Printer Response & Interface Network Tool"
+        desc: "Printer management utility with network scanner, driver matching, and UNC path support."
+      - name: PRUNE
+        rule: [darkgreen, red, darkgray]
+        accent: yellow
+        term: darkgreen
+        title: "Profile Removal Utility for Neglected Entries"
+        desc: "Interactive editor for managing Windows user profiles."
+      - name: SHADE
+        rule: [magenta, white, cyan, darkgray]
+        accent: cyan
+        title: "System Hardening Against Data Exposure"
+        desc: "Windows 10/11 privacy hardening that disables telemetry, tracking, advertising, and phone-home behavior."
+      - name: STARE
+        rule: [darkred, magenta, darkmagenta, darkgray, red]
+        accent: magenta
+        term: magenta
+        title: "Scheduled Task Administration & Routine Executor"
+        desc: "Interactive terminal wizard for fast and reliable Windows Scheduled Task management."
+      - name: TICK
+        rule: [darkmagenta, darkgreen, darkmagenta, darkgray]
+        accent: darkgreen
+        title: "Trigger Immediate Clock Kickstart"
+        desc: "Resets and re-syncs Windows Time service against a chosen NTP peer with before/after reporting."
+      - name: URT
+        rule: [green, darkcyan, yellow, darkgray]
+        accent: yellow
+        term: green
+        title: "Universal Rename Tool"
+        desc: "Renames local or domain-joined computers from an admin shell with no GUI popups."
+      - name: VITALS
+        rule: [green, yellow, darkgray]
+        accent: green
+        term: green
+        title: "Visual Interface for Technical Asset & Logistics Summary"
+        desc: "Collects and displays a full hardware and network snapshot including BitLocker, TPM, and domain info."
+      - name: WURSA
+        rule: [red, white, cyan, darkgray]
+        accent: yellow
+        term: red
+        title: "Windows Update, Repair, & System Alignment"
+        desc: "Enforces OS patches, OEM driver updates, and third-party app upgrades via Chocolatey."
+
+  # ── Below here: structure is in place, specifics are yours to fill. Each
+  # TODO is a fact only you have. Delete the marker once it is real.
+
+  - id: work
+    label: Field work
+    blurb: >-
+      Field technician at a large MSP, based in Los Angeles. The apps exist
+      because the job kept handing me problems that needed a tool, and the tools
+      that existed wanted an account.
+    items:
+
+      - name: MSP field technician
+        tagline: TODO - years, or "present" and a start year
+        blurb: >-
+          Windows administration, networking, and whatever the ticket turns out
+          to actually be once you are on site.
+        stats:
+          - PowerShell
+          - Windows Server and client
+          - Networking
+          - Microsoft 365
+          - TODO - certifications, if you want them listed
+
+      - name: Before the MSP
+        tagline: TODO - roughly eight years full-stack, plus web from the 90s
+        blurb: >-
+          TODO - one or two sentences on the full-stack years and how they feed
+          the current work. Your about page on killendar.net has a version of
+          this already.
+
+  - id: homelab
+    label: Homelab and infrastructure
+    blurb: >-
+      TODO - one line on what the lab is for. Everything the sites and apps
+      depend on runs on hardware you can touch.
+    items:
+
+      - name: Self-hosted services
+        tagline: TODO - what runs there
+        blurb: >-
+          TODO - hypervisor or OS, notable services, anything public-facing.
+          Koya analytics on koya.thekiller.net is already one of them.
+        stats:
+          - TODO - host count, OS, storage, anything with a number
+
+      - name: Site infrastructure
+        tagline: TODO - confirm where each site is actually hosted
+        blurb: >-
+          Seven static sites, deployed as folders. Releases are automated from
+          each repo, winget submissions fire from GitHub Actions, and analytics
+          are self-hosted rather than rented.
+
+  - id: personal
+    label: Off the clock
+    blurb: >-
+      The parts that are not software.
+    items:
+
+      - name: Analog film photography
+        tagline: TODO - formats and cameras you shoot
+        url: /photos/
+        blurb: >-
+          TODO - a sentence in your voice. The gallery is already on this site.
+
+      - name: Music
+        tagline: TODO - instruments, projects, or bands
+        blurb: >-
+          TODO - a sentence. Link anything worth linking.

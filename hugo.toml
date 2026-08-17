@@ -11,13 +11,19 @@ theme = "terminal"
   subtitle = "Field tech. Analog film enthusiast. Based in Los Angeles."
   customCSS = ["css/custom.css"]
   menuItems = [
+    { name = "Software", url = "/software/" },
     { name = "Photos", url = "/photos/" }
   ]
 
 [[menu.main]]
+  name = "Software"
+  url = "/software/"
+  weight = 1
+
+[[menu.main]]
   name = "Photos"
   url = "/photos/"
-  weight = 1
+  weight = 2
 
 [markup]
   [markup.goldmark]

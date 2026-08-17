@@ -138,11 +138,15 @@ img[src="/images/profile2.jpg"]:hover {
   color: var(--background);
 }
 
-body.photos .logo,
-body.photos .logo a {
+/* Every page EXCEPT home: dark slab, lit amber letters (home keeps the
+   theme's knockout - dark letters on a lit amber slab). Scoped by the body
+   class set in baseof.html; body.photos alone could never cover /software/,
+   whose section is empty. */
+body:not(.home) .logo,
+body:not(.home) .logo a {
   background: var(--background) !important;
   color: var(--accent) !important;
-  border-color: var(--accent);
+  border: 1px solid var(--accent);
 }
 
 .menu--mobile {
@@ -199,17 +203,15 @@ a {
 /* Home logo is knockout - dark letters punched out of a lit amber slab, like
    an inverse-video field. It must NOT inherit the amber link color or the
    phosphor glow, or the letters vanish into the block behind them. */
-.logo,
-.logo a {
+body.home .logo,
+body.home .logo a {
   color: var(--background);
   text-shadow: none;
 }
 
-/* Photos page flips it: the slab goes dark and the letters light up, so
-   there the glow is exactly right. */
-body.photos .logo,
-body.photos .logo a {
-  color: var(--accent) !important;
+/* All other pages flip it - dark slab, lit letters with the phosphor glow. */
+body:not(.home) .logo,
+body:not(.home) .logo a {
   text-shadow:
     0 0 1px rgba(255, 182, 66, 0.55),
     0 0 8px rgba(255, 150, 0, 0.28);

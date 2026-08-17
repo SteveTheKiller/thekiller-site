@@ -22,10 +22,15 @@
 {{ if (fileExists "static/terminal.css") -}}
   <link rel="stylesheet" href="{{ "terminal.css" | absURL }}">
 {{- end }}
-<!-- Custom CSS to override theme properties (/static/style.css) -->
-{{ if (fileExists "static/style.css") -}}
-  <link rel="stylesheet" href="{{ "style.css" | absURL }}">
-{{- end }}
+<!-- Site override stylesheet. Lives in assets/css-overrides (NOT assets/css,
+     which the bundle above globs - it must load AFTER the theme css to win
+     ties). Fingerprinted so an edit can never be defeated by a browser's
+     cached copy; the old un-hashed /style.css burned a whole afternoon that
+     way (2026-08-16). -->
+{{ with resources.Get "css-overrides/style.css" }}
+  {{ $overrides := . | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $overrides.Permalink }}">
+{{ end }}
 
 <!-- Icons -->
 <link rel="shortcut icon" href="{{ "favicon.png" | absURL }}">

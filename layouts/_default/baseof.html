@@ -6,7 +6,10 @@
   {{ end }}
   {{ partial "head.html" . }}
 </head>
-<body class="{{ .Section }}">
+{{/* Root-level pages (/software/) have an EMPTY .Section, identical to the
+     homepage - so page-scoped CSS could never tell them apart. Home gets an
+     explicit class; everything else keeps its section name. */}}
+<body class="{{ with .Params.bodyclass }}{{ . }}{{ else }}{{ if $.IsHome }}home{{ else }}{{ $.Section }}{{ end }}{{ end }}">
 {{ $container := cond ($.Site.Params.FullWidthTheme | default false) "container full" (cond ($.Site.Params.CenterTheme | default false) "container center" "container") }}
 
 <div class="{{- $container -}}{{- cond ($.Site.Params.oneHeadingSize | default false) " headings--one-size" "" }}">

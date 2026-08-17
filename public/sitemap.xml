@@ -6,6 +6,8 @@
   </url><url>
     <loc>http://localhost:1313/photos/</loc>
   </url><url>
+    <loc>http://localhost:1313/software/</loc>
+  </url><url>
     <loc>http://localhost:1313/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>

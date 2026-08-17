@@ -107,7 +107,10 @@ img[src="/images/profile2.jpg"] {
   float: right;
   margin-left: 20px;
   margin-bottom: 20px;
-  margin-top: 10px;
+  /* Centered against the FOUR intro lines rather than hung from the top: the
+     text block grew a line, so the old -20px left the portrait sitting high.
+     The text does not move - only this margin changes. */
+  margin-top: 0;
 }
 
 img[src="/images/profile2.jpg"]:hover {
@@ -133,16 +136,53 @@ img[src="/images/profile2.jpg"]:hover {
   }
 }
 
+/* Pages with and without a scrollbar were shifting the whole layout sideways
+   on navigation (home is short, /software/ scrolls). Reserve the gutter
+   permanently so the header never jumps between menus. */
+html {
+  overflow-y: scroll;
+}
+
+/* The theme leaves a 40px band of empty space above the header on every page.
+   Set here, not per page, so the header lands in the same place site-wide. */
+.container {
+  padding-top: 6px;
+}
+
 /* Logo title fix */
 .logo {
   color: var(--background);
+  /* Border on EVERY page so the logo box is the same size everywhere -
+     invisible on home (amber on amber), the frame line on the dark slab
+     elsewhere. Border only on non-home pages made the header 2px shorter on
+     home, a visible vertical jump on navigation. */
+  border: 1px solid var(--accent);
 }
 
-body.photos .logo,
-body.photos .logo a {
+/* Every page EXCEPT home: dark slab, lit amber letters (home keeps the
+   theme's knockout - dark letters on a lit amber slab). Scoped by the body
+   class set in baseof.html; body.photos alone could never cover /software/,
+   whose section is empty. */
+body:not(.home) .logo,
+body:not(.home) .logo a {
   background: var(--background) !important;
   color: var(--accent) !important;
-  border-color: var(--accent);
+}
+
+/* Software and photos: no frame and no slab, just the lit letters sitting on
+   the page itself, so the CRT grain runs straight through them. The border
+   goes TRANSPARENT rather than to 0 - the box must keep its 1px so the header
+   height stays identical to every other page and navigating does not jump. */
+body.software .logo,
+body.photos .logo,
+body.software .logo a,
+body.photos .logo a {
+  background: transparent !important;
+}
+
+body.software .logo,
+body.photos .logo {
+  border-color: transparent;
 }
 
 .menu--mobile {
@@ -199,17 +239,15 @@ a {
 /* Home logo is knockout - dark letters punched out of a lit amber slab, like
    an inverse-video field. It must NOT inherit the amber link color or the
    phosphor glow, or the letters vanish into the block behind them. */
-.logo,
-.logo a {
+body.home .logo,
+body.home .logo a {
   color: var(--background);
   text-shadow: none;
 }
 
-/* Photos page flips it: the slab goes dark and the letters light up, so
-   there the glow is exactly right. */
-body.photos .logo,
-body.photos .logo a {
-  color: var(--accent) !important;
+/* All other pages flip it - dark slab, lit letters with the phosphor glow. */
+body:not(.home) .logo,
+body:not(.home) .logo a {
   text-shadow:
     0 0 1px rgba(255, 182, 66, 0.55),
     0 0 8px rgba(255, 150, 0, 0.28);

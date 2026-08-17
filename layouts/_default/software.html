@@ -1,0 +1,281 @@
+{{ define "main" }}
+{{/*
+  Software - three families behind one language bar. Clicking a language icon
+  REPLACES the content below it (no scrolling to sections):
+
+    C# icon          -> the CRT slideshow of the five Windows apps
+    PowerShell icon  -> Killer Scripts + Killer Modules, as a terminal
+    Vue icon         -> the web work (killertools.net and the sites)
+
+  Each family carries its OWN colophon above the site footer.
+
+  Everything renders from data/software.yaml. The page-wide CRT layers come
+  from baseof.html. With JS off, all three families show stacked - see the
+  <noscript> block.
+*/}}
+{{ $apps := index (where .Site.Data.software.sections "id" "apps") 0 }}
+{{ $ps := index (where .Site.Data.software.sections "id" "scripts") 0 }}
+{{ $webSec := index (where .Site.Data.software.sections "id" "web") 0 }}
+{{/* Real language icons (devicon shapes, recolored site amber), fingerprinted */}}
+{{ $csharp := resources.Get "images/software/lang-csharp.svg" | fingerprint }}
+{{ $pwsh := resources.Get "images/software/lang-powershell.svg" | fingerprint }}
+{{ $vue := resources.Get "images/software/lang-web.svg" | fingerprint }}
+
+<div class="pf" data-count="{{ len $apps.items }}">
+
+  {{/* Intro: the three marks strike in large, then dock into the bar below.
+       Once per session, skipped on reduced motion, never blocks a click. */}}
+  <div class="pf-intro" aria-hidden="true">
+    <img src="{{ $csharp.RelPermalink }}" alt="">
+    <img src="{{ $pwsh.RelPermalink }}" alt="">
+    <img src="{{ $vue.RelPermalink }}" alt="">
+  </div>
+
+  {{/* The language bar - the page's top-level switch */}}
+  <nav class="pf-langbar" aria-label="Software families">
+    <button type="button" class="pf-lang" data-fam="apps" aria-pressed="true">
+      <img src="{{ $csharp.RelPermalink }}" alt="C#"><span>windows apps</span>
+    </button>
+    <button type="button" class="pf-lang" data-fam="powershell" aria-pressed="false">
+      <img src="{{ $pwsh.RelPermalink }}" alt="PowerShell"><span>scripts &amp; modules</span>
+    </button>
+    <button type="button" class="pf-lang" data-fam="web" aria-pressed="false">
+      <img src="{{ $vue.RelPermalink }}" alt="Vue"><span>web</span>
+    </button>
+  </nav>
+
+  {{/* ─────────────── Family: C# / Windows apps ─────────────── */}}
+  <div class="pf-fam" data-fam="apps">
+
+    {{/* Built-with marks: an icon per technology, each linking to its own site.
+         PDFium, Tesseract and SQLCipher have no mark in the icon set, so they
+         stay as text links rather than getting invented artwork. They sit in
+         the right column under the app tabs, which is otherwise dead space. */}}
+    {{ $ico := dict
+         "csharp"  (resources.Get "images/software/lang-csharp.svg" | fingerprint)
+         "dotnet"  (resources.Get "images/software/icon-dotnet.svg" | fingerprint)
+         "vs"      (resources.Get "images/software/icon-visualstudio.svg" | fingerprint)
+         "sqlite"  (resources.Get "images/software/icon-sqlite.svg" | fingerprint)
+         "gimp"    (resources.Get "images/software/icon-gimp.svg" | fingerprint)
+         "github"  (resources.Get "images/software/icon-github.svg" | fingerprint) }}
+
+    <div class="pf-stage">
+    <div class="pf-bezel">
+      <div class="pf-screen">
+        {{ range $i, $app := $apps.items }}
+          <article class="pf-slide{{ if eq $i 0 }} is-on{{ end }}" data-i="{{ $i }}"
+                   aria-hidden="{{ if eq $i 0 }}false{{ else }}true{{ end }}">
+            <div class="pf-shots">
+              {{ $n := $app.shots | default 0 }}
+              {{ range $s := seq 1 $n }}
+                <img class="pf-shot{{ if eq $s 1 }} is-on{{ end }}"
+                     src="/images/software/{{ $app.slug }}/{{ $s }}.jpg"
+                     alt="{{ $app.name }} screenshot {{ $s }}"
+                     loading="{{ if eq $i 0 }}eager{{ else }}lazy{{ end }}"
+                     decoding="async">
+              {{ end }}
+            </div>
+            <div class="pf-plate">
+              {{ $wm := resources.Get (printf "images/software/%s-8bit.png" $app.slug) | fingerprint }}
+              <img class="pf-wm" src="{{ $wm.RelPermalink }}" alt="{{ $app.name }}">
+              <p class="pf-tag">{{ $app.tagline }}{{ with $app.version }} <span class="pf-ver">v{{ . }}</span>{{ end }}</p>
+              {{/* Fixed-height copy well. The blurb is what the app does, the
+                   why is why it exists. Height is capped so a longer `why` can
+                   never push the plate taller - it scrolls, and drifts on its
+                   own while the slide is showing. */}}
+              <div class="pf-copy js-pf-copy">
+                <div class="pf-copy-inner">
+                  <p class="pf-blurb">{{ $app.blurb }}</p>
+                  {{ with $app.why }}<p class="pf-why">{{ . }}</p>{{ end }}
+                </div>
+              </div>
+              {{/* Stats and links share ONE row - stats left, links hard right -
+                   so the plate does not spend a whole line on two words. */}}
+              <div class="pf-foot">
+                {{ with $app.stats }}
+                  <ul class="pf-stats">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+                {{ end }}
+                <p class="pf-links">
+                  {{ with $app.url }}<a href="{{ . }}">visit site</a>{{ end }}
+                  {{ with $app.repo }}<a href="{{ . }}">source</a>{{ end }}
+                </p>
+              </div>
+            </div>
+          </article>
+        {{ end }}
+        <div class="pf-glitch" aria-hidden="true"></div>
+        <div class="pf-osd" aria-hidden="true">
+          <span class="pf-osd-ch">CH <b class="js-ch">01</b>/{{ len $apps.items }}</span>
+        </div>
+      </div>
+    </div>
+
+    {{/* App tabs run down the RIGHT of the tube, built-with marks beneath */}}
+    <div class="pf-side">
+      <nav class="pf-dots" aria-label="Choose app">
+        {{ range $i, $app := $apps.items }}
+          <button type="button" class="pf-dot{{ if eq $i 0 }} is-on{{ end }}"
+                  data-go="{{ $i }}" aria-label="{{ $app.name }}">
+            <span>{{ $app.name }}</span>
+          </button>
+        {{ end }}
+      </nav>
+
+      <div class="pf-colophon pf-colophon-side">
+        <div class="pf-built">
+          <a href="https://learn.microsoft.com/dotnet/csharp/" title="C#"><img src="{{ (index $ico "csharp").RelPermalink }}" alt="C#"><span>C#</span></a>
+          <a href="https://learn.microsoft.com/dotnet/desktop/wpf/" title=".NET Framework 4.8 / WPF"><img src="{{ (index $ico "dotnet").RelPermalink }}" alt=".NET"><span>WPF / .NET 4.8</span></a>
+          <a href="https://visualstudio.microsoft.com" title="Visual Studio"><img src="{{ (index $ico "vs").RelPermalink }}" alt="Visual Studio"><span>Visual Studio</span></a>
+          <a href="https://www.sqlite.org" title="SQLite"><img src="{{ (index $ico "sqlite").RelPermalink }}" alt="SQLite"><span>SQLite</span></a>
+          <a href="https://www.gimp.org" title="GIMP"><img src="{{ (index $ico "gimp").RelPermalink }}" alt="GIMP"><span>GIMP</span></a>
+          <a href="https://github.com/SteveTheKiller" title="Source on GitHub"><img src="{{ (index $ico "github").RelPermalink }}" alt="GitHub"><span>source</span></a>
+        </div>
+        <p class="pf-built-text">
+          <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPLv3</a>
+          <a href="https://pdfium.googlesource.com/pdfium/">PDFium</a>
+          <a href="https://github.com/tesseract-ocr/tesseract">Tesseract</a>
+          <a href="https://www.zetetic.net/sqlcipher/">SQLCipher</a>
+          <a href="http://avalonedit.net">AvalonEdit</a>
+        </p>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  {{/* ─────────────── Family: PowerShell ───────────────
+       A flowchart: the two published modules on top, the individual scripts
+       hanging off KillerScripts. Node data lives in software.yaml. */}}
+  <div class="pf-fam" data-fam="powershell" hidden>
+
+    <section class="pf-flow" aria-label="PowerShell modules and scripts">
+
+      <div class="pf-flow-mods">
+        {{ range $i, $m := $ps.modules }}
+          <div class="pf-flow-mod{{ if eq $m.name "KillerScripts" }} pf-flow-parent{{ end }}">
+            <h3><a href="{{ $m.url }}">{{ $m.name }}</a>{{ with $m.expansion }}<span class="pf-flow-exp">{{ . }}</span>{{ end }}</h3>
+            <p class="pf-flow-blurb">{{ $m.blurb }}</p>
+            {{/* When it must wrap it wraps ONLY between whole tokens: a NBSP
+                 glues each -Flag to its value, and each token gets a nowrap
+                 span so a hyphenated word can never break in the middle. */}}
+            {{ $cmd := replaceRE `(-[A-Za-z]+)\s+` "$1 " $m.install }}
+            <code class="pf-flow-install">PS&gt;{{ range split $cmd " " }} <span>{{ . }}</span>{{ end }}</code>
+          </div>
+        {{ end }}
+      </div>
+
+      {{/* Stem drops from the KillerScripts box into the script bench below */}}
+      <div class="pf-flow-stem" aria-hidden="true"></div>
+
+      {{/* Bench: the script list picks, the terminal prints. Clicking a name
+           types its entry into the terminal rather than navigating away. */}}
+      <div class="pf-ps-bench">
+        <nav class="pf-ps-list" aria-label="Killer Scripts">
+          {{ range $i, $s := $ps.scripts }}
+            {{/* data-accent tints the terminal. It uses `term` - the script's
+                 resolved console color - not `accent`, because 13 of the 18
+                 scripts set $AccentCol to Yellow, which is the same color the
+                 terminal already is. See the note in software.js. */}}
+            <button type="button" class="pf-ps-pick{{ if eq $i 0 }} is-on{{ end }}"
+                    data-i="{{ $i }}" data-accent="{{ $s.term | default $s.accent | default "yellow" }}"
+                    title="{{ $s.title }}">{{ $s.name }}</button>
+          {{ end }}
+        </nav>
+
+        <div class="pf-ps-term pf-ps-demo">
+          <div class="pf-ps-cap">
+            <span>PS</span> Killer Scripts
+            <span class="pf-ps-caplinks">
+              <a href="https://github.com/SteveTheKiller/killer-scripts" title="killer-scripts on GitHub">GitHub</a>
+              <a href="https://killertools.net/killer-scripts" title="Browse and copy the scripts on killertools.net">killertools.net</a>
+            </span>
+          </div>
+          <div class="pf-ps-screen js-ps-screen" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      {{/* safeJS: without it Hugo's script-context escaping wraps the whole
+           array in an escaped string literal and JSON.parse yields a string */}}
+      <script type="application/json" class="js-ps-data">{{ $ps.scripts | jsonify | safeJS }}</script>
+
+    </section>
+
+    <div class="pf-colophon">
+      <p>Windows PowerShell 5.1 &amp; PowerShell 7</p>
+    </div>
+  </div>
+
+  {{/* ─────────────── Family: Web ───────────────
+       Each card carries the icons of what it is actually built with -
+       killertools is Vue, the app sites are hand-written HTML/CSS, this site
+       is Hugo + markdown. Icon slugs come from each item's `langs` list. */}}
+  {{ $cardIcons := dict
+       "vue" (resources.Get "images/software/icon-vue.svg" | fingerprint)
+       "html5" (resources.Get "images/software/icon-html5.svg" | fingerprint)
+       "css3" (resources.Get "images/software/icon-css3.svg" | fingerprint)
+       "hugo" (resources.Get "images/software/icon-hugo.svg" | fingerprint)
+       "markdown" (resources.Get "images/software/icon-markdown.svg" | fingerprint) }}
+  {{ $langNames := dict "vue" "Vue.js" "html5" "HTML5" "css3" "CSS3" "hugo" "Hugo" "markdown" "Markdown" }}
+  <div class="pf-fam" data-fam="web" hidden>
+    <section class="pf-web">
+      {{ range $i, $item := $webSec.items }}
+        <article class="pf-web-card{{ if eq $i 0 }} is-on{{ end }}">
+          {{ with .langs }}
+            <div class="pf-web-langs">
+              {{ range . }}
+                {{ $slug := . }}
+                {{ with index $cardIcons $slug }}
+                  <img src="{{ .RelPermalink }}"
+                       alt="{{ index $langNames $slug }}" title="{{ index $langNames $slug }}">
+                {{ end }}
+              {{ end }}
+            </div>
+          {{ end }}
+          <h3>{{ with .url }}<a href="{{ . }}">{{ end }}{{ .name }}{{ with .url }}</a>{{ end }}</h3>
+          <p class="pf-tag">{{ .tagline }}</p>
+          <p class="pf-blurb">{{ .blurb }}</p>
+          {{/* Site list sits UNDER the description, one per line, so it reads
+               as a directory rather than a wrapped run of underlines */}}
+          {{ with .sites }}
+            <ul class="pf-web-sites">
+              {{ range . }}<li><a href="{{ .url }}">{{ .name }}</a></li>{{ end }}
+            </ul>
+          {{ end }}
+          {{ with .stats }}<ul class="pf-stats">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>{{ end }}
+          {{/* The showcase part: what it is built with and where it runs */}}
+          {{ with .tech }}
+            <p class="pf-web-tech">
+              {{ range . }}<span>{{ with .pre }}{{ . }} {{ end }}<a href="{{ .url }}">{{ .name }}</a></span>{{ end }}
+            </p>
+          {{ end }}
+          {{ with .hosting }}
+            <p class="pf-web-host">hosted on <a href="{{ .url }}">{{ .name }}</a></p>
+          {{ end }}
+        </article>
+      {{ end }}
+      {{/* CRT static burst that covers the card swap, and manual tuning arrows */}}
+      <div class="pf-web-static" aria-hidden="true"></div>
+      <button type="button" class="pf-web-arrow" data-dir="-1" aria-label="Previous">&#x2039;</button>
+      <button type="button" class="pf-web-arrow" data-dir="1" aria-label="Next">&#x203A;</button>
+    </section>
+  </div>
+
+</div>
+
+{{/* Fingerprinted so an edit can never lose to a cached copy of the old file */}}
+{{ $sw := resources.Get "js/software.js" | minify | fingerprint }}
+<script src="{{ $sw.Permalink }}" defer></script>
+
+{{/* No-JS: all three families show stacked and the slides unstack */}}
+<noscript>
+  <style>
+    .pf-fam[hidden] { display: block !important; }
+    .pf-slide { position: relative !important; opacity: 1 !important; visibility: visible !important; }
+    .pf-screen { height: auto !important; }
+    .pf-shot { position: relative !important; opacity: 1 !important; }
+    .pf-dots, .pf-hint, .pf-osd, .pf-langbar, .pf-intro { display: none !important; }
+    .pf-web { display: block !important; }
+    .pf-web-card { opacity: 1 !important; visibility: visible !important; margin-bottom: 14px !important; }
+    .pf-web-static, .pf-web-arrow { display: none !important; }
+  </style>
+</noscript>
+{{ end }}

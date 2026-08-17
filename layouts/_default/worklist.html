@@ -1,0 +1,80 @@
+{{ define "main" }}
+{{/*
+  Software - renders entirely from data/software.yaml. Adding a project is an
+  edit to that file and nothing here.
+
+  This is the STATIC layer: it is the whole page with JavaScript off, it is what
+  search engines and social cards read, and it is what the terminal layer will
+  later enhance rather than replace. Keep it complete on its own.
+*/}}
+<div class="software">
+
+  <header class="pf-head">
+    <h1 class="pf-title">{{ .Title }}</h1>
+    <p class="pf-sub">
+      Field technician in Los Angeles. I build the tools the job keeps asking
+      for, and give them away under GPLv3.
+    </p>
+  </header>
+
+  {{/* Contents rail: jump links, one per section */}}
+  <nav class="pf-toc" aria-label="Sections">
+    {{ range .Site.Data.software.sections }}
+      <a href="#{{ .id }}">{{ .label }}</a>
+    {{ end }}
+  </nav>
+
+  {{ range .Site.Data.software.sections }}
+    <section class="pf-section" id="{{ .id }}">
+      <h2 class="pf-section-title">{{ .label }}</h2>
+      {{ with .blurb }}<p class="pf-section-blurb">{{ . }}</p>{{ end }}
+
+      <div class="pf-items">
+        {{ range .items }}
+          <article class="pf-item">
+
+            <h3 class="pf-item-name">
+              {{ with .url }}<a href="{{ . }}">{{ end }}
+                {{ .name }}
+              {{ with .url }}</a>{{ end }}
+              {{ with .version }}<span class="pf-ver">v{{ . }}</span>{{ end }}
+            </h3>
+
+            {{ with .tagline }}<p class="pf-tagline">{{ . }}</p>{{ end }}
+            {{ with .blurb }}<p class="pf-blurb">{{ . }}</p>{{ end }}
+
+            {{ with .stats }}
+              <ul class="pf-stats">
+                {{ range . }}<li>{{ . }}</li>{{ end }}
+              </ul>
+            {{ end }}
+
+            {{ with .stack }}
+              <p class="pf-stack">{{ delimit . " · " }}</p>
+            {{ end }}
+
+            {{ if or .url .repo }}
+              <p class="pf-links">
+                {{ with .url }}<a href="{{ . }}">site</a>{{ end }}
+                {{ if and .url .repo }}<span class="pf-dot">·</span>{{ end }}
+                {{ with .repo }}<a href="{{ . }}">source</a>{{ end }}
+                {{ with .released }}<span class="pf-released">released {{ . }}</span>{{ end }}
+              </p>
+            {{ end }}
+
+          </article>
+        {{ end }}
+      </div>
+    </section>
+  {{ end }}
+
+  <footer class="pf-foot">
+    <p>
+      Everything above is free software under GPLv3.
+      <a href="https://github.com/SteveTheKiller">GitHub</a> ·
+      <a href="mailto:steve@thekiller.net">steve@thekiller.net</a>
+    </p>
+  </footer>
+
+</div>
+{{ end }}
