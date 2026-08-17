@@ -23,14 +23,6 @@
 
 <div class="pf" data-count="{{ len $apps.items }}">
 
-  {{/* Intro: the three marks strike in large, then dock into the bar below.
-       Once per session, skipped on reduced motion, never blocks a click. */}}
-  <div class="pf-intro" aria-hidden="true">
-    <img src="{{ $csharp.RelPermalink }}" alt="">
-    <img src="{{ $pwsh.RelPermalink }}" alt="">
-    <img src="{{ $vue.RelPermalink }}" alt="">
-  </div>
-
   {{/* The language bar - the page's top-level switch */}}
   <nav class="pf-langbar" aria-label="Software families">
     <button type="button" class="pf-lang" data-fam="apps" aria-pressed="true">
@@ -272,7 +264,7 @@
     .pf-slide { position: relative !important; opacity: 1 !important; visibility: visible !important; }
     .pf-screen { height: auto !important; }
     .pf-shot { position: relative !important; opacity: 1 !important; }
-    .pf-dots, .pf-hint, .pf-osd, .pf-langbar, .pf-intro { display: none !important; }
+    .pf-dots, .pf-hint, .pf-osd, .pf-langbar { display: none !important; }
     .pf-web { display: block !important; }
     .pf-web-card { opacity: 1 !important; visibility: visible !important; margin-bottom: 14px !important; }
     .pf-web-static, .pf-web-arrow { display: none !important; }

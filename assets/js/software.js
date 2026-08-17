@@ -156,22 +156,11 @@
 
   // ---- Input --------------------------------------------------------------
 
-  /* Wheel: only claim the gesture while the tube is on screen and only for
-     deliberate vertical intent. Never while the lightbox is up - that was
-     letting a scroll change channel behind the overlay and yank the image
-     the visitor had just opened. */
-  pf.addEventListener('wheel', function (e) {
-    if (lightboxOpen || !appsVisible()) { return; }
-    if (Math.abs(e.deltaY) < Math.abs(e.deltaX)) { return; }
-    if (Math.abs(e.deltaY) < 8) { return; }
-    var r = pf.getBoundingClientRect();
-    if (r.bottom < 120 || r.top > window.innerHeight - 120) { return; }
-    // At the ends, let the page scroll normally so nobody gets trapped
-    var atEnd = (e.deltaY > 0 && cur === count - 1) || (e.deltaY < 0 && cur === 0);
-    if (atEnd) { return; }
-    e.preventDefault();
-    step(e.deltaY > 0 ? 1 : -1);
-  }, { passive: false });
+  /* NO wheel handler, deliberately. Changing channel on scroll meant the page
+     stopped moving when the pointer happened to be over the tube - the visitor
+     is trying to read down the page and the app switches under them instead.
+     Scroll belongs to the page. Channels change by tab, arrow key, number key
+     or swipe, all of which are things you do ON PURPOSE. */
 
   document.addEventListener('keydown', function (e) {
     if (lightboxOpen || !appsVisible()) { return; }   // arrows belong to the lightbox then
@@ -536,29 +525,6 @@
   langBtns.forEach(function (b) {
     b.addEventListener('click', function () { showFam(b.dataset.fam); });
   });
-
-  /* Intro: strike the three marks in large, hold a beat, dock them into the
-     bar. Once per SESSION - an animation you meet on every navigation stops
-     being an animation and starts being a toll booth. Reduced motion skips it
-     entirely (the CSS also hides it), and the overlay never takes pointer
-     events, so a visitor who starts scrolling mid-play loses nothing. */
-  var intro = pf.querySelector('.pf-intro');
-  var seen = false;
-  try { seen = sessionStorage.getItem('kt-sw-intro') === '1'; } catch (e) {}
-  if (intro && !seen && !reduce) {
-    try { sessionStorage.setItem('kt-sw-intro', '1'); } catch (e) {}
-    pf.classList.add('intro-live');
-    intro.classList.add('is-playing');
-    setTimeout(function () {
-      intro.classList.add('is-docking');
-      pf.classList.remove('intro-live');
-      pf.classList.add('intro-docked');
-    }, 1050);
-    setTimeout(function () {
-      intro.classList.remove('is-playing', 'is-docking');
-      intro.style.display = 'none';
-    }, 1600);
-  }
 
   /* Everything this page links to is somewhere ELSE - an app site, a repo, a
      vendor's docs - so it opens in its own tab and leaves the showcase where

@@ -319,54 +319,9 @@
 
 /* (.pf-hint removed - the tabs make the interaction obvious) */
 
-/* ── Intro: the three language marks strike in, then dock to the bar ── */
-.pf-intro {
-  position: fixed;
-  inset: 0;
-  z-index: 10050;
-  display: none;               /* JS shows it, once per session */
-  align-items: center;
-  justify-content: center;
-  gap: 7vw;
-  background: rgba(4, 4, 4, 0.92);
-  pointer-events: none;        /* decorative - never blocks a click */
-}
+/* (.pf-intro removed - the full-screen language-mark intro is gone) */
 
-.pf-intro img {
-  height: clamp(70px, 14vh, 130px);
-  width: auto !important;
-  max-width: none !important;
-  border: 0 !important;
-  padding: 0 !important;
-  filter: drop-shadow(0 0 12px color-mix(in srgb, var(--accent) 45%, transparent));
-  opacity: 0;
-}
-
-.pf-intro.is-playing { display: flex; }
-
-/* Strike-in: the tube-power treatment, staggered per mark */
-.pf-intro.is-playing img {
-  animation: pfStrike 0.34s ease-out both;
-}
-.pf-intro.is-playing img:nth-child(2) { animation-delay: 0.12s; }
-.pf-intro.is-playing img:nth-child(3) { animation-delay: 0.24s; }
-
-@keyframes pfStrike {
-  0%   { opacity: 0; transform: scaleY(0.05); filter: brightness(2.2); }
-  55%  { opacity: 1; transform: scaleY(1.04); }
-  100% { opacity: 1; transform: scaleY(1); }
-}
-
-/* Dock: marks fly up toward the bar and shrink; the backdrop lets go */
-.pf-intro.is-docking { background: transparent; transition: background 0.4s ease; }
-.pf-intro.is-docking img {
-  animation: none;
-  opacity: 0;
-  transform: translateY(-36vh) scale(0.22);
-  transition: transform 0.42s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.42s ease;
-}
-
-/* ── The docked language bar ── */
+/* ── The language bar ── */
 /* Three equal columns, so the row spans the content exactly: the first button
    starts at the left content edge and the last ends at the right one. Centred
    as a cluster (what this was) aligned the bar with nothing on the page. */
@@ -422,10 +377,6 @@
   white-space: nowrap;
   color: var(--foreground);
 }
-
-/* While the intro plays, the bar waits, then fades in as the marks dock */
-.pf.intro-live .pf-langbar { opacity: 0; }
-.pf.intro-docked .pf-langbar { opacity: 1; transition: opacity 0.4s ease 0.15s; }
 
 /* ── Web family: animated slideshow. All cards share ONE grid cell, so the
    container stays as tall as the tallest card and nothing reflows as the show
@@ -894,7 +845,6 @@
 @keyframes pfCaret { 50% { opacity: 0; } }
 
 @media (prefers-reduced-motion: reduce) {
-  .pf-intro { display: none !important; }
   .pf-ps-caret { animation: none; }
 }
 
