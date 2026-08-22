@@ -9,13 +9,16 @@
 
   Each family carries its OWN colophon above the site footer.
 
-  Everything renders from data/software.yaml. The page-wide CRT layers come
-  from baseof.html. With JS off, all three families show stacked - see the
-  <noscript> block.
+  Everything renders from the synchronized data when it exists, with
+  data/software.yaml as the local-development fallback. The page-wide CRT
+  layers come from baseof.html. With JS off, all three families show stacked -
+  see the <noscript> block.
 */}}
-{{ $apps := index (where .Site.Data.software.sections "id" "apps") 0 }}
-{{ $ps := index (where .Site.Data.software.sections "id" "scripts") 0 }}
-{{ $webSec := index (where .Site.Data.software.sections "id" "web") 0 }}
+{{ $software := .Site.Data.software }}
+{{ with .Site.Data.software_generated }}{{ $software = . }}{{ end }}
+{{ $apps := index (where $software.sections "id" "apps") 0 }}
+{{ $ps := index (where $software.sections "id" "scripts") 0 }}
+{{ $webSec := index (where $software.sections "id" "web") 0 }}
 {{/* Real language icons (devicon shapes, recolored site amber), fingerprinted */}}
 {{ $csharp := resources.Get "images/software/lang-csharp.svg" | fingerprint }}
 {{ $pwsh := resources.Get "images/software/lang-powershell.svg" | fingerprint }}
@@ -58,13 +61,25 @@
           <article class="pf-slide{{ if eq $i 0 }} is-on{{ end }}" data-i="{{ $i }}"
                    aria-hidden="{{ if eq $i 0 }}false{{ else }}true{{ end }}">
             <div class="pf-shots">
-              {{ $n := $app.shots | default 0 }}
-              {{ range $s := seq 1 $n }}
-                <img class="pf-shot{{ if eq $s 1 }} is-on{{ end }}"
-                     src="/images/software/{{ $app.slug }}/{{ $s }}.jpg"
-                     alt="{{ $app.name }} screenshot {{ $s }}"
-                     loading="{{ if eq $i 0 }}eager{{ else }}lazy{{ end }}"
-                     decoding="async">
+              {{ with $app.screenshot_paths }}
+                {{ $n := len . }}
+                {{ range $shotIndex, $src := . }}
+                  {{ $s := add $shotIndex 1 }}
+                  <img class="pf-shot{{ if eq $shotIndex 0 }} is-on{{ end }}"
+                       src="{{ $src }}"
+                       alt="{{ $app.name }} screenshot {{ $s }} of {{ $n }}"
+                       loading="{{ if eq $i 0 }}eager{{ else }}lazy{{ end }}"
+                       decoding="async">
+                {{ end }}
+              {{ else }}
+                {{ $n := $app.shots | default 0 }}
+                {{ range $s := seq 1 $n }}
+                  <img class="pf-shot{{ if eq $s 1 }} is-on{{ end }}"
+                       src="/images/software/{{ $app.slug }}/{{ $s }}.jpg"
+                       alt="{{ $app.name }} screenshot {{ $s }} of {{ $n }}"
+                       loading="{{ if eq $i 0 }}eager{{ else }}lazy{{ end }}"
+                       decoding="async">
+                {{ end }}
               {{ end }}
             </div>
             <div class="pf-plate">

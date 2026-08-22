@@ -1,8 +1,7 @@
-# Software data - the single source of truth for /software/.
+# Software descriptions and synchronization sources for /software/.
 #
-# The page renders entirely FROM this file, so a new app or site is an edit here
-# and nothing else. Versions and dates are the real ones from each app's csproj;
-# keep them current at release time.
+# scripts/sync-software.py refreshes release facts from GitHub and downloads the
+# selected screenshots from each app website before the deployed site is built.
 #
 # TODO markers are facts only Steve has - fill them in and delete the marker.
 
@@ -13,13 +12,14 @@ sections:
     blurb: >-
       Five native Windows applications. Each one ships as a single
       self-contained exe, runs portable or installs itself, is code-signed and
-      verified in-app, speaks eleven languages, and is GPLv3. No account, no
+      verified in-app, is localized, and is GPLv3. No account, no
       subscription, no telemetry.
     items:
 
       - name: KillerPDF
         slug: killerpdf
         shots: 4
+        screenshot_files: ["01.png", "02.png", "03.png", "04.png"]
         tagline: Free PDF editor
         version: 1.7.3
         released: 2026-08-15
@@ -44,6 +44,7 @@ sections:
       - name: KillerShell
         slug: killershell
         shots: 4
+        screenshot_files: ["01.png", "02.png", "03.png", "04.png"]
         tagline: Free shell for power users
         version: 1.2.2
         released: 2026-08-10
@@ -68,6 +69,7 @@ sections:
       - name: KillerNotes
         slug: killernotes
         shots: 4
+        screenshot_files: ["01.png", "02.png", "03.png", "04.png"]
         tagline: Free encrypted notepad
         version: 1.2.1
         released: 2026-08-10
@@ -92,6 +94,7 @@ sections:
       - name: KillerScan
         slug: killerscan
         shots: 4
+        screenshot_files: ["01.png", "02.png", "03.png", "04.png"]
         tagline: Free network scanner
         version: 1.6.1
         released: 2026-08-12
@@ -116,6 +119,7 @@ sections:
       - name: The Killendar
         slug: killendar
         shots: 4
+        screenshot_files: ["01.png", "02.png", "03.png", "04.png"]
         tagline: Free encrypted calendar
         version: 1.1.0
         released: 2026-08-10
