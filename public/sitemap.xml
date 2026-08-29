@@ -2,14 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/tags/.net/</loc>
+    <lastmod>2026-08-28T19:59:48-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/</loc>
+    <lastmod>2026-08-28T19:59:48-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/c%23/</loc>
+    <lastmod>2026-08-28T19:59:48-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/killerpdf/</loc>
+    <lastmod>2026-08-28T19:59:48-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/open-source/</loc>
+    <lastmod>2026-08-28T19:59:48-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/pdf/</loc>
+    <lastmod>2026-08-28T19:59:48-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2026-08-28T19:59:48-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2026-08-28T19:59:48-07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/why-i-built-the-killerpdf-engine/</loc>
+    <lastmod>2026-08-28T19:59:48-07:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/categories/</loc>
   </url><url>
     <loc>http://localhost:1313/photos/</loc>
   </url><url>
     <loc>http://localhost:1313/software/</loc>
-  </url><url>
-    <loc>http://localhost:1313/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
   </url>
 </urlset>

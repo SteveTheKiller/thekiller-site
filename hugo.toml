@@ -12,8 +12,11 @@ theme = "terminal"
   customCSS = ["css/custom.css"]
   menuItems = [
     { name = "Software", url = "/software/" },
+    { name = "Blog", url = "/blog/" },
     { name = "Photos", url = "/photos/" }
   ]
+  readMore = "Read more"
+  dateFormat = "January 2, 2006"
 
 [[menu.main]]
   name = "Software"
@@ -21,9 +24,14 @@ theme = "terminal"
   weight = 1
 
 [[menu.main]]
+  name = "Blog"
+  url = "/blog/"
+  weight = 2
+
+[[menu.main]]
   name = "Photos"
   url = "/photos/"
-  weight = 2
+  weight = 3
 
 [markup]
   [markup.goldmark]

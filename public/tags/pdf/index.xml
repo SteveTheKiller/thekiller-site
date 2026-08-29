@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PDF on Steve the Killer</title>
+    <link>http://localhost:1313/tags/pdf/</link>
+    <description>Recent content in PDF on Steve the Killer</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 28 Aug 2026 19:59:48 -0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/pdf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Why I Built the Killerpdf Engine</title>
+      <link>http://localhost:1313/blog/why-i-built-the-killerpdf-engine/</link>
+      <pubDate>Fri, 28 Aug 2026 19:59:48 -0700</pubDate>
+      <guid>http://localhost:1313/blog/why-i-built-the-killerpdf-engine/</guid>
+      <description>&lt;p&gt;KillerPDF had reached the point where its PDF library was deciding what the application could become &lt;em&gt;but I wanted more&lt;/em&gt;.&lt;/p&gt;&#xA;&lt;p&gt;So I did the reasonable thing and wrote a PDF engine.&lt;br&gt;&#xA;Okay, maybe not the &lt;em&gt;reasonable&lt;/em&gt; thing but I wrote one anyway, in C# on .NET 10.&lt;br&gt;&#xA;The result is &lt;strong&gt;The KillerPDF.Engine&lt;/strong&gt;.&lt;br&gt;&lt;/p&gt;&#xA;&lt;p&gt;It handles parsing, validation, authoring, structural editing, encryption, signing, and serialization.&lt;br&gt;&#xA;It has no user interface and no dependency on the KillerPDF desktop application and it&amp;rsquo;s available as a public GPLv3 &lt;a href=&#34;https://www.nuget.org/packages/KillerPdf.Engine/1.8.0&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;NuGet package&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

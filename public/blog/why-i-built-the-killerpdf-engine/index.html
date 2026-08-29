@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  
+    <title>Why I Built the Killerpdf Engine :: Steve the Killer</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Why I built The KillerPDF.Engine and what I learned replacing KillerPDF&#39;s legacy document pipeline." />
+<meta name="keywords" content="" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://localhost:1313/blog/why-i-built-the-killerpdf-engine/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/custom.min.9f98f702135bccd5254f32144a309a962fd113c60d53ed9a9be81c975180af66.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/software.min.54e8dda8845194394e1b0b9cb7c63ae86bebdc94bc3049bc26cc73198c0f872f.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/code.min.c4581949edab7810737609fc5568852bcd908945f14561e366dcd2300a370545.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/fonts.min.5bb7ed13e1d00d8ff39ea84af26737007eb5051b157b86fc24487c94f3dc8bbe.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/footer.min.eb8dfc2c6a7eafa36cd3ba92d63e69e849e2200e0002a228d137f236b09ecd75.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/header.min.75c7eb0e2872d95ff48109c6647d0223a38db52e2561dd87966eb5fc7c6bdac6.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/main.min.36833afd348409fc6c3d09d0897c5833d9d5bf1ff31f5e60ea3ee42ce2b1268c.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/menu.min.3c17467ebeb3d38663dce68f71f519901124fa5cbb4519b2fb0667a21e9aca39.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/pagination.min.bbb986dbce00a5ce5aca0504b7925fc1c581992a4bf57f163e5d69cc1db7d836.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/post.min.e6dddd258e64c83e05cec0cd49c05216742d42fc8ecbfbe6b67083412b609bd3.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/syntax.min.a2cc694a9b481f15d41722bffc2cc54eea4c4f74fd9072b0b33253604c22606e.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/terminal.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css-overrides/style.min.3423ffe4de7a22dbaa781f03cab7862a191278b497ad42c9e61ab86c5f04899d.css">
+
+
+
+<link rel="shortcut icon" href="http://localhost:1313/favicon.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Why I Built the Killerpdf Engine">
+<meta name="twitter:description" content="Why I built The KillerPDF.Engine and what I learned replacing KillerPDF&#39;s legacy document pipeline.">
+<meta name="twitter:image" content="http://localhost:1313/og-image.jpg">
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Why I Built the Killerpdf Engine">
+<meta property="og:description" content="Why I built The KillerPDF.Engine and what I learned replacing KillerPDF&#39;s legacy document pipeline." />
+<meta property="og:url" content="http://localhost:1313/blog/why-i-built-the-killerpdf-engine/" />
+<meta property="og:site_name" content="Steve the Killer" />
+
+  <meta property="og:image" content="http://localhost:1313/og-image.jpg">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+
+  <meta property="article:published_time" content="2026-08-28 19:59:48 -0700 PDT" />
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script defer src="https://koya.thekiller.net/script.js" data-website-id="03e9eaa5-ce7b-4bb2-97ce-3c3535a844ee"></script>
+
+
+
+
+</head>
+
+<body class="blog">
+
+
+<div class="container center">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="http://localhost:1313/">
+  <div class="logo">
+    <span class="cf">S</span>teve <span class="pe">the</span> <span class="cf gap">K</span>iller
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/software/">Software</a></li>
+        
+      
+        
+          <li><a href="/blog/">Blog</a></li>
+        
+      
+        
+          <li><a href="/photos/">Photos</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+    
+      <nav class="navigation-menu">
+  
+    <a href="/software/"  >Software</a>
+  
+    <a href="/blog/"  class="active">Blog</a>
+  
+    <a href="/photos/"  >Photos</a>
+  
+</nav>
+    
+  </div>
+</header>
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://localhost:1313/blog/why-i-built-the-killerpdf-engine/">Why I Built the Killerpdf Engine</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">August 28, 2026</time><span class="post-reading-time">6 min read (1182 words)</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://localhost:1313/tags/c#/">C#</a>&nbsp;
+      
+      #<a href="http://localhost:1313/tags/.net/">.NET</a>&nbsp;
+      
+      #<a href="http://localhost:1313/tags/pdf/">PDF</a>&nbsp;
+      
+      #<a href="http://localhost:1313/tags/open-source/">open source</a>&nbsp;
+      
+      #<a href="http://localhost:1313/tags/killerpdf/">KillerPDF</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+    <div class="table-of-contents">
+      <h2>
+        Table of Contents
+      </h2>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#why-replace-something-that-worked">Why replace something that worked?</a></li>
+    <li><a href="#this-is-where-pdf-gets-weird">This is where PDF gets weird</a></li>
+    <li><a href="#letting-2907-hostile-pdfs-take-a-swing-at-it">Letting 2,907 hostile PDFs take a swing at it</a></li>
+    <li><a href="#was-it-faster">Was it faster?</a></li>
+    <li><a href="#why-make-it-public">Why make it public?</a></li>
+    <li><a href="#what-i-learned">What I learned</a></li>
+    <li><a href="#project-links">Project links</a></li>
+  </ul>
+</nav>
+    </div>
+  
+
+  <div class="post-content"><div>
+        <p>KillerPDF had reached the point where its PDF library was deciding what the application could become <em>but I wanted more</em>.</p>
+<p>So I did the reasonable thing and wrote a PDF engine.<br>
+Okay, maybe not the <em>reasonable</em> thing but I wrote one anyway, in C# on .NET 10.<br>
+The result is <strong>The KillerPDF.Engine</strong>.<br></p>
+<p>It handles parsing, validation, authoring, structural editing, encryption, signing, and serialization.<br>
+It has no user interface and no dependency on the KillerPDF desktop application and it&rsquo;s available as a public GPLv3 <a href="https://www.nuget.org/packages/KillerPdf.Engine/1.8.0" target="_blank" rel="noopener noreferrer">NuGet package</a>.</p>
+<h2 id="why-replace-something-that-worked">Why replace something that worked?<a href="#why-replace-something-that-worked" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>PdfSharpCore wasn&rsquo;t bad software but it was just the wrong foundation for where I wanted to take KillerPDF.</p>
+<p>I was already maintaining several preservation fixes in a vendored copy.<br>
+They stopped ordinary saves from rewriting metadata, injecting transparency groups, producing incorrect stream lengths, or reducing PDF/A conformance but patches couldn&rsquo;t change the shape of the library underneath them and PDF 2.0 support is <em>much</em> larger than accepting a <code>%PDF-2.0</code> header.</p>
+<p>I could keep extending the old writer or move to another complete library and both would&rsquo;ve been easier in the short term.<br>
+Neither would&rsquo;ve given me control over the part of KillerPDF I cared about most.</p>
+<p>I&rsquo;ve supported open source software for about 30 years, so the engine was always going to be public and GPLv3. That shaped the boundary from the start.<br>
+The KillerPDF.Engine doesn&rsquo;t reference WPF, the KillerPDF interface, PDFium, PdfPig, PdfSharpCore, or PDFsharp. It targets .NET 10 and sticks to cross-platform runtime APIs.</p>
+<p>KillerPDF is still a Windows application, but its document model no longer is and that removes one large problem from the eventual cross-platform port.</p>
+<h2 id="this-is-where-pdf-gets-weird">This is where PDF gets weird<a href="#this-is-where-pdf-gets-weird" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>A PDF page is not self-contained. It can point to fonts, images, annotations, form fields, bookmarks, attachments, structure elements, inherited properties, and plenty more and any of those objects can point somewhere else.</p>
+<p>Moving a page between PDFs therefore isn&rsquo;t copying a page dictionary and its content stream. The engine has to walk the reachable object graph, import what belongs to the page, assign new identities, and rewrite every reference. It also has to stop safely when a real-world PDF contains circular references, broken references, or malformed structures.</p>
+<p>Forms made this worse. Tagged documents made it worse again. A page can look completely fine on screen while its relationships underneath are broken, and a renderer might never reveal it.</p>
+<p><em>Then signatures got involved&hellip;</em></p>
+<p>A signed PDF contains old revisions whose exact bytes must survive. Editing one means appending a new revision without touching the signed byte ranges.<br>
+Even when the signature still verifies, certification rules and field locks may forbid the edit.<br>
+Encryption adds another identity problem because renumbering an object without applying the correct key can produce a file that looks plausible but won&rsquo;t open.</p>
+<p>Standards support was the same song. Anyone can write <code>PDF/A-4</code> into metadata but that doesn&rsquo;t make the file PDF/A-4.<br>
+The engine blocks encryption for PDF/A, requires XMP metadata and an ICC output intent, requires embedded fonts for PDF/A text, and checks PDF/UA-2 structure.<br>
+veraPDF still gets the final word, but the API should stop obvious nonsense before it reaches a validator.</p>
+<h2 id="letting-2907-hostile-pdfs-take-a-swing-at-it">Letting 2,907 hostile PDFs take a swing at it<a href="#letting-2907-hostile-pdfs-take-a-swing-at-it" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>The engine has 1,436 automated tests, but unit tests weren&rsquo;t enough.<br>
+I ran KillerPDF&rsquo;s complete save pipeline against 2,907 files from the public veraPDF, Isartor, and TWG conformance suites. Most are malformed on purpose or built to violate one exact standards requirement.<br>
+They are PDFs designed to ruin your afternoon, which made them perfect for this.</p>
+<p>KillerPDF rewrote 2,898 files. Nine were skipped because they were encrypted or didn&rsquo;t contain enough reliable structure for a safe rewrite. Every output then went through veraPDF and qpdf.</p>
+<ul>
+<li>Zero new veraPDF conformance failures</li>
+<li>Zero qpdf structural regressions</li>
+<li>74 files became more conformant after rewriting</li>
+<li>374 files with existing qpdf warnings came out clean</li>
+</ul>
+<p>I wasn&rsquo;t trying to repair the corpus. Those improvements were a side effect of producing consistent trailers, cross-reference data, and stream lengths.</p>
+<p>The number I cared about was zero.</p>
+<p><strong>Not one successfully rewritten file became worse.</strong></p>
+<h2 id="was-it-faster">Was it faster?<a href="#was-it-faster" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>I had replaced a mature pipeline with a new one, so there was a chance I had made it slower. I compared the released KillerPDF 1.7.5 and 1.8.0 builds using the same 2,236-file corpus on the same machine. The benchmark used only the files supported by both versions because KillerPDF 1.7.5 couldn&rsquo;t process the PDF 2.0 files included in the full corpus.</p>
+<p>Each version got one warmup run followed by five measured runs. I alternated their order, used fresh output directories, and compared the median instead of picking the best result.</p>
+<ul>
+<li><strong>CPU:</strong> AMD Ryzen 5 3600 6-Core Processor</li>
+<li><strong>Memory:</strong> 32 GB DDR4-3200</li>
+<li><strong>Storage:</strong> 2 TB SPCC M.2 PCIe NVMe SSD</li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th>Version</th>
+          <th style="text-align: right">Median time</th>
+          <th style="text-align: right">Median files per second</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>KillerPDF 1.7.5</td>
+          <td style="text-align: right">16.167 seconds</td>
+          <td style="text-align: right">138.31</td>
+      </tr>
+      <tr>
+          <td>KillerPDF 1.8.0</td>
+          <td style="text-align: right">10.013 seconds</td>
+          <td style="text-align: right">223.32</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>KillerPDF 1.8.0 finished this workload about 38.1% faster.</strong><br>
+That isn&rsquo;t a universal PDF benchmark, it&rsquo;s KillerPDF&rsquo;s real batch-resave path on one defined corpus, with the method and numbers included so nobody has to take a marketing sentence on faith.</p>
+<h2 id="why-make-it-public">Why make it public?<a href="#why-make-it-public" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>There are mature commercial PDF libraries for .NET but open choices focused on modern PDF 2.0, PDF/A, and PDF/UA authoring are a much shorter list.</p>
+<p>I think competition is good for everybody and developers now get another implementation they can inspect, test, criticize, improve, and use.<br>
+If a free library handles difficult documents well, maybe it also gives the big vendors and older projects a reason to get better.<br>
+A rising tide should raise all ships.</p>
+<p>The engine is still young and doesn&rsquo;t replace every PDF component. PDFium remains the renderer, while PdfPig provides positioned text and image extraction.</p>
+<p>PdfPig may be next on the chopping block but replacing it means interpreting content streams, tracking graphics state and transformations, decoding fonts, and supporting ToUnicode CMaps. That&rsquo;s a real project, not a weekend cleanup, but it would remove another major dependency before the cross-platform work begins.</p>
+<h2 id="what-i-learned">What I learned<a href="#what-i-learned" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>A PDF is not really a text file&hellip; it&rsquo;s closer to a database.</p>
+<p>What looks like a page of text on the screen is actually a collection of numbered objects connected through references and located through an index.<br>
+Fonts, images, annotations, forms, signatures, encryption settings, metadata, and even the page itself may live in different objects.<br>
+Some of those objects are compressed.<br>
+Some inherit values from other objects.<br>
+A file can contain <em>several</em> historical revisions at once.</p>
+<p>This should change how you think about editing one.</p>
+<p>You aren&rsquo;t opening a document, changing a sentence, and saving it again.<br>
+You are modifying a connected data structure while preserving everything you didn&rsquo;t touch.<br>
+You have to rebuild indexes, maintain references, calculate stream lengths, and respect encryption, while avoiding invalidating signatures or standards conformance.</p>
+<p>Writing The KillerPDF.Engine taught me why PDF software becomes complicated so quickly&hellip; The visible page is almost the <em>least</em> interesting part of the file.</p>
+<p><strong>A PDF is a database wearing a piece of paper as a disguise.</strong>
+<br><br><br><br><br><br></p>
+<h2 id="project-links">Project links<a href="#project-links" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<ul>
+<li>Engine documentation: <a href="https://killerpdf.net/engine/" target="_blank" rel="noopener noreferrer">https://killerpdf.net/engine/</a></li>
+<li>NuGet: <a href="https://www.nuget.org/packages/KillerPdf.Engine/1.8.0" target="_blank" rel="noopener noreferrer">https://www.nuget.org/packages/KillerPdf.Engine/1.8.0</a></li>
+<li>Source: <a href="https://github.com/SteveTheKiller/KillerPDF" target="_blank" rel="noopener noreferrer">https://github.com/SteveTheKiller/KillerPDF</a></li>
+<li>Validation results: <a href="https://github.com/SteveTheKiller/KillerPDF/blob/main/validation/RESULTS.md" target="_blank" rel="noopener noreferrer">https://github.com/SteveTheKiller/KillerPDF/blob/main/validation/RESULTS.md</a></li>
+<li>Performance results: <a href="https://github.com/SteveTheKiller/KillerPDF/blob/main/validation/PERFORMANCE.md" target="_blank" rel="noopener noreferrer">https://github.com/SteveTheKiller/KillerPDF/blob/main/validation/PERFORMANCE.md</a></li>
+</ul>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    <div class="copyright">
+      <span>&copy; 2026 Steve the Killer</span>
+      <a class="footer__gh" href="https://github.com/SteveTheKiller/thekiller-site"
+         target="_blank" rel="noopener" title="Source on GitHub" aria-label="Source on GitHub">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.29 3.44 9.77 8.2 11.36.6.11.82-.26.82-.58v-2.04c-3.34.72-4.04-1.61-4.04-1.61-.55-1.38-1.34-1.75-1.34-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.11-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 016.01 0c2.29-1.55 3.3-1.23 3.3-1.23.65 1.65.24 2.87.12 3.17.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.82.58A12 12 0 0024 12.5C24 5.87 18.63.5 12 .5z"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+
+<div class="crt" aria-hidden="true">
+  <div class="crt__mask"></div>
+  <div class="crt__sweep"></div>
+  <div class="crt__flicker"></div>
+  <div class="crt__glare"></div>
+  <div class="crt__vignette"></div>
+  <div class="crt__power"></div>
+</div>
+
+</body>
+</html>

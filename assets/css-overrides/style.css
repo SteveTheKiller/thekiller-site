@@ -174,15 +174,32 @@ body:not(.home) .logo a {
    goes TRANSPARENT rather than to 0 - the box must keep its 1px so the header
    height stays identical to every other page and navigating does not jump. */
 body.software .logo,
+body.blog .logo,
 body.photos .logo,
 body.software .logo a,
+body.blog .logo a,
 body.photos .logo a {
   background: transparent !important;
 }
 
 body.software .logo,
+body.blog .logo,
 body.photos .logo {
   border-color: transparent;
+}
+
+body.blog .index-content {
+  margin: 14px 0 4px !important;
+  font-size: 0.88em;
+  line-height: 1.5;
+}
+
+body.blog .index-content p {
+  margin: 0;
+}
+
+body.blog .posts .post:first-child {
+  padding-top: 18px;
 }
 
 .menu--mobile {
@@ -201,7 +218,8 @@ p:has(a[href*="killertools.net"]) {
 :root {
   --background: #0b0b0b;   /* unlit glass */
   --foreground: #d99a1f;   /* dim amber - body text */
-  --accent: #ffb642;       /* bright amber - links, logo, borders */
+  --accent: #ffb642;       /* bright amber - logo, major titles, borders */
+  --phosphor-red: #ff4f4f; /* red phosphor - navigation, emphasis, and structure */
 
   --amber: #ffb000;        /* reference P3 amber */
   --charcoal: #1c1c1c;     /* gradient high point */
@@ -226,14 +244,41 @@ body {
     0 0 6px rgba(255, 150, 0, 0.16);
 }
 
-/* Anything that should read as "lit harder" gets brighter phosphor + more bleed. */
-h1, h2, h3, h4, h5, h6,
-strong, b,
-a {
+/* Major titles keep the amber identity. */
+h1 {
   color: var(--accent);
   text-shadow:
     0 0 1px rgba(255, 182, 66, 0.55),
     0 0 8px rgba(255, 150, 0, 0.28);
+}
+
+/* Red phosphor breaks up long amber pages and marks navigation within the
+   content: section headings and links. */
+h2, h3, h4, h5, h6,
+a {
+  color: var(--phosphor-red);
+  text-shadow:
+    0 0 1px rgba(255, 79, 79, 0.62),
+    0 0 8px rgba(255, 45, 45, 0.28);
+}
+
+/* Red phosphor is reserved for emphasis and document structure. */
+strong, b,
+.post-meta {
+  color: var(--phosphor-red);
+  text-shadow:
+    0 0 1px rgba(255, 79, 79, 0.62),
+    0 0 8px rgba(255, 45, 45, 0.28);
+}
+
+.post-title {
+  border-bottom-color: var(--phosphor-red);
+}
+
+table,
+th,
+td {
+  border-color: var(--phosphor-red);
 }
 
 /* Home logo is knockout - dark letters punched out of a lit amber slab, like
@@ -254,8 +299,9 @@ body:not(.home) .logo a {
 }
 
 hr {
-  border-color: rgba(255, 176, 0, 0.3);
-  box-shadow: 0 0 6px rgba(255, 150, 0, 0.15);
+  background: var(--phosphor-red);
+  border-color: rgba(255, 79, 79, 0.45);
+  box-shadow: 0 0 6px rgba(255, 45, 45, 0.25);
 }
 
 /* The "GPLv3 Tools:" label was dimmed with opacity, which also kills the

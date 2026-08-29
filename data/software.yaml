@@ -24,6 +24,7 @@ sections:
         version: 1.7.3
         released: 2026-08-15
         url: https://killerpdf.net
+        engine: https://killerpdf.net/engine/
         repo: https://github.com/SteveTheKiller/KillerPDF
         stack: [C#, WPF, .NET Framework 4.8, PDFium, Tesseract]
         blurb: >-
@@ -55,13 +56,10 @@ sections:
           File browser, search, terminal, text editor and admin toolkit in one
           window. Process management, live performance monitor, event viewer,
           registry editor and storage analyzer, each one key away.
-        # FILLER, condensed from shell-landing/about.html. Replace with final copy.
         why: >-
-          At an MSP the day is not one big problem but a hundred small ones, each
-          with a client waiting. Windows search made you wait on an index, and the
-          heavier tools wanted a license before they would look inside a single
-          folder. Save a few seconds on every ticket and by Friday you have bought
-          back hours.
+          I built KillerShell to optimize my workflow as a technician. It keeps
+          the tools and information I use every day in one place, so I am never
+          more than a few clicks away from what I need.
         stats:
           - 11 languages
           - 12 themes
@@ -102,15 +100,14 @@ sections:
         repo: https://github.com/SteveTheKiller/KillerScan
         stack: [C#, WPF, .NET Framework 4.8]
         blurb: >-
-          Sweeps a subnet and tells you what answered: hostnames, MAC vendors,
-          open ports and services. Built for the first ten minutes on an
-          unfamiliar network.
-        # FILLER, condensed from scan-landing/about.html. Replace with final copy.
+          Scans multiple networks using ARP, ping, port probes, mDNS and SSDP.
+          It fingerprints services, identifies MAC vendors, classifies devices,
+          opens RDP, SSH and web connections, exports CSV or HTML, and includes
+          a headless CLI for scripts and RMM work.
         why: >-
-          I walk onto a network I have never seen and the first question is always
-          the same: what is actually on here? The existing answers were heavy
-          suites that wanted an agent, a server or a login before they would tell
-          you a single MAC address. So I wrote the tool that answers it in seconds.
+          KillerScan was the first app I built. I made it out of necessity because
+          the alternatives were all bad. I use it any time I am on a new network
+          and need to see what is plugged in.
         stats:
           - 11 languages
           - 12 themes
@@ -159,12 +156,19 @@ sections:
           86 tools that run entirely in the browser: PowerShell command builder,
           M365 SKU decoder, Exchange NDR lookup, subnet calculators, converters,
           generators.
+        origin:
+          project: IT-Tools
+          project_url: https://github.com/CorentinTh/it-tools
+          author: Corentin Thomasset
+          author_url: https://github.com/CorentinTh
+          contribution: >-
+            then substantially expanded with my own Windows and networking tools,
+            domain search, and many of the site's most-used utilities.
         stats:
           - 86 tools
           - 12 themes
           - Installable PWA
         tech:
-          - { pre: "based on", name: IT-Tools, url: "https://github.com/CorentinTh/it-tools" }
           - { name: Vue 3, url: "https://vuejs.org" }
           - { name: Vite, url: "https://vitejs.dev" }
           - { name: TypeScript, url: "https://www.typescriptlang.org" }
@@ -183,12 +187,12 @@ sections:
         stack: [HTML, CSS, JavaScript]
         blurb: >-
           One landing page per app, each with its own technical and about pages,
-          hand-written in HTML, CSS and JavaScript. Eleven languages and twelve
+          hand-written in HTML, CSS and JavaScript. Fourteen languages and thirteen
           themes each.
         stats:
           - 5 sites
-          - 11 languages
-          - 12 themes
+          - 14 languages
+          - 13 themes
         tech:
           - { name: HTML5, url: "https://developer.mozilla.org/docs/Web/HTML" }
           - { name: CSS, url: "https://developer.mozilla.org/docs/Web/CSS" }

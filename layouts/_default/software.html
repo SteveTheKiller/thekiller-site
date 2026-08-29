@@ -104,6 +104,7 @@
                 {{ end }}
                 <p class="pf-links">
                   {{ with $app.url }}<a href="{{ . }}">visit site</a>{{ end }}
+                  {{ with $app.engine }}<a href="{{ . }}">engine</a>{{ end }}
                   {{ with $app.repo }}<a href="{{ . }}">source</a>{{ end }}
                 </p>
               </div>
@@ -240,6 +241,12 @@
           <h3>{{ with .url }}<a href="{{ . }}">{{ end }}{{ .name }}{{ with .url }}</a>{{ end }}</h3>
           <p class="pf-tag">{{ .tagline }}</p>
           <p class="pf-blurb">{{ .blurb }}</p>
+          {{ with .origin }}
+            <p class="pf-web-origin">
+              Forked from <a href="{{ .project_url }}">{{ .project }}</a> by
+              <a href="{{ .author_url }}">{{ .author }}</a>, {{ .contribution }}
+            </p>
+          {{ end }}
           {{/* Site list sits UNDER the description, one per line, so it reads
                as a directory rather than a wrapped run of underlines */}}
           {{ with .sites }}

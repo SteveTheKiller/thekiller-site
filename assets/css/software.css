@@ -128,7 +128,7 @@
   overflow: hidden;
 }
 
-/* 8-bit amber wordmark. image-rendering keeps the cells hard at any size. */
+/* 8-bit red wordmark. image-rendering keeps the cells hard at any size. */
 .pf-wm {
   display: block;
   /* Full plate width now, so the mark can breathe */
@@ -158,7 +158,11 @@
   z-index: 3 !important;
   /* Light bloom only - a heavy glow fills the gaps between cells and undoes
      the pixel edges */
-  filter: drop-shadow(0 0 5px color-mix(in srgb, var(--accent) 30%, transparent));
+  filter:
+    hue-rotate(320deg)
+    saturate(1.35)
+    brightness(1.08)
+    drop-shadow(0 0 5px color-mix(in srgb, var(--phosphor-red) 35%, transparent));
 }
 
 .pf-tag {
@@ -515,6 +519,11 @@
 }
 
 .pf-web-sites a { white-space: nowrap; }
+
+.pf-web-origin {
+  margin: 4px 0 10px;
+  font-size: 0.86em;
+}
 
 /* The showcase lines: technologies as links, then where the site runs */
 .pf-web-tech {

@@ -127,7 +127,14 @@ def synchronize_app(app: dict) -> None:
     ]
     if not exe_assets:
         raise RuntimeError(f"The latest {repo} release has no EXE asset")
-    exe = max(exe_assets, key=lambda asset: int(asset.get("size", 0)))
+    installer_assets = [
+        asset
+        for asset in exe_assets
+        if "portable" not in str(asset.get("name", "")).lower()
+    ]
+    if not installer_assets:
+        raise RuntimeError(f"The latest {repo} release has no installer EXE asset")
+    exe = max(installer_assets, key=lambda asset: int(asset.get("size", 0)))
 
     languages = count_xaml_files(repo, tag, "Strings")
     themes = count_xaml_files(repo, tag, "Themes")
