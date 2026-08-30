@@ -1,5 +1,5 @@
 ---
-title: "Why I Built the Killerpdf Engine"
+title: "Why I Built The KillerPDF.Engine"
 date: 2026-08-28T19:59:48-07:00
 description: "Why I built The KillerPDF.Engine and what I learned replacing KillerPDF's legacy document pipeline."
 tags:
