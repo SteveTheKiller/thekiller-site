@@ -219,7 +219,7 @@ p:has(a[href*="killertools.net"]) {
   --background: #0b0b0b;   /* unlit glass */
   --foreground: #d99a1f;   /* dim amber - body text */
   --accent: #ffb642;       /* bright amber - logo, major titles, borders */
-  --phosphor-red: #ff4f4f; /* red phosphor - navigation, emphasis, and structure */
+  --phosphor-red: #ff7a45; /* red-orange phosphor - navigation, emphasis, and structure */
 
   --amber: #ffb000;        /* reference P3 amber */
   --charcoal: #1c1c1c;     /* gradient high point */
@@ -258,8 +258,8 @@ h2, h3, h4, h5, h6,
 a {
   color: var(--phosphor-red);
   text-shadow:
-    0 0 1px rgba(255, 79, 79, 0.62),
-    0 0 8px rgba(255, 45, 45, 0.28);
+    0 0 1px rgba(255, 122, 69, 0.62),
+    0 0 8px rgba(255, 95, 30, 0.28);
 }
 
 /* Red phosphor is reserved for emphasis and document structure. */
@@ -267,8 +267,8 @@ strong, b,
 .post-meta {
   color: var(--phosphor-red);
   text-shadow:
-    0 0 1px rgba(255, 79, 79, 0.62),
-    0 0 8px rgba(255, 45, 45, 0.28);
+    0 0 1px rgba(255, 122, 69, 0.62),
+    0 0 8px rgba(255, 95, 30, 0.28);
 }
 
 .post-title {
@@ -300,8 +300,8 @@ body:not(.home) .logo a {
 
 hr {
   background: var(--phosphor-red);
-  border-color: rgba(255, 79, 79, 0.45);
-  box-shadow: 0 0 6px rgba(255, 45, 45, 0.25);
+  border-color: rgba(255, 122, 69, 0.45);
+  box-shadow: 0 0 6px rgba(255, 95, 30, 0.25);
 }
 
 /* The "GPLv3 Tools:" label was dimmed with opacity, which also kills the
