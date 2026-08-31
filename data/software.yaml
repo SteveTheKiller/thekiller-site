@@ -25,6 +25,7 @@ sections:
         released: 2026-08-15
         url: https://killerpdf.net
         engine: https://killerpdf.net/engine/
+        corpus: https://killerpdf.net/corpus.html
         repo: https://github.com/SteveTheKiller/KillerPDF
         stack: [C#, WPF, .NET Framework 4.8, PDFium, Tesseract]
         blurb: >-
