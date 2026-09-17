@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <title>Steve the Killer — Cracked-Porcelain smiley (draft)</title>
+
+  <defs>
+    <clipPath id="faceClip6">
+      <circle cx="256" cy="256" r="220"/>
+    </clipPath>
+  </defs>
+
+  <!-- L1: background — void showing through the missing chunk -->
+  <g id="L1_background">
+    <rect x="0" y="0" width="512" height="512" fill="none"/>
+  </g>
+
+  <!-- L2: void underlayer visible through the missing chunk area -->
+  <g id="L2_void_underlayer">
+    <path d="M330,360 L380,340 L430,360 L450,410 L420,455 L360,470 L310,450 L295,410 Z"
+          fill="#0D0D0D"/>
+  </g>
+
+  <!-- L3: face — amber, with a chunk missing at the bottom-right -->
+  <g id="L3_face_amber">
+    <path d="M 256,36
+             C 145,36 42,140 42,256
+             C 42,335 90,406 158,443
+             L 220,462 L 265,460
+             L 295,410 L 310,450 L 360,470 L 420,455 L 450,410
+             L 462,370 L 468,320 L 470,270 L 466,220
+             L 452,170 L 428,130 L 396,96 L 356,68 L 306,48 Z"
+          fill="#F0AC44"/>
+  </g>
+
+  <!-- L4: gloss highlight (upper-left glossy sweep) -->
+  <g id="L4_gloss_highlight" clip-path="url(#faceClip6)">
+    <path d="M110,110 Q170,80 240,90 L235,120 Q180,120 130,150 Z"
+          fill="#EDE6D3" opacity="0.25"/>
+  </g>
+
+  <!-- L5: eyes — small round dots (unbothered) -->
+  <g id="L5_eyes">
+    <circle cx="185" cy="215" r="18" fill="#0D0D0D"/>
+    <circle cx="335" cy="215" r="18" fill="#0D0D0D"/>
+    <!-- tiny catchlights -->
+    <circle cx="191" cy="209" r="5" fill="#EDE6D3"/>
+    <circle cx="341" cy="209" r="5" fill="#EDE6D3"/>
+  </g>
+
+  <!-- L6: mouth — small placid smile -->
+  <g id="L6_mouth">
+    <path d="M180,300 Q256,360 332,300" stroke="#0D0D0D" stroke-width="14"
+          stroke-linecap="round" fill="none"/>
+  </g>
+
+  <!-- L7: crack network — radiating from an impact point on the forehead -->
+  <g id="L7_cracks" clip-path="url(#faceClip6)">
+    <g stroke="#0D0D0D" fill="none" stroke-linecap="round">
+      <!-- impact center around (240,130); cracks radiate outward -->
+      <path d="M240,130 L220,90 L215,60" stroke-width="3"/>
+      <path d="M220,90 L200,80 L180,55" stroke-width="2"/>
+      <path d="M240,130 L275,95 L295,55" stroke-width="3"/>
+      <path d="M275,95 L290,80 L320,68" stroke-width="2"/>
+      <path d="M240,130 L200,155 L155,175 L110,190" stroke-width="3.5"/>
+      <path d="M200,155 L180,180 L160,220" stroke-width="2"/>
+      <path d="M240,130 L285,160 L340,185 L400,200" stroke-width="3.5"/>
+      <path d="M285,160 L310,190 L340,240" stroke-width="2"/>
+      <path d="M240,130 L245,180 L250,240 L258,300 L262,360 L268,420" stroke-width="4"/>
+      <path d="M258,300 L215,320 L165,340" stroke-width="2.5"/>
+      <path d="M262,360 L300,380 L340,395" stroke-width="2.5"/>
+      <path d="M110,190 L90,230 L75,275" stroke-width="2"/>
+      <path d="M400,200 L430,240 L440,290" stroke-width="2"/>
+      <!-- concentric hairlines around impact -->
+      <circle cx="240" cy="130" r="18" stroke-width="1.5"/>
+      <circle cx="240" cy="130" r="34" stroke-width="1"/>
+    </g>
+  </g>
+
+  <!-- L8: falling shards below the missing chunk -->
+  <g id="L8_shards">
+    <polygon points="320,485 335,478 340,498 328,504" fill="#F0AC44"/>
+    <polygon points="365,495 378,488 384,506 372,510" fill="#F0AC44"/>
+    <polygon points="405,478 418,472 424,492 412,498" fill="#F0AC44"/>
+    <polygon points="290,500 300,494 305,510 295,510" fill="#F0AC44"/>
+  </g>
+
+  <!-- L9: tiny blood trickle from a crack (subtle) -->
+  <g id="L9_blood_trickle">
+    <path d="M258,300 Q256,330 260,360" stroke="#B01E1E" stroke-width="4"
+          fill="none" stroke-linecap="round"/>
+    <circle cx="261" cy="365" r="4" fill="#B01E1E"/>
+  </g>
+</svg>

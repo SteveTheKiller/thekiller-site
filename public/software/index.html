@@ -6,6 +6,8 @@
   
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="darkreader-lock">
+<meta name="color-scheme" content="only dark">
 <meta name="description" content="Five free Windows applications - PDF editor, shell, encrypted notepad, network scanner and encrypted calendar. GPLv3, no account, no telemetry. By Steve the Killer." />
 <meta name="keywords" content="" />
 
@@ -18,10 +20,10 @@
 
 
   
-  <link rel="stylesheet" href="http://localhost:1313/css/custom.min.9f98f702135bccd5254f32144a309a962fd113c60d53ed9a9be81c975180af66.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/custom.min.b99c1a42f239187720586a87d3db6b70f1c11d8571f0f5fe75ab55d5d6944125.css">
 
   
-  <link rel="stylesheet" href="http://localhost:1313/css/software.min.54e8dda8845194394e1b0b9cb7c63ae86bebdc94bc3049bc26cc73198c0f872f.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/software.min.9e5fef95c847a8d3f07c5e3521c15a77071d22cb6af7d573d9e0569aeeddec7a.css">
 
   
   <link rel="stylesheet" href="http://localhost:1313/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
@@ -67,10 +69,11 @@
 
 
   
-  <link rel="stylesheet" href="http://localhost:1313/css-overrides/style.min.b6700e0c3596269ebb3f29b403cc1e563cb54061615fc48e5514a66d44623e0a.css">
+  <link rel="stylesheet" href="http://localhost:1313/css-overrides/style.min.d68059f1c34a69c8bad1f2daf1316cd330dd4ca3baeb85967a3fc26c7ec61c2d.css">
 
 
 
+<link rel="icon" type="image/svg+xml" href="/img/smileys/smiley-03-ransom-face.svg">
 <link rel="shortcut icon" href="http://localhost:1313/favicon.png">
 <link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
@@ -111,11 +114,62 @@
 <script defer src="https://koya.thekiller.net/script.js" data-website-id="03e9eaa5-ce7b-4bb2-97ce-3c3535a844ee"></script>
 
 
+<script>
+(function(){
+  var SMILEYS = [
+    'smiley-01-slit-smile',
+    'smiley-02-glitched-grin',
+    'smiley-03-ransom-face',
+    'smiley-04-stitched-frankie',
+    'smiley-05-peel-face'
+  ];
+  var pick = SMILEYS[Math.floor(Math.random() * SMILEYS.length)];
+  function inject() {
+    var slot = document.querySelector('[data-smiley]');
+    if (!slot) return;
+    var img = document.createElement('img');
+    img.src = '/img/smileys/' + pick + '.svg';
+    img.alt = '';
+    img.width = 64;
+    img.height = 64;
+    slot.appendChild(img);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', inject);
+  } else {
+    inject();
+  }
+})();
+</script>
+
+
+<script>
+(function(){
+  function check(){
+    var w=document.querySelector('.header .logo-words'); if(!w) return;
+    var a=w.querySelector('.w-s1'), b=w.querySelector('.w-s3');
+    w.classList.toggle('killer-wrapped', b.offsetTop > a.offsetTop + 10);
+  }
+  function init(){ check(); window.addEventListener('resize', check); if(document.fonts&&document.fonts.ready){document.fonts.ready.then(check);} }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
+})();
+</script>
+
+
 
 
 </head>
 
 <body class="software">
+
+
+
+
+
+<div class="wp" aria-hidden="true"><div class="s a"></div><div class="s b"></div><div class="s c"></div><div class="s d"></div><div class="s e"></div><div class="s f"></div><div class="s g"></div><div class="s h"></div></div>
+<script>(function(){var wp=document.currentScript.previousElementSibling;if(!wp)return;var shapes=wp.querySelectorAll('.s'),n=0;shapes.forEach(function(el){for(var k=0;k<3;k++){var c=el.cloneNode(true);var t=((n*137.5)%88),l=((n*71.3)%90);var d1=((n*29)%50),d2=((n*17)%50);c.style.top=t.toFixed(1)+'%';c.style.left=l.toFixed(1)+'%';c.style.right='auto';c.style.bottom='auto';c.style.animationDelay='-'+d1.toFixed(2)+'s, -'+d2.toFixed(2)+'s';wp.appendChild(c);n++;}});})();</script>
+
+
 
 
 <div class="container center">
@@ -125,7 +179,12 @@
     <div class="header__logo">
       <a href="http://localhost:1313/">
   <div class="logo">
-    <span class="cf">S</span>teve <span class="pe">the</span> <span class="cf gap">K</span>iller
+    <span class="taped w-smi"><span class="smi-scrap" data-smiley></span></span>
+    <span class="logo-words">
+      <span class="taped w-s1"><span class="scrap s1">STEVE</span></span>
+      <span class="taped w-s2"><span class="scrap s2">THE</span></span>
+      <span class="taped w-s3"><span class="scrap s3">KILLER</span></span>
+    </span>
   </div>
 </a>
 
@@ -158,13 +217,14 @@
     
       <nav class="navigation-menu">
   
-    <a href="/software/"  class="active">Software</a>
+    <span class="taped-nav-item"><a href="/software/"  class="active">Software</a></span>
   
-    <a href="/blog/"  >Blog</a>
+    <span class="taped-nav-item"><a href="/blog/"  >Blog</a></span>
   
-    <a href="/photos/"  >Photos</a>
+    <span class="taped-nav-item"><a href="/photos/"  >Photos</a></span>
   
 </nav>
+
     
   </div>
 </header>
@@ -187,13 +247,13 @@
   
   <nav class="pf-langbar" aria-label="Software families">
     <button type="button" class="pf-lang" data-fam="apps" aria-pressed="true">
-      <img src="/images/software/lang-csharp.1c0a6dd4cf7596c06a3089a50ad147c5a45d0a59b360590fb0f91ce0cc24fb78.svg" alt="C#"><span>windows apps</span>
+      <img src="/images/software/lang-csharp.02433c6f01d7eaf79abf5f0ca195843f0b1ac39da53a5712ee34ed1fff577860.svg" alt="C#"><span>windows apps</span>
     </button>
     <button type="button" class="pf-lang" data-fam="powershell" aria-pressed="false">
-      <img src="/images/software/lang-powershell.11b3369c313cd3cfac72b8cff4ae48dce11642098624c7e49a1b0efb868dd395.svg" alt="PowerShell"><span>scripts &amp; modules</span>
+      <img src="/images/software/lang-powershell.922619cb30a04782ba39c1bed19e0767c65da46ad77bde9b0e58e7e595798181.svg" alt="PowerShell"><span>scripts &amp; modules</span>
     </button>
     <button type="button" class="pf-lang" data-fam="web" aria-pressed="false">
-      <img src="/images/software/lang-web.34386333e33abbfa06bfabe76e89b995be202dc103d0f90cb3d6bf583b0a7a52.svg" alt="Vue"><span>web</span>
+      <img src="/images/software/lang-web.510c5be64ac66236673e6fbbc7d3e5e6adf3c6799ffdaf2e364aaeaf59c6dd99.svg" alt="Vue"><span>web</span>
     </button>
   </nav>
 
@@ -207,7 +267,7 @@
     <div class="pf-bezel">
       <div class="pf-screen">
         
-          <article class="pf-slide is-on" data-i="0"
+          <article class="pf-slide is-on" data-i="0" data-app="killerpdf"
                    aria-hidden="false">
             <div class="pf-shots">
               
@@ -245,7 +305,7 @@
             </div>
             <div class="pf-plate">
               
-              <img class="pf-wm" src="/images/software/killerpdf-8bit.0780f232e3873dd63f7d6beb4d11715fa7eb635c17fc85a1dee51894f49fde53.png" alt="KillerPDF">
+              <img class="pf-wm" src="http://localhost:1313/img/wordmarks/killerpdf-brand-dark.svg" alt="KillerPDF">
               <p class="pf-tag">Free PDF editor <span class="pf-ver">v1.8.0</span></p>
               
               <div class="pf-copy js-pf-copy">
@@ -269,7 +329,7 @@
             </div>
           </article>
         
-          <article class="pf-slide" data-i="1"
+          <article class="pf-slide" data-i="1" data-app="killershell"
                    aria-hidden="true">
             <div class="pf-shots">
               
@@ -307,7 +367,7 @@
             </div>
             <div class="pf-plate">
               
-              <img class="pf-wm" src="/images/software/killershell-8bit.5b826b500b08af8c6f9d1c3addd09876a655820d58d332849d4c1ecba85c6b1b.png" alt="KillerShell">
+              <img class="pf-wm" src="http://localhost:1313/img/wordmarks/killershell-brand-dark.svg" alt="KillerShell">
               <p class="pf-tag">Free shell for power users <span class="pf-ver">v1.2.2</span></p>
               
               <div class="pf-copy js-pf-copy">
@@ -331,7 +391,7 @@
             </div>
           </article>
         
-          <article class="pf-slide" data-i="2"
+          <article class="pf-slide" data-i="2" data-app="killernotes"
                    aria-hidden="true">
             <div class="pf-shots">
               
@@ -369,7 +429,7 @@
             </div>
             <div class="pf-plate">
               
-              <img class="pf-wm" src="/images/software/killernotes-8bit.de7d0d4f17e7d27d71a4b944c0ea228e0d5b83ccfff30f42f0662fc8d3654b70.png" alt="KillerNotes">
+              <img class="pf-wm" src="http://localhost:1313/img/wordmarks/killernotes-brand-dark.svg" alt="KillerNotes">
               <p class="pf-tag">Free encrypted notepad <span class="pf-ver">v1.3.0</span></p>
               
               <div class="pf-copy js-pf-copy">
@@ -393,7 +453,7 @@
             </div>
           </article>
         
-          <article class="pf-slide" data-i="3"
+          <article class="pf-slide" data-i="3" data-app="killerscan"
                    aria-hidden="true">
             <div class="pf-shots">
               
@@ -431,7 +491,7 @@
             </div>
             <div class="pf-plate">
               
-              <img class="pf-wm" src="/images/software/killerscan-8bit.697505c86dea4741d19f978a88d174685df57d67bec9a964809c0eb1bfc378a9.png" alt="KillerScan">
+              <img class="pf-wm" src="http://localhost:1313/img/wordmarks/killerscan-brand-dark.svg" alt="KillerScan">
               <p class="pf-tag">Free network scanner <span class="pf-ver">v1.6.0</span></p>
               
               <div class="pf-copy js-pf-copy">
@@ -455,7 +515,7 @@
             </div>
           </article>
         
-          <article class="pf-slide" data-i="4"
+          <article class="pf-slide" data-i="4" data-app="killendar"
                    aria-hidden="true">
             <div class="pf-shots">
               
@@ -493,7 +553,7 @@
             </div>
             <div class="pf-plate">
               
-              <img class="pf-wm" src="/images/software/killendar-8bit.767878fbe20a2c0678c93fae57b43b857ae1ea8116352ce153bc68c387d812d7.png" alt="The Killendar">
+              <img class="pf-wm" src="http://localhost:1313/img/wordmarks/killendar-brand-dark.svg" alt="The Killendar">
               <p class="pf-tag">Free encrypted calendar <span class="pf-ver">v1.1.0</span></p>
               
               <div class="pf-copy js-pf-copy">
@@ -529,27 +589,27 @@
       <nav class="pf-dots" aria-label="Choose app">
         
           <button type="button" class="pf-dot is-on"
-                  data-go="0" aria-label="KillerPDF">
+                  data-go="0" data-app="killerpdf" aria-label="KillerPDF">
             <span>KillerPDF</span>
           </button>
         
           <button type="button" class="pf-dot"
-                  data-go="1" aria-label="KillerShell">
+                  data-go="1" data-app="killershell" aria-label="KillerShell">
             <span>KillerShell</span>
           </button>
         
           <button type="button" class="pf-dot"
-                  data-go="2" aria-label="KillerNotes">
+                  data-go="2" data-app="killernotes" aria-label="KillerNotes">
             <span>KillerNotes</span>
           </button>
         
           <button type="button" class="pf-dot"
-                  data-go="3" aria-label="KillerScan">
+                  data-go="3" data-app="killerscan" aria-label="KillerScan">
             <span>KillerScan</span>
           </button>
         
           <button type="button" class="pf-dot"
-                  data-go="4" aria-label="The Killendar">
+                  data-go="4" data-app="killendar" aria-label="The Killendar">
             <span>The Killendar</span>
           </button>
         
@@ -557,12 +617,12 @@
 
       <div class="pf-colophon pf-colophon-side">
         <div class="pf-built">
-          <a href="https://learn.microsoft.com/dotnet/csharp/" title="C#"><img src="/images/software/lang-csharp.1c0a6dd4cf7596c06a3089a50ad147c5a45d0a59b360590fb0f91ce0cc24fb78.svg" alt="C#"><span>C#</span></a>
-          <a href="https://learn.microsoft.com/dotnet/desktop/wpf/" title=".NET Framework 4.8 / WPF"><img src="/images/software/icon-dotnet.b3f6ac71cbb2c27f43156820d4f877b35b670716fba7dd55d3eb5b201a0c3255.svg" alt=".NET"><span>WPF / .NET 4.8</span></a>
-          <a href="https://visualstudio.microsoft.com" title="Visual Studio"><img src="/images/software/icon-visualstudio.2bf0c07c56fa86a3baf3b4b571b78ddce342d72fb554bb45955c7ad4542c4a4a.svg" alt="Visual Studio"><span>Visual Studio</span></a>
-          <a href="https://www.sqlite.org" title="SQLite"><img src="/images/software/icon-sqlite.ffb68b5155c549ab0bed1f973b702b9ed22305e0c1ff241a682c007768f34013.svg" alt="SQLite"><span>SQLite</span></a>
-          <a href="https://www.gimp.org" title="GIMP"><img src="/images/software/icon-gimp.c171aafef82e4ba05ed4a982e34aa008490f989e0a2a0d8dc2252da347f08539.svg" alt="GIMP"><span>GIMP</span></a>
-          <a href="https://github.com/SteveTheKiller" title="Source on GitHub"><img src="/images/software/icon-github.13ec4bce4de9a0bb5bb479e7b1af102f960ee453a420a9cf9109395007c70898.svg" alt="GitHub"><span>source</span></a>
+          <a href="https://learn.microsoft.com/dotnet/csharp/" title="C#"><img src="/images/software/lang-csharp.02433c6f01d7eaf79abf5f0ca195843f0b1ac39da53a5712ee34ed1fff577860.svg" alt="C#"><span>C#</span></a>
+          <a href="https://learn.microsoft.com/dotnet/desktop/wpf/" title=".NET Framework 4.8 / WPF"><img src="/images/software/icon-dotnet.342e274ec38dbdb717634216ab524fe9b63040e9951507e3524c0f1de398e872.svg" alt=".NET"><span>WPF / .NET 4.8</span></a>
+          <a href="https://visualstudio.microsoft.com" title="Visual Studio"><img src="/images/software/icon-visualstudio.f55fccee123a60135e0a0d8cacd243ac141a4d8c7cfd7dcc68f71feddaf56196.svg" alt="Visual Studio"><span>Visual Studio</span></a>
+          <a href="https://www.sqlite.org" title="SQLite"><img src="/images/software/icon-sqlite.a1b33f7169f52fd81769174fa965446dba109dd90a77f82ed1327cd5216e4f11.svg" alt="SQLite"><span>SQLite</span></a>
+          <a href="https://www.gimp.org" title="GIMP"><img src="/images/software/icon-gimp.cd83f27cd8192ad5373ee497af704eb621ab05a471234b6ce394ddd7a4c53cb4.svg" alt="GIMP"><span>GIMP</span></a>
+          <a href="https://github.com/SteveTheKiller" title="Source on GitHub"><img src="/images/software/icon-github.3dbc97ddef72d0f56ec1503396f72edc77f9d772ee7d204bf675f07df13f97b6.svg" alt="GitHub"><span>source</span></a>
         </div>
         <p class="pf-built-text">
           <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPLv3</a>
@@ -734,7 +794,7 @@
               
                 
                 
-                  <img src="/images/software/icon-vue.29272d2d331a0e8393e976194e8c9240dd89e0c0928465e5b3774c4a7ac9ee20.svg"
+                  <img src="/images/software/icon-vue.3b750fd02e1cdeafa8ac6bd1eb61734063611dee442fde80a7bc3908853690a9.svg"
                        alt="Vue.js" title="Vue.js">
                 
               
@@ -769,13 +829,13 @@
               
                 
                 
-                  <img src="/images/software/icon-html5.441de20397c375ee6227bd7be3de87bddd0facf399a4f66cc422b12157d840bf.svg"
+                  <img src="/images/software/icon-html5.45cd823f39675ffba4105b41b23f3393a7adf285f64798f9836c1a2aaf7251b9.svg"
                        alt="HTML5" title="HTML5">
                 
               
                 
                 
-                  <img src="/images/software/icon-css3.5c514c39648a7b00b3deb6b0ed19edada82d62670b799479ed56bfd3cfbe34a1.svg"
+                  <img src="/images/software/icon-css3.32337cbfdd2fe5eb5f8ee62ae8bc706f45f6a2ed8eebc5368209b2a405bc51c2.svg"
                        alt="CSS3" title="CSS3">
                 
               
@@ -809,13 +869,13 @@
               
                 
                 
-                  <img src="/images/software/icon-hugo.f35f0dde78f3c32a15d5f3a63b46ffc0ce50dfd39d4d0e9b39a4b78dd982083d.svg"
+                  <img src="/images/software/icon-hugo.1dcdeef5e8ef590e46907de66e63c1d333ff38e5001b8f7cc76cd03a27746db9.svg"
                        alt="Hugo" title="Hugo">
                 
               
                 
                 
-                  <img src="/images/software/icon-markdown.d383e98d546312467ff122df8ea386458dfe6cf986fc93e545fa3ef921c62cfd.svg"
+                  <img src="/images/software/icon-markdown.b4ff50f6c7ca6fb677a9e6bdb1ef22028136a9c83389bcadc9e9248d781193a2.svg"
                        alt="Markdown" title="Markdown">
                 
               
@@ -893,16 +953,6 @@
 
 
   
-</div>
-
-
-<div class="crt" aria-hidden="true">
-  <div class="crt__mask"></div>
-  <div class="crt__sweep"></div>
-  <div class="crt__flicker"></div>
-  <div class="crt__glare"></div>
-  <div class="crt__vignette"></div>
-  <div class="crt__power"></div>
 </div>
 
 </body>

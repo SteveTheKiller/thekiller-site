@@ -1,5 +1,7 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="darkreader-lock">
+<meta name="color-scheme" content="only dark">
 <meta name="description" content="{{ if .IsHome }}{{ $.Site.Params.Subtitle }}{{ else if .Description}}{{ .Description | plainify }}{{ else }}{{ .Summary | plainify }}{{ end }}" />
 <meta name="keywords" content="{{ with .Params.Keywords }}{{ delimit . ", " }}{{ else }}{{ $.Site.Params.Keywords }}{{ end }}" />
 {{ if .Params.noindex }}
@@ -32,7 +34,9 @@
   <link rel="stylesheet" href="{{ $overrides.Permalink }}">
 {{ end }}
 
-<!-- Icons -->
+<!-- Icons - SVG for modern browsers uses the ransom-note smiley (03),
+     PNGs below stay as fallback for older clients (Safari <=15, IE) -->
+<link rel="icon" type="image/svg+xml" href="/img/smileys/smiley-03-ransom-face.svg">
 <link rel="shortcut icon" href="{{ "favicon.png" | absURL }}">
 <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | absURL }}">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
@@ -90,6 +94,50 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
 <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
 <script defer src="https://koya.thekiller.net/script.js" data-website-id="03e9eaa5-ce7b-4bb2-97ce-3c3535a844ee"></script>
+
+<!-- Random smiley picker (2026-09-16): swaps the header's smi-scrap
+     with one of the six SVGs on every page load. -->
+<script>
+(function(){
+  var SMILEYS = [
+    'smiley-01-slit-smile',
+    'smiley-02-glitched-grin',
+    'smiley-03-ransom-face',
+    'smiley-04-stitched-frankie',
+    'smiley-05-peel-face'
+  ];
+  var pick = SMILEYS[Math.floor(Math.random() * SMILEYS.length)];
+  function inject() {
+    var slot = document.querySelector('[data-smiley]');
+    if (!slot) return;
+    var img = document.createElement('img');
+    img.src = '/img/smileys/' + pick + '.svg';
+    img.alt = '';
+    img.width = 64;
+    img.height = 64;
+    slot.appendChild(img);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', inject);
+  } else {
+    inject();
+  }
+})();
+</script>
+
+<!-- Tags the wordmark when KILLER has dropped to its own line so CSS can
+     move it clear of the smiley. -->
+<script>
+(function(){
+  function check(){
+    var w=document.querySelector('.header .logo-words'); if(!w) return;
+    var a=w.querySelector('.w-s1'), b=w.querySelector('.w-s3');
+    w.classList.toggle('killer-wrapped', b.offsetTop > a.offsetTop + 10);
+  }
+  function init(){ check(); window.addEventListener('resize', check); if(document.fonts&&document.fonts.ready){document.fonts.ready.then(check);} }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
+})();
+</script>
 
 <!-- Extended head section-->
 {{ partial "extended_head.html" . }}

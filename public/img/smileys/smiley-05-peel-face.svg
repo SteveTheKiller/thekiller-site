@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <title>Steve the Killer — Peel-Face smiley (v2, aligned)</title>
+
+  <defs>
+    <clipPath id="faceClip5"><circle cx="256" cy="256" r="220"/></clipPath>
+  </defs>
+
+  <!-- L1: background -->
+  <g id="L1_background">
+    <rect x="0" y="0" width="512" height="512" fill="none"/>
+  </g>
+
+  <!-- L2: skull underlayer — visible on the right where face is peeled away -->
+  <g id="L2_skull_underlayer" clip-path="url(#faceClip5)">
+    <circle cx="256" cy="256" r="220" fill="#7A0A0A"/>
+    <!-- right skull eye socket -->
+    <ellipse cx="345" cy="225" rx="40" ry="48" fill="#0D0D0D"/>
+    <!-- inner socket rim highlight -->
+    <ellipse cx="345" cy="225" rx="40" ry="48" fill="none" stroke="#4A0505" stroke-width="3"/>
+    <!-- gum line -->
+    <rect x="266" y="336" width="146" height="10" fill="#0D0D0D"/>
+    <!-- teeth row, cleanly aligned to the gum line -->
+    <g fill="#EDE6D3">
+      <rect x="272" y="346" width="18" height="32"/>
+      <rect x="294" y="346" width="18" height="36"/>
+      <rect x="316" y="346" width="18" height="32"/>
+      <rect x="338" y="346" width="18" height="36"/>
+      <rect x="360" y="346" width="18" height="32"/>
+      <rect x="382" y="346" width="18" height="34"/>
+    </g>
+    <!-- vertical shadows between teeth -->
+    <g fill="#0D0D0D" opacity="0.35">
+      <rect x="290" y="346" width="4" height="36"/>
+      <rect x="312" y="346" width="4" height="36"/>
+      <rect x="334" y="346" width="4" height="36"/>
+      <rect x="356" y="346" width="4" height="36"/>
+      <rect x="378" y="346" width="4" height="36"/>
+    </g>
+    <!-- skull cheekbone shadow, subtle -->
+    <path d="M 295,290 Q 340,300 395,285 L 400,300 Q 345,315 295,305 Z"
+          fill="#0D0D0D" opacity="0.35"/>
+  </g>
+
+  <!-- L3: face amber — LEFT half intact, jagged tear down the middle -->
+  <g id="L3_face_amber_torn">
+    <path d="M 256,36
+             C 145,36 45,132 42,255
+             C 40,378 148,478 258,476
+             L 245,438
+             L 265,398
+             L 240,358
+             L 260,318
+             L 235,278
+             L 258,238
+             L 240,198
+             L 262,158
+             L 245,118
+             L 258,78
+             Z"
+          fill="#F0AC44"/>
+    <!-- pockmarks on the intact side -->
+    <g clip-path="url(#faceClip5)">
+      <circle cx="130" cy="150" r="3" fill="#0D0D0D" opacity="0.55"/>
+      <circle cx="105" cy="320" r="3.5" fill="#0D0D0D" opacity="0.5"/>
+      <circle cx="170" cy="430" r="2.5" fill="#0D0D0D" opacity="0.5"/>
+      <circle cx="90"  cy="240" r="2"   fill="#0D0D0D" opacity="0.5"/>
+    </g>
+  </g>
+
+  <!-- L4: peeled flap — curled OUT to the upper-right, clear of the skull features -->
+  <g id="L4_peeled_flap">
+    <!-- Underside (darker amber — the inside of the peeled skin) -->
+    <path d="M 258,50
+             C 320,32 400,32 460,60
+             C 495,80 500,120 480,155
+             C 460,180 425,180 395,165
+             C 415,160 435,145 445,120
+             C 445,92 415,72 375,66
+             C 335,62 290,70 262,82 Z"
+          fill="#C48429"/>
+    <!-- Top surface (bright amber — visible sliver along the outer curl) -->
+    <path d="M 258,50
+             C 320,32 400,32 460,60
+             C 490,78 500,105 490,135
+             L 475,132
+             C 490,106 475,82 445,70
+             C 400,54 335,54 280,70 Z"
+          fill="#F0AC44"/>
+    <!-- Fold shadow line -->
+    <path d="M 265,60 C 325,40 395,40 455,65"
+          stroke="#8A5A20" stroke-width="2" fill="none" opacity="0.55"/>
+    <!-- Peel underside grunge -->
+    <circle cx="410" cy="120" r="2.5" fill="#0D0D0D" opacity="0.5"/>
+    <circle cx="360" cy="105" r="2" fill="#0D0D0D" opacity="0.5"/>
+    <!-- Blood dribble from the peel underside -->
+    <path d="M 415,175 Q 413,196 419,210 Q 421,199 423,190 Q 424,205 429,215 Q 427,202 431,192 Q 427,180 423,175 Z" fill="#B01E1E"/>
+  </g>
+
+  <!-- L5: left eye X (on the intact amber side) -->
+  <g id="L5_eye_left">
+    <line x1="140" y1="200" x2="210" y2="265" stroke="#0D0D0D" stroke-width="18" stroke-linecap="round"/>
+    <line x1="210" y1="200" x2="140" y2="265" stroke="#0D0D0D" stroke-width="18" stroke-linecap="round"/>
+  </g>
+
+  <!-- L6: left half of mouth — the intact half-smile -->
+  <g id="L6_mouth_left_half">
+    <path d="M 100,340 Q 145,380 200,392 Q 225,395 245,392
+             L 240,405 L 200,406 Q 145,400 96,362 Z"
+          fill="#0D0D0D"/>
+  </g>
+
+  <!-- L7: tear seam highlight down the middle -->
+  <g id="L7_tear_seam">
+    <path d="M 258,78
+             L 245,118
+             L 262,158
+             L 240,198
+             L 258,238
+             L 235,278
+             L 260,318
+             L 240,358
+             L 265,398
+             L 245,438"
+          stroke="#8A5A20" stroke-width="2.5" fill="none" opacity="0.7"/>
+  </g>
+
+  <!-- L8: spatter and blood dribbles -->
+  <g id="L8_spatter">
+    <circle cx="60"  cy="440" r="8" fill="#B01E1E"/>
+    <circle cx="82"  cy="460" r="4" fill="#B01E1E"/>
+    <circle cx="470" cy="460" r="9" fill="#B01E1E"/>
+    <ellipse cx="340" cy="500" rx="16" ry="4" fill="#B01E1E"/>
+    <circle cx="40"  cy="380" r="5" fill="#B01E1E"/>
+    <circle cx="490" cy="220" r="4" fill="#B01E1E"/>
+  </g>
+</svg>

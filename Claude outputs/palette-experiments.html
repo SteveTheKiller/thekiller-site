@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Steve the Killer - Palette Experiments</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Departure+Mono&family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 40px 24px 80px;
+    background: #1a1a1a;
+    color: #cfcfcf;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .page-title {
+    max-width: 1200px;
+    margin: 0 auto 32px;
+  }
+  .page-title h1 {
+    font-family: 'Departure Mono', ui-monospace, monospace;
+    font-size: 28px;
+    letter-spacing: 0.04em;
+    color: #E8DFC8;
+    margin: 0 0 6px;
+    text-transform: uppercase;
+  }
+  .page-title p {
+    margin: 0;
+    color: #8a8a8a;
+    max-width: 800px;
+  }
+  .grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 22px;
+  }
+  .mock {
+    background: #0f0f0f;
+    border: 1px solid #2a2a2a;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .mock__label {
+    padding: 10px 14px;
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+    color: #8a8a8a;
+    letter-spacing: 0.06em;
+    border-bottom: 1px solid #222;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .mock__label b { color: #cfcfcf; font-weight: normal; }
+  .mock__stage {
+    padding: 26px 22px;
+    min-height: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .mock__notes {
+    padding: 10px 14px;
+    font-size: 12px;
+    color: #7f7f7f;
+    border-top: 1px solid #222;
+    line-height: 1.5;
+  }
+  .mock__swatches {
+    display: flex;
+    gap: 4px;
+    padding: 0 14px 12px;
+  }
+  .mock__swatches span {
+    width: 22px; height: 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  /* ── Header treatments ───────────────────────────────────── */
+
+  /* Base header slab */
+  .hdr {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 18px;
+    font-family: 'Departure Mono', 'Share Tech Mono', monospace;
+    letter-spacing: 0.06em;
+    font-size: 26px;
+    line-height: 1;
+    text-decoration: none;
+    position: relative;
+  }
+  .hdr svg { width: 44px; height: 44px; flex-shrink: 0; }
+
+  /* ── Individual mocks ───────────────────────────────────── */
+
+  /* 01 Walkman Cream: cream body, DMG-style green LCD */
+  .m01 .mock__stage { background: #2a2620; }
+  .m01 .hdr {
+    background: #E8DFC8;
+    color: #0F380F;
+  }
+  .m01 .hdr::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border: 1px solid rgba(15,56,15,0.15);
+    pointer-events: none;
+  }
+
+  /* 02 Game Boy DMG: pale case, deep green LCD inset */
+  .m02 .mock__stage { background: #1c1c1c; }
+  .m02 .hdr {
+    background: #C7B78F;
+    color: #0F380F;
+    padding: 10px 12px 10px 12px;
+    gap: 10px;
+  }
+  .m02 .hdr .lcd {
+    background: #9BBC0F;
+    padding: 6px 12px;
+    color: #0F380F;
+    font-family: 'VT323', monospace;
+    font-size: 30px;
+    letter-spacing: 0.04em;
+    border: 2px inset #6B7B2E;
+  }
+
+  /* 03 Casio Calculator: pale beige, olive LCD strip */
+  .m03 .mock__stage { background: #1c1c1c; }
+  .m03 .hdr {
+    background: #DDD3B4;
+    color: #3a3a3a;
+    padding: 6px 10px;
+    flex-direction: column;
+    gap: 6px;
+    align-items: stretch;
+  }
+  .m03 .hdr .row1 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: #6b6b6b;
+    text-transform: uppercase;
+  }
+  .m03 .hdr .row2 {
+    background: #B4C46F;
+    color: #1E2A0F;
+    padding: 6px 14px;
+    font-family: 'VT323', monospace;
+    font-size: 30px;
+    text-align: right;
+    letter-spacing: 0.02em;
+    border: 1px solid #6B7B2E;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+
+  /* 04 IBM Yellowed: heavily-yellowed office beige, phosphor accent */
+  .m04 .mock__stage { background: #101010; }
+  .m04 .hdr {
+    background: #C7BFA9;
+    color: #1a1a1a;
+    padding: 14px 20px 12px;
+    border-top: 4px solid #A6A08B;
+    border-bottom: 4px solid #8F8A76;
+    gap: 12px;
+  }
+  .m04 .hdr .glow {
+    color: #33FF33;
+    text-shadow: 0 0 6px rgba(51,255,51,0.6);
+  }
+
+  /* 05 J-Card: kraft paper cassette insert */
+  .m05 .mock__stage { background: #1c1c1c; }
+  .m05 .hdr {
+    background:
+      repeating-linear-gradient(0deg, transparent 0 24px, rgba(0,0,0,0.03) 24px 25px),
+      #D6C99F;
+    color: #1a1410;
+    padding: 12px 18px;
+    border: 1px solid #b0a37c;
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.08);
+    gap: 10px;
+  }
+  .m05 .hdr::before {
+    content: 'A / 60 MIN';
+    position: absolute;
+    top: 3px; right: 8px;
+    font-family: 'VT323', monospace;
+    font-size: 12px;
+    color: #7a6a4a;
+    letter-spacing: 0.14em;
+  }
+  .m05 .hdr .tape { background: #B01E1E; color: #EDE6D3; padding: 0 8px; }
+
+  /* 06 CRT Terminal: black tube in a beige console */
+  .m06 .mock__stage { background: #1c1c1c; }
+  .m06 .hdr {
+    background: #C7BFA9;
+    padding: 6px;
+    gap: 0;
+    border: 3px outset #A6A08B;
+  }
+  .m06 .hdr .tube {
+    background: #001a00;
+    color: #33FF33;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-shadow: 0 0 6px rgba(51,255,51,0.8);
+    position: relative;
+    overflow: hidden;
+  }
+  .m06 .hdr .tube::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,0.35) 0 1px, transparent 1px 3px);
+    pointer-events: none;
+  }
+  .m06 .hdr .tube::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.55) 100%);
+    pointer-events: none;
+  }
+
+  /* 07 VHS Tracking: beige with green scanlines and tracking bars */
+  .m07 .mock__stage { background: #1c1c1c; }
+  .m07 .hdr {
+    background: #DDD3B4;
+    color: #0F380F;
+    padding: 10px 18px;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  .m07 .hdr::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(0deg, rgba(15,56,15,0.05) 0 2px, transparent 2px 4px),
+      linear-gradient(180deg, transparent 40%, rgba(155,188,15,0.18) 42%, transparent 46%);
+    pointer-events: none;
+  }
+  .m07 .hdr::after {
+    content: 'TRK-01  SP  02:14:33';
+    position: absolute;
+    bottom: 2px; left: 8px;
+    font-family: 'VT323', monospace;
+    font-size: 11px;
+    color: rgba(15,56,15,0.6);
+    letter-spacing: 0.1em;
+  }
+
+  /* 08 Nokia Muddy: pale bone, muddy LCD backdrop */
+  .m08 .mock__stage { background: #1c1c1c; }
+  .m08 .hdr {
+    background: #A5B08A;
+    color: #202b12;
+    padding: 12px 18px;
+    font-family: 'VT323', monospace;
+    font-size: 32px;
+    letter-spacing: 0.02em;
+    border: 2px solid #7a8560;
+    box-shadow: inset 2px 2px 0 rgba(255,255,255,0.15), inset -2px -2px 0 rgba(0,0,0,0.15);
+    gap: 10px;
+  }
+
+  /* 09 Kraft Punk Zine: torn beige with red tape */
+  .m09 .mock__stage { background: #1c1c1c; }
+  .m09 .hdr {
+    background: #E8DFC8;
+    color: #0F380F;
+    padding: 12px 18px;
+    gap: 10px;
+    clip-path: polygon(0 0, 100% 3%, 98% 96%, 3% 100%);
+    box-shadow: 0 6px 0 rgba(0,0,0,0.25);
+  }
+  .m09 .hdr .stamp {
+    background: #B01E1E;
+    color: #EDE6D3;
+    padding: 2px 8px;
+    font-family: 'VT323', monospace;
+    font-size: 20px;
+    letter-spacing: 0.06em;
+    transform: rotate(-4deg);
+  }
+
+  /* 10 Split Duo: half beige / half LCD */
+  .m10 .mock__stage { background: #1c1c1c; }
+  .m10 .hdr {
+    padding: 0;
+    background: linear-gradient(90deg, #E8DFC8 0%, #E8DFC8 40%, #9BBC0F 40%, #9BBC0F 100%);
+    color: #0F380F;
+  }
+  .m10 .hdr .left { padding: 12px 6px 12px 18px; display:flex; align-items:center; gap:10px; }
+  .m10 .hdr .right { padding: 12px 18px 12px 12px; color: #0F380F; font-family:'VT323', monospace; font-size: 32px; letter-spacing: 0.02em; }
+
+  /* Two-line stacked treatment */
+  .stack { display: inline-flex; flex-direction: column; align-items: flex-start; line-height: 1; }
+  .stack .a { font-size: 14px; letter-spacing: 0.14em; opacity: 0.7; }
+  .stack .b { font-size: 30px; }
+</style>
+</head>
+<body>
+
+<div class="page-title">
+  <h1>Palette Experiments</h1>
+  <p>Ten header treatments in the beige-plus-green cassette-futurism direction. Same wordmark, same font (Departure Mono for headers, VT323 for status text), same placeholder smiley - only the case, LCD, and framing differ. Each card names what it's riffing on. Point at any subset to develop further and I'll wire it into the actual site.</p>
+</div>
+
+<div class="grid">
+
+  <!-- 01 Walkman Cream -->
+  <div class="mock m01">
+    <div class="mock__label"><span>01 · WALKMAN CREAM</span><b>Departure Mono</b></div>
+    <div class="mock__stage">
+      <a href="#" class="hdr">
+        <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="#E8DFC8"/><line x1="28" y1="34" x2="46" y2="52" stroke="#0F380F" stroke-width="6" stroke-linecap="round"/><line x1="46" y1="34" x2="28" y2="52" stroke="#0F380F" stroke-width="6" stroke-linecap="round"/><line x1="54" y1="34" x2="72" y2="52" stroke="#0F380F" stroke-width="6" stroke-linecap="round"/><line x1="72" y1="34" x2="54" y2="52" stroke="#0F380F" stroke-width="6" stroke-linecap="round"/><path d="M28 66 Q50 82 72 66 L72 74 Q50 84 28 74 Z" fill="#0F380F"/><path d="M42 76 Q42 92 46 96 Q48 90 50 82 Z" fill="#B01E1E"/></svg>
+        STEVE.THE.KILLER
+      </a>
+    </div>
+    <div class="mock__swatches"><span style="background:#E8DFC8"></span><span style="background:#0F380F"></span><span style="background:#9BBC0F"></span><span style="background:#B01E1E"></span><span style="background:#EDE6D3"></span></div>
+    <div class="mock__notes">Sony Walkman WM-2 vibe. Cream ABS case, no LCD; deep green ink for text and smiley features. Grunge grit lives in the smiley, not the frame. Cleanest option.</div>
+  </div>
+
+  <!-- 02 Game Boy DMG -->
+  <div class="mock m02">
+    <div class="mock__label"><span>02 · GAME BOY DMG</span><b>Departure Mono + VT323</b></div>
+    <div class="mock__stage">
+      <a href="#" class="hdr">
+        <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="#C7B78F"/><line x1="28" y1="34" x2="46" y2="52" stroke="#0F380F" stroke-width="6" stroke-linecap="round"/><line x1="46" y1="34" x2="28" y2="52" stroke="#0F380F" stroke-width="6" stroke-linecap="round"/><line x1="54" y1="34" x2="72" y2="52" stroke="#0F380F" stroke-width="6" stroke-linecap="round"/><line x1="72" y1="34" x2="54" y2="52" stroke="#0F380F" stroke-width="6" stroke-linecap="round"/><path d="M28 66 Q50 82 72 66 L72 74 Q50 84 28 74 Z" fill="#0F380F"/></svg>
+        <span class="lcd">STEVE.THE.KILLER</span>
+      </a>
+    </div>
+    <div class="mock__swatches"><span style="background:#C7B78F"></span><span style="background:#9BBC0F"></span><span style="background:#0F380F"></span><span style="background:#6B7B2E"></span><span style="background:#B01E1E"></span></div>
+    <div class="mock__notes">Nintendo DMG-01. Smiley outside the LCD like a case-mounted badge; wordmark in the pea-soup LCD. Inset bezel. Reads game-y - fun for a personal brand.</div>
+  </div>
+
+  <!-- 03 Casio Calculator -->
+  <div class="mock m03">
+    <div class="mock__label"><span>03 · CASIO STRIP</span><b>Departure Mono + VT323</b></div>
+    <div class="mock__stage">
+      <a href="#" class="hdr">
+        <div class="row1">STEVE.THE.KILLER &middot; FIELD-TECH-KILLER-01</div>
+        <div class="row2">
+          <svg viewBox="0 0 100 100" style="width:26px;height:26px"><circle cx="50" cy="50" r="44" fill="#DDD3B4"/><line x1="28" y1="34" x2="46" y2="52" stroke="#1E2A0F" stroke-width="7" stroke-linecap="round"/><line x1="46" y1="34" x2="28" y2="52" stroke="#1E2A0F" stroke-width="7" stroke-linecap="round"/><line x1="54" y1="34" x2="72" y2="52" stroke="#1E2A0F" stroke-width="7" stroke-linecap="round"/><line x1="72" y1="34" x2="54" y2="52" stroke="#1E2A0F" stroke-width="7" stroke-linecap="round"/><path d="M28 66 Q50 82 72 66 L72 74 Q50 84 28 74 Z" fill="#1E2A0F"/></svg>
+          KILL-01
+        </div>
+      </a>
+    </div>
+    <div class="mock__swatches"><span style="background:#DDD3B4"></span><span style="background:#B4C46F"></span><span style="background:#1E2A0F"></span><span style="background:#6B7B2E"></span><span style="background:#B01E1E"></span></div>
+    <div class="mock__notes">Casio calculator / early scientific instrument. Product name up top like a device label, LCD strip below with a memorable code. Smiley lives inside the LCD as a status glyph.</div>
+  </div>
+
+  <!-- 04 IBM Yellowed -->
+  <div class="mock m04">
+    <div class="mock__label"><span>04 · IBM YELLOWED</span><b>Departure Mono</b></div>
+    <div class="mock__stage">
+      <a href="#" class="hdr">
+        <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="#C7BFA9"/><line x1="28" y1="34" x2="46" y2="52" stroke="#1a1a1a" stroke-width="6" stroke-linecap="round"/><line x1="46" y1="34" x2="28" y2="52" stroke="#1a1a1a" stroke-width="6" stroke-linecap="round"/><line x1="54" y1="34" x2="72" y2="52" stroke="#1a1a1a" stroke-width="6" stroke-linecap="round"/><line x1="72" y1="34" x2="54" y2="52" stroke="#1a1a1a" stroke-width="6" stroke-linecap="round"/><path d="M28 66 Q50 82 72 66 L72 74 Q50 84 28 74 Z" fill="#1a1a1a"/></svg>
+        <span>STEVE.<span class="glow">THE</span>.KILLER</span>
+      </a>
+    </div>
+    <div class="mock__swatches"><span style="background:#C7BFA9"></span><span style="background:#33FF33"></span><span style="background:#1a1a1a"></span><span style="background:#A6A08B"></span><span style="background:#B01E1E"></span></div>
+    <div class="mock__notes">1980s IBM PC / Model M keyboard. Aged plastic beige. Only "THE" glows phosphor-green like a status LED. Subtle - hits the cassette-futurism from a serious-office angle rather than a game-y one.</div>
+  </div>
+
+  <!-- 05 J-Card -->
+  <div class="mock m05">
+    <div class="mock__label"><span>05 · KRAFT J-CARD</span><b>Departure Mono</b></div>
+    <div class="mock__stage">
+      <a href="#" class="hdr">
+        <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="#EDE6D3"/><line x1="28" y1="34" x2="46" y2="52" stroke="#1a1410" stroke-width="6" stroke-linecap="round"/><line x1="46" y1="34" x2="28" y2="52" stroke="#1a1410" stroke-width="6" stroke-linecap="round"/><line x1="54" y1="34" x2="72" y2="52" stroke="#1a1410" stroke-width="6" stroke-linecap="round"/><line x1="72" y1="34" x2="54" y2="52" stroke="#1a1410" stroke-width="6" stroke-linecap="round"/><path d="M28 66 Q50 82 72 66 L72 74 Q50 84 28 74 Z" fill="#1a1410"/></svg>
+        <span class="stack">
+          <span class="a">SIDE A</span>
+          <span class="b">STEVE.THE.<span class="tape">KILLER</span></span>
+        </span>
+      </a>
+    </div>
+    <div class="mock__swatches"><span style="background:#D6C99F"></span><span style="background:#1a1410"></span><span style="background:#B01E1E"></span><span style="background:#EDE6D3"></span><span style="background:#7a6a4a"></span></div>
+    <div class="mock__notes">Cassette J-card sticker. Paper grain, "SIDE A / 60 MIN" marks, red tape strip on KILLER. Grungiest of the set. Wordmark rides low, smiley sits in the "album art" slot.</div>
+  </div>
+
+  <!-- 06 CRT Terminal -->
+  <div class="mock m06">
+    <div class="mock__label"><span>06 · CRT TUBE</span><b>Departure Mono</b></div>
+    <div class="mock__stage">
+      <a href="#" class="hdr">
+        <span class="tube">
+          <svg viewBox="0 0 100 100" style="width:34px;height:34px"><circle cx="50" cy="50" r="44" fill="#001a00" stroke="#33FF33" stroke-width="3"/><line x1="28" y1="34" x2="46" y2="52" stroke="#33FF33" stroke-width="6" stroke-linecap="round"/><line x1="46" y1="34" x2="28" y2="52" stroke="#33FF33" stroke-width="6" stroke-linecap="round"/><line x1="54" y1="34" x2="72" y2="52" stroke="#33FF33" stroke-width="6" stroke-linecap="round"/><line x1="72" y1="34" x2="54" y2="52" stroke="#33FF33" stroke-width="6" stroke-linecap="round"/><path d="M28 66 Q50 82 72 66 L72 74 Q50 84 28 74 Z" fill="#33FF33"/></svg>
+          &gt; STEVE.THE.KILLER_
+        </span>
+      </a>
+    </div>
+    <div class="mock__swatches"><span style="background:#C7BFA9"></span><span style="background:#001a00"></span><span style="background:#33FF33"></span><span style="background:#A6A08B"></span><span style="background:#B01E1E"></span></div>
+    <div class="mock__notes">Beige computer case bezel with a black CRT tube inside. Phosphor-green wordmark, command-prompt marker and cursor. Scanlines and vignette on the tube only. Reads as a workstation.</div>
+  </div>
+
+  <!-- 07 VHS Tracking -->
+  <div class="mock m07">
+    <div class="mock__label"><span>07 · VHS TRACKING</span><b>Departure Mono</b></div>
+    <div class="mock__stage">
+      <a href="#" class="hdr">
+        <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="#DDD3B4"/><line x1="28" y1="34" x2="46" y2="52" stroke="#0F380F" stroke-width="6" stroke-linecap="round"/><line x1="46" y1="34" x2="28" y2="52" stroke="#0F380F" stroke-width="6" stroke-linecap="round"/><line x1="54" y1="34" x2="72" y2="52" stroke="#0F380F" stroke-width="6" stroke-linecap="round"/><line x1="72" y1="34" x2="54" y2="52" stroke="#0F380F" stroke-width="6" stroke-linecap="round"/><path d="M28 66 Q50 82 72 66 L72 74 Q50 84 28 74 Z" fill="#0F380F"/></svg>
+        STEVE.THE.KILLER
+      </a>
+    </div>
+    <div class="mock__swatches"><span style="background:#DDD3B4"></span><span style="background:#0F380F"></span><span style="background:#9BBC0F"></span><span style="background:#B01E1E"></span><span style="background:#EDE6D3"></span></div>
+    <div class="mock__notes">Same beige-plus-green base as 01, but with a soft VHS tracking bar sliding across and a fake timecode in the corner. Subtle - looks static until you notice. Could animate the bar slowly.</div>
+  </div>
+
+  <!-- 08 Nokia Muddy -->
+  <div class="mock m08">
+    <div class="mock__label"><span>08 · NOKIA MUDDY</span><b>VT323</b></div>
+    <div class="mock__stage">
+      <a href="#" class="hdr">
+        <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="#A5B08A" stroke="#202b12" stroke-width="2"/><line x1="28" y1="34" x2="46" y2="52" stroke="#202b12" stroke-width="7" stroke-linecap="round"/><line x1="46" y1="34" x2="28" y2="52" stroke="#202b12" stroke-width="7" stroke-linecap="round"/><line x1="54" y1="34" x2="72" y2="52" stroke="#202b12" stroke-width="7" stroke-linecap="round"/><line x1="72" y1="34" x2="54" y2="52" stroke="#202b12" stroke-width="7" stroke-linecap="round"/><path d="M28 66 Q50 82 72 66 L72 74 Q50 84 28 74 Z" fill="#202b12"/></svg>
+        STEVE.THE.KILLER
+      </a>
+    </div>
+    <div class="mock__swatches"><span style="background:#A5B08A"></span><span style="background:#202b12"></span><span style="background:#7a8560"></span><span style="background:#B01E1E"></span><span style="background:#EDE6D3"></span></div>
+    <div class="mock__notes">Nokia 3310 LCD backdrop. Muddy olive-green, sharp inset bezel, VT323 body font. Cheapest-looking and most memorable. Feels like brutal, functional, nothing-precious tech.</div>
+  </div>
+
+  <!-- 09 Kraft Punk Zine -->
+  <div class="mock m09">
+    <div class="mock__label"><span>09 · TORN ZINE</span><b>Departure Mono</b></div>
+    <div class="mock__stage">
+      <a href="#" class="hdr">
+        <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="#E8DFC8"/><line x1="28" y1="34" x2="46" y2="52" stroke="#0F380F" stroke-width="6" stroke-linecap="round"/><line x1="46" y1="34" x2="28" y2="52" stroke="#0F380F" stroke-width="6" stroke-linecap="round"/><line x1="54" y1="34" x2="72" y2="52" stroke="#0F380F" stroke-width="6" stroke-linecap="round"/><line x1="72" y1="34" x2="54" y2="52" stroke="#0F380F" stroke-width="6" stroke-linecap="round"/><path d="M28 66 Q50 82 72 66 L72 74 Q50 84 28 74 Z" fill="#0F380F"/></svg>
+        STEVE.THE.<span class="stamp">KILLER</span>
+      </a>
+    </div>
+    <div class="mock__swatches"><span style="background:#E8DFC8"></span><span style="background:#0F380F"></span><span style="background:#B01E1E"></span><span style="background:#EDE6D3"></span><span style="background:#9BBC0F"></span></div>
+    <div class="mock__notes">Retains the ransom-note DNA of your current wordmark but in beige. Torn edge, dropped shadow, rotated red stamp on KILLER. Least "electronic" - closest to what you have now.</div>
+  </div>
+
+  <!-- 10 Split Duo -->
+  <div class="mock m10">
+    <div class="mock__label"><span>10 · SPLIT DUO</span><b>Departure Mono + VT323</b></div>
+    <div class="mock__stage">
+      <a href="#" class="hdr">
+        <span class="left">
+          <svg viewBox="0 0 100 100" style="width:34px;height:34px"><circle cx="50" cy="50" r="44" fill="#E8DFC8"/><line x1="28" y1="34" x2="46" y2="52" stroke="#0F380F" stroke-width="6" stroke-linecap="round"/><line x1="46" y1="34" x2="28" y2="52" stroke="#0F380F" stroke-width="6" stroke-linecap="round"/><line x1="54" y1="34" x2="72" y2="52" stroke="#0F380F" stroke-width="6" stroke-linecap="round"/><line x1="72" y1="34" x2="54" y2="52" stroke="#0F380F" stroke-width="6" stroke-linecap="round"/><path d="M28 66 Q50 82 72 66 L72 74 Q50 84 28 74 Z" fill="#0F380F"/></svg>
+          <span style="font-family:'Departure Mono',monospace; font-size:22px;">STEVE.THE.</span>
+        </span>
+        <span class="right">KILLER</span>
+      </a>
+    </div>
+    <div class="mock__swatches"><span style="background:#E8DFC8"></span><span style="background:#9BBC0F"></span><span style="background:#0F380F"></span><span style="background:#B01E1E"></span><span style="background:#EDE6D3"></span></div>
+    <div class="mock__notes">Half-cream / half-LCD block. Two typefaces read as a physical seam between plastic case and screen. Bright and immediate. Feels the most "1985 product" of the set.</div>
+  </div>
+
+</div>
+
+</body>
+</html>

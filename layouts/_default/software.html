@@ -58,7 +58,7 @@
     <div class="pf-bezel">
       <div class="pf-screen">
         {{ range $i, $app := $apps.items }}
-          <article class="pf-slide{{ if eq $i 0 }} is-on{{ end }}" data-i="{{ $i }}"
+          <article class="pf-slide{{ if eq $i 0 }} is-on{{ end }}" data-i="{{ $i }}" data-app="{{ $app.slug }}"
                    aria-hidden="{{ if eq $i 0 }}false{{ else }}true{{ end }}">
             <div class="pf-shots">
               {{ with $app.screenshot_paths }}
@@ -83,8 +83,10 @@
               {{ end }}
             </div>
             <div class="pf-plate">
-              {{ $wm := resources.Get (printf "images/software/%s-8bit.png" $app.slug) | fingerprint }}
-              <img class="pf-wm" src="{{ $wm.RelPermalink }}" alt="{{ $app.name }}">
+              {{/* Generated brand-dark wordmark SVG (bicolor: prefix in bone,
+                   suffix in the app's signature color) from make-logo-svgs.py.
+                   See /img/wordmarks/. */}}
+              <img class="pf-wm" src="{{ printf "/img/wordmarks/%s-brand-dark.svg" $app.slug | absURL }}" alt="{{ $app.name }}">
               <p class="pf-tag">{{ $app.tagline }}{{ with $app.version }} <span class="pf-ver">v{{ . }}</span>{{ end }}</p>
               {{/* Fixed-height copy well. The blurb is what the app does, the
                    why is why it exists. Height is capped so a longer `why` can
@@ -124,7 +126,7 @@
       <nav class="pf-dots" aria-label="Choose app">
         {{ range $i, $app := $apps.items }}
           <button type="button" class="pf-dot{{ if eq $i 0 }} is-on{{ end }}"
-                  data-go="{{ $i }}" aria-label="{{ $app.name }}">
+                  data-go="{{ $i }}" data-app="{{ $app.slug }}" aria-label="{{ $app.name }}">
             <span>{{ $app.name }}</span>
           </button>
         {{ end }}

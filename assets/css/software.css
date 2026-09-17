@@ -347,7 +347,7 @@
   gap: 8px;
   background: transparent;
   border: 0;
-  padding: 3px 4px;
+  padding: 3px 4px 11px;
   cursor: pointer;
   text-decoration: none;
   opacity: 0.62;
@@ -372,7 +372,7 @@
 .pf-lang[aria-pressed="true"] {
   opacity: 1;
   border-bottom: 2px solid var(--accent);
-  padding-bottom: 1px;
+  padding-bottom: 9px;
 }
 
 .pf-lang span {
@@ -723,7 +723,7 @@
   .pf-flow-install { white-space: normal; }
   /* Family bar: tighter type and no tracking, so the three labels stay in
      their columns instead of overrunning each other */
-  .pf-lang { gap: 5px; min-width: 0; padding: 3px 2px; }
+  .pf-lang { gap: 5px; min-width: 0; padding: 3px 2px 11px; }
   .pf-lang span { font-size: 0.62em; letter-spacing: 0; }
 }
 

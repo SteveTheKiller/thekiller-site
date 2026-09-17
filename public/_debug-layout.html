@@ -1,0 +1,14 @@
+<!doctype html><html><body style="margin:0"><div id="w"></div><pre id="o"></pre>
+<script>
+var widths=[330,430,700,1100],res={},done=0;
+widths.forEach(function(W){var f=document.createElement('iframe');f.src='/';f.style.cssText='width:'+W+'px;height:500px;border:0;display:block';
+f.onload=function(){var d=f.contentDocument;(d.fonts?d.fonts.ready:Promise.resolve()).then(function(){setTimeout(function(){
+ var smi=d.querySelector('.w-smi'),words=d.querySelector('.logo-words'),s1=d.querySelector('.w-s1');
+ var a=smi.getBoundingClientRect(),w=words.getBoundingClientRect(),b=s1.getBoundingClientRect();
+ var wrapped=words.classList.contains('killer-wrapped');
+ res[W]=W+'px KILLER '+(wrapped?'wrapped':'inline')+'  align='+getComputedStyle(d.querySelector('.header .logo')).alignItems+
+  '  smiley center y='+Math.round((a.top+a.bottom)/2)+'  words center y='+Math.round((w.top+w.bottom)/2)+'  | smiley top='+Math.round(a.top)+' words top='+Math.round(w.top);
+ if(++done==widths.length)document.getElementById('o').textContent=widths.map(function(x){return res[x]}).join('\n');
+},400)})};
+document.getElementById('w').appendChild(f);});
+</script></body></html>

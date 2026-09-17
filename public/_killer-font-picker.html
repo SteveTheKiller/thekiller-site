@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KILLER font picker v2 - fresh set</title>
+<style>
+  @font-face{font-family:'RubikVinyl';src:url('/fonts/RubikVinyl-Regular.woff2') format('woff2');font-display:block}
+  @font-face{font-family:'RubikPuddles';src:url('/fonts/RubikPuddles-Regular.woff2') format('woff2');font-display:block}
+  @font-face{font-family:'RubikWetPaint';src:url('/fonts/RubikWetPaint-Regular.woff2') format('woff2');font-display:block}
+  @font-face{font-family:'RubikDoodleShadow';src:url('/fonts/RubikDoodleShadow-Regular.woff2') format('woff2');font-display:block}
+  @font-face{font-family:'RampartOne';src:url('/fonts/RampartOne-Regular.woff2') format('woff2');font-display:block}
+  @font-face{font-family:'Nosifer';src:url('/fonts/Nosifer-Regular.woff2') format('woff2');font-display:block}
+  @font-face{font-family:'Sixtyfour';src:url('/fonts/Sixtyfour-Regular.woff2') format('woff2');font-display:block}
+  @font-face{font-family:'Codystar';src:url('/fonts/Codystar-Regular.woff2') format('woff2');font-display:block}
+  @font-face{font-family:'Barrio';src:url('/fonts/Barrio-Regular.woff2') format('woff2');font-display:block}
+  @font-face{font-family:'Fascinate';src:url('/fonts/Fascinate-Regular.woff2') format('woff2');font-display:block}
+  @font-face{font-family:'Bonbon';src:url('/fonts/Bonbon-Regular.woff2') format('woff2');font-display:block}
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:#0a0a0a;color:#EDE6D3;font-family:monospace}
+  .top{padding:28px 32px 8px}
+  h1{font-size:26px;margin:0 0 6px}
+  .sub{color:#8f8a7a;font-size:13px;max-width:74ch;line-height:1.55}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:20px 32px 60px}
+  .card{position:relative;border:1px solid #2a2a2a;border-radius:6px;overflow:hidden;background:#0f2419;padding:24px 28px;min-height:140px}
+  .lbl{color:#c9a24a;font-size:12px;letter-spacing:.1em;margin-bottom:10px}
+  .lbl b{color:#EDE6D3;margin-right:8px;font-size:14px}
+  .kl{display:inline-block;background:#a41f1f;color:#f5ecd6;transform:rotate(-3deg);font-size:58px;padding:10px 22px;line-height:1;letter-spacing:.05em;box-shadow:0 6px 14px rgba(0,0,0,.55)}
+  .n01 .kl{font-family:'RubikVinyl';font-size:56px}
+  .n02 .kl{font-family:'RubikPuddles';font-size:56px}
+  .n03 .kl{font-family:'RubikWetPaint';font-size:56px}
+  .n04 .kl{font-family:'RubikDoodleShadow';font-size:56px}
+  .n05 .kl{font-family:'RampartOne';font-size:64px}
+  .n06 .kl{font-family:'Nosifer';font-size:52px}
+  .n07 .kl{font-family:'Sixtyfour';font-size:36px}
+  .n08 .kl{font-family:'Codystar';font-size:64px}
+  .n09 .kl{font-family:'Barrio';font-size:64px}
+  .n10 .kl{font-family:'Fascinate';font-size:64px}
+  .n11 .kl{font-family:'Bonbon';font-size:64px}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <h1>KILLER font picker v2 — fresh set</h1>
+  <p class="sub">Eleven totally different fonts than the last batch — no repeats. Each is self-hosted at /fonts/, served through Hugo (same origin, no file:// blocks). Pick a number.</p>
+</div>
+
+<div class="grid" id="cards"></div>
+
+<script>
+  const opts = [
+    ['n01','1',  'Rubik Vinyl',         'vinyl record grooves cut through the letters'],
+    ['n02','2',  'Rubik Puddles',       'melting / puddled ink pool'],
+    ['n03','3',  'Rubik Wet Paint',     'runny wet paint drips'],
+    ['n04','4',  'Rubik Doodle Shadow', 'hand-doodled with a shadow layer'],
+    ['n05','5',  'Rampart One',         'graffiti tag / stencil marker'],
+    ['n06','6',  'Nosifer',             'dripping horror blood'],
+    ['n07','7',  'Sixtyfour',           '8-bit console pixel'],
+    ['n08','8',  'Codystar',            'marquee lightbox letters made of dots'],
+    ['n09','9',  'Barrio',              'graffiti stencil chunk'],
+    ['n10','10', 'Fascinate',           'art-deco decorative with hollowed letters'],
+    ['n11','11', 'Bonbon',              'loose script / signature scrawl'],
+  ];
+  const grid = document.getElementById('cards');
+  for (const [cls,num,name,note] of opts) {
+    const el = document.createElement('section');
+    el.className = 'card '+cls;
+    el.innerHTML = `<div class="lbl"><b>${num}</b>${name} — ${note}</div><span class="kl">KILLER</span>`;
+    grid.appendChild(el);
+  }
+</script>
+
+</body>
+</html>

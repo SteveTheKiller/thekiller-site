@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <title>Steve the Killer — Glitched-Grin smiley (draft)</title>
+
+  <defs>
+    <clipPath id="faceClip2">
+      <circle cx="256" cy="256" r="220"/>
+    </clipPath>
+  </defs>
+
+  <!-- L1: background -->
+  <g id="L1_background">
+    <rect x="0" y="0" width="512" height="512" fill="none"/>
+  </g>
+
+  <!-- L2: red channel ghost (offset left) -->
+  <g id="L2_channel_red_ghost" opacity="0.75">
+    <circle cx="244" cy="256" r="220" fill="#B01E1E" style="mix-blend-mode:screen"/>
+  </g>
+
+  <!-- L3: dark channel ghost (offset right) -->
+  <g id="L3_channel_dark_ghost" opacity="0.55">
+    <circle cx="268" cy="256" r="220" fill="#0D0D0D" style="mix-blend-mode:multiply"/>
+  </g>
+
+  <!-- L4: face — amber, centered -->
+  <g id="L4_face">
+    <circle cx="256" cy="256" r="220" fill="#F0AC44"/>
+  </g>
+
+  <!-- L5: scanlines across whole face -->
+  <g id="L5_scanlines" clip-path="url(#faceClip2)" opacity="0.22">
+    <g fill="#0D0D0D">
+      <rect x="0" y="60"  width="512" height="2"/>
+      <rect x="0" y="90"  width="512" height="2"/>
+      <rect x="0" y="120" width="512" height="2"/>
+      <rect x="0" y="150" width="512" height="2"/>
+      <rect x="0" y="180" width="512" height="2"/>
+      <rect x="0" y="210" width="512" height="2"/>
+      <rect x="0" y="240" width="512" height="2"/>
+      <rect x="0" y="270" width="512" height="2"/>
+      <rect x="0" y="300" width="512" height="2"/>
+      <rect x="0" y="330" width="512" height="2"/>
+      <rect x="0" y="360" width="512" height="2"/>
+      <rect x="0" y="390" width="512" height="2"/>
+      <rect x="0" y="420" width="512" height="2"/>
+    </g>
+  </g>
+
+  <!-- L6: glitch slice band — big horizontal shift across eyes -->
+  <g id="L6_glitch_slice" clip-path="url(#faceClip2)">
+    <rect x="0" y="185" width="512" height="42" fill="#F0AC44"/>
+    <rect x="-28" y="185" width="512" height="6" fill="#B01E1E" opacity="0.7"/>
+    <rect x="28" y="221" width="512" height="4" fill="#0D0D0D" opacity="0.55"/>
+  </g>
+
+  <!-- L7: eyes (shifted with the glitch band) -->
+  <g id="L7_eyes">
+    <!-- left eye X, offset with glitch band -->
+    <g transform="translate(-28,0)">
+      <line x1="160" y1="188" x2="215" y2="223" stroke="#0D0D0D" stroke-width="14" stroke-linecap="square"/>
+      <line x1="215" y1="188" x2="160" y2="223" stroke="#0D0D0D" stroke-width="14" stroke-linecap="square"/>
+    </g>
+    <!-- right eye X, offset the other way -->
+    <g transform="translate(12,0)">
+      <line x1="300" y1="188" x2="355" y2="223" stroke="#0D0D0D" stroke-width="14" stroke-linecap="square"/>
+      <line x1="355" y1="188" x2="300" y2="223" stroke="#0D0D0D" stroke-width="14" stroke-linecap="square"/>
+    </g>
+  </g>
+
+  <!-- L8: mouth — small crooked line, glitch-tilted -->
+  <g id="L8_mouth">
+    <path d="M170,340 L200,352 L240,346 L280,358 L320,348 L360,360"
+          stroke="#0D0D0D" stroke-width="14" stroke-linecap="square" fill="none"/>
+    <!-- duplicate red offset -->
+    <path d="M164,338 L194,350 L234,344 L274,356 L314,346 L354,358"
+          stroke="#B01E1E" stroke-width="4" fill="none" opacity="0.8"/>
+  </g>
+
+  <!-- L9: dead pixels — small squares scattered on face -->
+  <g id="L9_dead_pixels" clip-path="url(#faceClip2)">
+    <g fill="#0D0D0D">
+      <rect x="120" y="140" width="6" height="6"/>
+      <rect x="380" y="130" width="6" height="6"/>
+      <rect x="110" y="290" width="6" height="6"/>
+      <rect x="400" y="310" width="6" height="6"/>
+      <rect x="190" y="410" width="6" height="6"/>
+      <rect x="330" y="420" width="6" height="6"/>
+      <rect x="255" y="260" width="6" height="6"/>
+    </g>
+    <g fill="#B01E1E">
+      <rect x="150" y="260" width="6" height="6"/>
+      <rect x="360" y="270" width="6" height="6"/>
+      <rect x="220" y="380" width="6" height="6"/>
+    </g>
+    <g fill="#EDE6D3">
+      <rect x="280" y="150" width="4" height="4"/>
+      <rect x="80" y="350" width="4" height="4"/>
+    </g>
+  </g>
+</svg>

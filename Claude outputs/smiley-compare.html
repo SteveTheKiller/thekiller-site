@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Steve the Killer — Smiley Concepts</title>
+<style>
+  :root {
+    color-scheme: dark;
+    --amber: #F0AC44;
+    --blood: #B01E1E;
+    --bone:  #EDE6D3;
+    --ink:   #0D0D0D;
+    --bg:    #1E1410;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 32px 20px;
+    background: var(--bg);
+    color: var(--bone);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  h1 {
+    color: var(--amber);
+    font-size: 22px;
+    letter-spacing: 0.06em;
+    margin: 0 0 6px;
+    text-transform: uppercase;
+  }
+  .lede {
+    color: #b8ac97;
+    margin: 0 0 28px;
+    font-size: 13px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 22px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .card {
+    background: #120c0a;
+    border: 1px solid #2a1e18;
+    padding: 18px;
+  }
+  .card h2 {
+    margin: 0 0 4px;
+    font-size: 14px;
+    color: var(--amber);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .card .num {
+    color: var(--blood);
+    margin-right: 8px;
+  }
+  .card p {
+    margin: 0 0 12px;
+    color: #a89a86;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .frame {
+    background: #0a0605;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    border: 1px solid #1a120e;
+  }
+  .frame svg { width: 100%; height: 100%; display: block; }
+</style>
+</head>
+<body>
+
+<h1>Steve the Killer — Smiley Drafts</h1>
+<p class="lede">Six directions, brand palette (amber / blood / bone / ink). Each SVG uses named layer groups you can toggle or edit in GIMP or Inkscape.</p>
+
+<div class="grid">
+
+  <div class="card">
+    <h2><span class="num">01</span>Slit-Smile</h2>
+    <p>X eyes, gaping throat-cut mouth with teeth shards, blood drips down the face.</p>
+    <div class="frame">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <defs><clipPath id="fc1"><path d="M256,36 C 145,36 45,132 42,255 C 40,378 148,478 258,476 C 372,474 470,375 470,258 C 470,142 372,38 256,36 Z"/></clipPath></defs>
+        <path d="M256,36 C 145,36 45,132 42,255 C 40,378 148,478 258,476 C 372,474 470,375 470,258 C 470,142 372,38 256,36 Z" fill="#F0AC44"/>
+        <g clip-path="url(#fc1)">
+          <path d="M35,215 L18,232 L44,248 L22,272 L50,282 L28,302 Z" fill="#1E1410" opacity="0.55"/>
+          <path d="M485,180 L470,195 L488,208 L472,225 L486,238 Z" fill="#1E1410" opacity="0.4"/>
+        </g>
+        <line x1="145" y1="175" x2="215" y2="245" stroke="#0D0D0D" stroke-width="18" stroke-linecap="round"/>
+        <line x1="215" y1="172" x2="142" y2="248" stroke="#0D0D0D" stroke-width="18" stroke-linecap="round"/>
+        <line x1="300" y1="172" x2="368" y2="248" stroke="#0D0D0D" stroke-width="18" stroke-linecap="round"/>
+        <line x1="370" y1="175" x2="298" y2="245" stroke="#0D0D0D" stroke-width="18" stroke-linecap="round"/>
+        <path d="M120,315 Q170,362 256,376 Q342,362 392,315 L388,342 Q340,402 256,412 Q172,402 124,342 Z" fill="#0D0D0D"/>
+        <path d="M138,325 Q180,358 256,370 Q332,358 374,325 L372,340 Q332,392 256,402 Q180,392 140,340 Z" fill="#7A0A0A"/>
+        <path d="M175,338 L182,352 L190,338 L198,354 L206,338 L214,352 L222,338 L230,352 L238,338 L246,354 L254,338 L262,352 L270,338 L278,354 L286,338 L294,352 L302,338 L310,354 L318,338 L326,352 L334,338 Z" fill="#EDE6D3" opacity="0.85"/>
+        <path d="M172,395 Q170,438 178,478 Q182,468 185,458 Q184,478 190,492 Q192,478 196,464 Q192,438 184,395 Z" fill="#B01E1E"/>
+        <path d="M230,405 Q226,460 234,505 Q239,490 241,475 Q242,498 249,510 Q246,490 252,470 Q246,445 240,405 Z" fill="#B01E1E"/>
+        <path d="M288,406 Q286,455 292,498 Q297,485 299,472 Q300,493 306,505 Q303,485 309,465 Q303,440 300,406 Z" fill="#B01E1E"/>
+        <path d="M340,395 Q338,432 346,465 Q350,455 353,445 Q352,462 358,478 Q360,462 364,450 Q360,432 354,395 Z" fill="#B01E1E"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="num">02</span>Glitched-Grin</h2>
+    <p>Chromatic-aberration ghosts, horizontal scanline slice through eyes, dead-pixel scatter. IT/scripting nod.</p>
+    <div class="frame">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <defs><clipPath id="fc2"><circle cx="256" cy="256" r="220"/></clipPath></defs>
+        <circle cx="244" cy="256" r="220" fill="#B01E1E" opacity="0.6"/>
+        <circle cx="268" cy="256" r="220" fill="#0D0D0D" opacity="0.35"/>
+        <circle cx="256" cy="256" r="220" fill="#F0AC44"/>
+        <g clip-path="url(#fc2)" opacity="0.22" fill="#0D0D0D">
+          <rect x="0" y="60"  width="512" height="2"/><rect x="0" y="90"  width="512" height="2"/>
+          <rect x="0" y="120" width="512" height="2"/><rect x="0" y="150" width="512" height="2"/>
+          <rect x="0" y="180" width="512" height="2"/><rect x="0" y="210" width="512" height="2"/>
+          <rect x="0" y="240" width="512" height="2"/><rect x="0" y="270" width="512" height="2"/>
+          <rect x="0" y="300" width="512" height="2"/><rect x="0" y="330" width="512" height="2"/>
+          <rect x="0" y="360" width="512" height="2"/><rect x="0" y="390" width="512" height="2"/>
+        </g>
+        <g clip-path="url(#fc2)">
+          <rect x="0" y="185" width="512" height="42" fill="#F0AC44"/>
+          <rect x="-28" y="185" width="512" height="6" fill="#B01E1E" opacity="0.7"/>
+          <rect x="28" y="221" width="512" height="4" fill="#0D0D0D" opacity="0.55"/>
+        </g>
+        <g transform="translate(-28,0)">
+          <line x1="160" y1="188" x2="215" y2="223" stroke="#0D0D0D" stroke-width="14" stroke-linecap="square"/>
+          <line x1="215" y1="188" x2="160" y2="223" stroke="#0D0D0D" stroke-width="14" stroke-linecap="square"/>
+        </g>
+        <g transform="translate(12,0)">
+          <line x1="300" y1="188" x2="355" y2="223" stroke="#0D0D0D" stroke-width="14" stroke-linecap="square"/>
+          <line x1="355" y1="188" x2="300" y2="223" stroke="#0D0D0D" stroke-width="14" stroke-linecap="square"/>
+        </g>
+        <path d="M170,340 L200,352 L240,346 L280,358 L320,348 L360,360" stroke="#0D0D0D" stroke-width="14" stroke-linecap="square" fill="none"/>
+        <path d="M164,338 L194,350 L234,344 L274,356 L314,346 L354,358" stroke="#B01E1E" stroke-width="4" fill="none" opacity="0.8"/>
+        <g clip-path="url(#fc2)">
+          <g fill="#0D0D0D">
+            <rect x="120" y="140" width="6" height="6"/><rect x="380" y="130" width="6" height="6"/>
+            <rect x="110" y="290" width="6" height="6"/><rect x="400" y="310" width="6" height="6"/>
+            <rect x="190" y="410" width="6" height="6"/><rect x="330" y="420" width="6" height="6"/>
+          </g>
+          <g fill="#B01E1E">
+            <rect x="150" y="260" width="6" height="6"/><rect x="360" y="270" width="6" height="6"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="num">03</span>Ransom-Face</h2>
+    <p>Face parts as taped-on torn paper — matches the "Steve the Killer" wordmark's cut-and-paste letters.</p>
+    <div class="frame">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path d="M256,40 L305,44 L340,52 L380,62 L410,80 L438,108 L455,140 L465,175 L470,210 L470,255 L466,295 L458,330 L444,362 L422,392 L392,418 L360,438 L322,455 L282,466 L246,468 L208,462 L172,450 L138,432 L108,410 L84,382 L66,352 L52,318 L44,282 L42,246 L46,208 L56,172 L72,140 L94,110 L122,84 L156,64 L192,50 L226,42 Z" fill="#F0AC44"/>
+        <path d="M120,155 L215,145 L228,180 L222,218 L215,242 L180,248 L142,245 L118,232 L108,208 L112,180 Z" fill="#EDE6D3"/>
+        <rect x="130" y="140" width="46" height="14" fill="#8A6E3A" opacity="0.85" transform="rotate(-8 153 147)"/>
+        <line x1="140" y1="175" x2="200" y2="230" stroke="#0D0D0D" stroke-width="16" stroke-linecap="round"/>
+        <line x1="200" y1="175" x2="140" y2="230" stroke="#0D0D0D" stroke-width="16" stroke-linecap="round"/>
+        <path d="M295,150 L395,158 L410,190 L402,225 L395,248 L360,252 L322,245 L298,232 L288,205 L290,178 Z" fill="#B01E1E"/>
+        <rect x="360" y="142" width="46" height="14" fill="#8A6E3A" opacity="0.85" transform="rotate(6 383 149)"/>
+        <line x1="315" y1="180" x2="380" y2="235" stroke="#0D0D0D" stroke-width="16" stroke-linecap="round"/>
+        <line x1="380" y1="180" x2="315" y2="235" stroke="#0D0D0D" stroke-width="16" stroke-linecap="round"/>
+        <path d="M115,310 L400,300 L410,342 L400,382 L384,412 L340,418 L280,412 L210,418 L150,412 L110,392 L100,352 Z" fill="#EDE6D3"/>
+        <rect x="150" y="298" width="60" height="14" fill="#8A6E3A" opacity="0.85" transform="rotate(-4 180 305)"/>
+        <rect x="320" y="298" width="60" height="14" fill="#8A6E3A" opacity="0.85" transform="rotate(5 350 305)"/>
+        <path d="M140,360 L175,340 L205,375 L240,342 L275,378 L310,340 L345,378 L378,342" stroke="#B01E1E" stroke-width="16" stroke-linecap="square" fill="none"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="num">04</span>Stitched-Frankie</h2>
+    <p>Mismatched face patches sewn with visible X stitches, one X eye + one dot, stitched zig-zag mouth.</p>
+    <div class="frame">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <defs><clipPath id="fc4"><circle cx="256" cy="256" r="220"/></clipPath></defs>
+        <circle cx="256" cy="256" r="220" fill="#F0AC44"/>
+        <g clip-path="url(#fc4)"><path d="M256,36 L470,180 L470,478 L256,478 Z" fill="#D89532" opacity="0.7"/></g>
+        <path d="M100,180 Q180,210 260,230 Q340,250 420,290" stroke="#0D0D0D" stroke-width="6" fill="none"/>
+        <g stroke="#0D0D0D" stroke-width="4" stroke-linecap="round">
+          <line x1="120" y1="170" x2="140" y2="200"/><line x1="140" y1="170" x2="120" y2="200"/>
+          <line x1="170" y1="180" x2="190" y2="210"/><line x1="190" y1="180" x2="170" y2="210"/>
+          <line x1="220" y1="195" x2="240" y2="225"/><line x1="240" y1="195" x2="220" y2="225"/>
+          <line x1="270" y1="210" x2="290" y2="240"/><line x1="290" y1="210" x2="270" y2="240"/>
+          <line x1="320" y1="225" x2="340" y2="255"/><line x1="340" y1="225" x2="320" y2="255"/>
+          <line x1="370" y1="245" x2="390" y2="275"/><line x1="390" y1="245" x2="370" y2="275"/>
+        </g>
+        <line x1="150" y1="255" x2="215" y2="315" stroke="#0D0D0D" stroke-width="16" stroke-linecap="round"/>
+        <line x1="215" y1="255" x2="150" y2="315" stroke="#0D0D0D" stroke-width="16" stroke-linecap="round"/>
+        <circle cx="335" cy="285" r="24" fill="#0D0D0D"/>
+        <circle cx="342" cy="278" r="6" fill="#EDE6D3"/>
+        <path d="M140,380 L170,395 L200,375 L230,398 L260,378 L290,400 L320,378 L350,398 L380,378" stroke="#0D0D0D" stroke-width="6" fill="none" stroke-linejoin="round"/>
+        <g stroke="#0D0D0D" stroke-width="4" stroke-linecap="round">
+          <line x1="150" y1="378" x2="164" y2="398"/><line x1="164" y1="378" x2="150" y2="398"/>
+          <line x1="200" y1="378" x2="214" y2="398"/><line x1="214" y1="378" x2="200" y2="398"/>
+          <line x1="250" y1="378" x2="264" y2="398"/><line x1="264" y1="378" x2="250" y2="398"/>
+          <line x1="300" y1="378" x2="314" y2="398"/><line x1="314" y1="378" x2="300" y2="398"/>
+          <line x1="350" y1="378" x2="364" y2="398"/><line x1="364" y1="378" x2="350" y2="398"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="num">05</span>Peel-Face</h2>
+    <p>Right half of the amber "skin" peeled back like a sticker, revealing a red skull with teeth underneath.</p>
+    <div class="frame">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <defs><clipPath id="fc5"><circle cx="256" cy="256" r="220"/></clipPath></defs>
+        <g clip-path="url(#fc5)">
+          <circle cx="256" cy="256" r="220" fill="#7A0A0A"/>
+          <ellipse cx="335" cy="230" rx="42" ry="52" fill="#0D0D0D"/>
+          <g fill="#EDE6D3">
+            <rect x="290" y="340" width="16" height="30"/><rect x="308" y="340" width="16" height="34"/>
+            <rect x="326" y="340" width="16" height="30"/><rect x="344" y="340" width="16" height="34"/>
+            <rect x="362" y="340" width="16" height="30"/><rect x="380" y="340" width="16" height="34"/>
+          </g>
+          <rect x="285" y="335" width="115" height="8" fill="#0D0D0D"/>
+        </g>
+        <path d="M256,36 C 145,36 45,132 42,255 C 40,378 148,478 258,476 L 250,440 L 265,405 L 245,375 L 260,340 L 240,300 L 258,260 L 245,225 L 262,195 L 248,160 L 260,120 L 250,80 Z" fill="#F0AC44"/>
+        <path d="M262,195 L275,182 L305,175 L340,178 L378,190 L412,215 L440,250 L458,295 L462,340 L455,378 L435,362 L410,330 L385,290 L355,255 L325,225 L295,205 Z" fill="#D89532"/>
+        <path d="M262,195 L275,182 L305,175 L340,178 L378,190 L412,215 L440,250 L448,270 L430,258 L400,238 L370,220 L340,208 L310,200 L280,198 Z" fill="#F0AC44"/>
+        <path d="M275,190 Q320,200 380,225 Q420,245 445,278" stroke="#8A5A20" stroke-width="3" fill="none" opacity="0.6"/>
+        <line x1="145" y1="200" x2="215" y2="265" stroke="#0D0D0D" stroke-width="18" stroke-linecap="round"/>
+        <line x1="215" y1="200" x2="145" y2="265" stroke="#0D0D0D" stroke-width="18" stroke-linecap="round"/>
+        <path d="M130,340 Q170,378 220,388 L250,392 L245,402 L215,404 Q170,398 128,362 Z" fill="#0D0D0D"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="num">06</span>Cracked-Porcelain</h2>
+    <p>Placid smile, but the face is shattered — spider-web cracks and a missing chunk to the void.</p>
+    <div class="frame">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <defs><clipPath id="fc6"><circle cx="256" cy="256" r="220"/></clipPath></defs>
+        <path d="M330,360 L380,340 L430,360 L450,410 L420,455 L360,470 L310,450 L295,410 Z" fill="#0D0D0D"/>
+        <path d="M 256,36 C 145,36 42,140 42,256 C 42,335 90,406 158,443 L 220,462 L 265,460 L 295,410 L 310,450 L 360,470 L 420,455 L 450,410 L 462,370 L 468,320 L 470,270 L 466,220 L 452,170 L 428,130 L 396,96 L 356,68 L 306,48 Z" fill="#F0AC44"/>
+        <g clip-path="url(#fc6)"><path d="M110,110 Q170,80 240,90 L235,120 Q180,120 130,150 Z" fill="#EDE6D3" opacity="0.25"/></g>
+        <circle cx="185" cy="215" r="18" fill="#0D0D0D"/>
+        <circle cx="335" cy="215" r="18" fill="#0D0D0D"/>
+        <circle cx="191" cy="209" r="5" fill="#EDE6D3"/>
+        <circle cx="341" cy="209" r="5" fill="#EDE6D3"/>
+        <path d="M180,300 Q256,360 332,300" stroke="#0D0D0D" stroke-width="14" stroke-linecap="round" fill="none"/>
+        <g clip-path="url(#fc6)" stroke="#0D0D0D" fill="none" stroke-linecap="round">
+          <path d="M240,130 L220,90 L215,60" stroke-width="3"/>
+          <path d="M220,90 L200,80 L180,55" stroke-width="2"/>
+          <path d="M240,130 L275,95 L295,55" stroke-width="3"/>
+          <path d="M275,95 L290,80 L320,68" stroke-width="2"/>
+          <path d="M240,130 L200,155 L155,175 L110,190" stroke-width="3.5"/>
+          <path d="M200,155 L180,180 L160,220" stroke-width="2"/>
+          <path d="M240,130 L285,160 L340,185 L400,200" stroke-width="3.5"/>
+          <path d="M285,160 L310,190 L340,240" stroke-width="2"/>
+          <path d="M240,130 L245,180 L250,240 L258,300 L262,360 L268,420" stroke-width="4"/>
+          <path d="M258,300 L215,320 L165,340" stroke-width="2.5"/>
+          <path d="M262,360 L300,380 L340,395" stroke-width="2.5"/>
+          <circle cx="240" cy="130" r="18" stroke-width="1.5"/>
+          <circle cx="240" cy="130" r="34" stroke-width="1"/>
+        </g>
+        <polygon points="320,485 335,478 340,498 328,504" fill="#F0AC44"/>
+        <polygon points="365,495 378,488 384,506 372,510" fill="#F0AC44"/>
+        <polygon points="405,478 418,472 424,492 412,498" fill="#F0AC44"/>
+      </svg>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

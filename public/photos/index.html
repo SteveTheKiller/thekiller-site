@@ -6,6 +6,8 @@
   
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="darkreader-lock">
+<meta name="color-scheme" content="only dark">
 <meta name="description" content=" " />
 <meta name="keywords" content="" />
 
@@ -18,10 +20,10 @@
 
 
   
-  <link rel="stylesheet" href="http://localhost:1313/css/custom.min.9f98f702135bccd5254f32144a309a962fd113c60d53ed9a9be81c975180af66.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/custom.min.b99c1a42f239187720586a87d3db6b70f1c11d8571f0f5fe75ab55d5d6944125.css">
 
   
-  <link rel="stylesheet" href="http://localhost:1313/css/software.min.54e8dda8845194394e1b0b9cb7c63ae86bebdc94bc3049bc26cc73198c0f872f.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/software.min.9e5fef95c847a8d3f07c5e3521c15a77071d22cb6af7d573d9e0569aeeddec7a.css">
 
   
   <link rel="stylesheet" href="http://localhost:1313/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
@@ -67,10 +69,11 @@
 
 
   
-  <link rel="stylesheet" href="http://localhost:1313/css-overrides/style.min.b6700e0c3596269ebb3f29b403cc1e563cb54061615fc48e5514a66d44623e0a.css">
+  <link rel="stylesheet" href="http://localhost:1313/css-overrides/style.min.d68059f1c34a69c8bad1f2daf1316cd330dd4ca3baeb85967a3fc26c7ec61c2d.css">
 
 
 
+<link rel="icon" type="image/svg+xml" href="/img/smileys/smiley-03-ransom-face.svg">
 <link rel="shortcut icon" href="http://localhost:1313/favicon.png">
 <link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
@@ -113,11 +116,61 @@
 <script defer src="https://koya.thekiller.net/script.js" data-website-id="03e9eaa5-ce7b-4bb2-97ce-3c3535a844ee"></script>
 
 
+<script>
+(function(){
+  var SMILEYS = [
+    'smiley-01-slit-smile',
+    'smiley-02-glitched-grin',
+    'smiley-03-ransom-face',
+    'smiley-04-stitched-frankie',
+    'smiley-05-peel-face'
+  ];
+  var pick = SMILEYS[Math.floor(Math.random() * SMILEYS.length)];
+  function inject() {
+    var slot = document.querySelector('[data-smiley]');
+    if (!slot) return;
+    var img = document.createElement('img');
+    img.src = '/img/smileys/' + pick + '.svg';
+    img.alt = '';
+    img.width = 64;
+    img.height = 64;
+    slot.appendChild(img);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', inject);
+  } else {
+    inject();
+  }
+})();
+</script>
+
+
+<script>
+(function(){
+  function check(){
+    var w=document.querySelector('.header .logo-words'); if(!w) return;
+    var a=w.querySelector('.w-s1'), b=w.querySelector('.w-s3');
+    w.classList.toggle('killer-wrapped', b.offsetTop > a.offsetTop + 10);
+  }
+  function init(){ check(); window.addEventListener('resize', check); if(document.fonts&&document.fonts.ready){document.fonts.ready.then(check);} }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
+})();
+</script>
+
+
 
 
 </head>
 
 <body class="photos">
+
+
+
+
+<div class="wp" aria-hidden="true"><div class="s a"></div><div class="s b"></div><div class="s c"></div><div class="s d"></div><div class="s e"></div><div class="s f"></div><div class="s g"></div><div class="s h"></div></div>
+<script>(function(){var wp=document.currentScript.previousElementSibling;if(!wp)return;var shapes=wp.querySelectorAll('.s'),n=0;shapes.forEach(function(el){for(var k=0;k<3;k++){var c=el.cloneNode(true);var t=((n*137.5)%88),l=((n*71.3)%90);var d1=((n*29)%50),d2=((n*17)%50);c.style.top=t.toFixed(1)+'%';c.style.left=l.toFixed(1)+'%';c.style.right='auto';c.style.bottom='auto';c.style.animationDelay='-'+d1.toFixed(2)+'s, -'+d2.toFixed(2)+'s';wp.appendChild(c);n++;}});})();</script>
+
+
 
 
 <div class="container center">
@@ -127,7 +180,12 @@
     <div class="header__logo">
       <a href="http://localhost:1313/">
   <div class="logo">
-    <span class="cf">S</span>teve <span class="pe">the</span> <span class="cf gap">K</span>iller
+    <span class="taped w-smi"><span class="smi-scrap" data-smiley></span></span>
+    <span class="logo-words">
+      <span class="taped w-s1"><span class="scrap s1">STEVE</span></span>
+      <span class="taped w-s2"><span class="scrap s2">THE</span></span>
+      <span class="taped w-s3"><span class="scrap s3">KILLER</span></span>
+    </span>
   </div>
 </a>
 
@@ -160,13 +218,14 @@
     
       <nav class="navigation-menu">
   
-    <a href="/software/"  >Software</a>
+    <span class="taped-nav-item"><a href="/software/"  >Software</a></span>
   
-    <a href="/blog/"  >Blog</a>
+    <span class="taped-nav-item"><a href="/blog/"  >Blog</a></span>
   
-    <a href="/photos/"  class="active">Photos</a>
+    <span class="taped-nav-item"><a href="/photos/"  class="active">Photos</a></span>
   
 </nav>
+
     
   </div>
 </header>
@@ -237,16 +296,6 @@
 
 
   
-</div>
-
-
-<div class="crt" aria-hidden="true">
-  <div class="crt__mask"></div>
-  <div class="crt__sweep"></div>
-  <div class="crt__flicker"></div>
-  <div class="crt__glare"></div>
-  <div class="crt__vignette"></div>
-  <div class="crt__power"></div>
 </div>
 
 </body>

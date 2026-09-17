@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <title>Steve the Killer — Ransom-Face smiley (draft)</title>
+
+  <!-- L1: background -->
+  <g id="L1_background">
+    <rect x="0" y="0" width="512" height="512" fill="none"/>
+  </g>
+
+  <!-- L2: torn amber face disc — irregular, ripped-paper edge -->
+  <g id="L2_face_torn_amber">
+    <path d="M256,40
+             L305,44 L340,52 L380,62 L410,80 L438,108 L455,140
+             L465,175 L470,210 L470,255 L466,295 L458,330 L444,362
+             L422,392 L392,418 L360,438 L322,455 L282,466 L246,468
+             L208,462 L172,450 L138,432 L108,410 L84,382 L66,352
+             L52,318 L44,282 L42,246 L46,208 L56,172 L72,140
+             L94,110 L122,84 L156,64 L192,50 L226,42 Z"
+          fill="#F0AC44"/>
+  </g>
+
+  <!-- L3: face grunge / pockmarks -->
+  <g id="L3_face_grunge">
+    <circle cx="140" cy="150" r="3" fill="#0D0D0D" opacity="0.55"/>
+    <circle cx="380" cy="135" r="2.5" fill="#0D0D0D" opacity="0.55"/>
+    <circle cx="115" cy="320" r="3.5" fill="#0D0D0D" opacity="0.5"/>
+    <circle cx="405" cy="330" r="3" fill="#0D0D0D" opacity="0.5"/>
+    <circle cx="255" cy="245" r="2" fill="#0D0D0D" opacity="0.45"/>
+    <circle cx="200" cy="420" r="3" fill="#0D0D0D" opacity="0.5"/>
+  </g>
+
+  <!-- L4: left eye patch — bone-white torn paper -->
+  <g id="L4_eye_left_patch">
+    <path d="M120,155 L215,145 L228,180 L222,218 L215,242 L180,248 L142,245 L118,232 L108,208 L112,180 Z"
+          fill="#EDE6D3"/>
+    <!-- tape strip (top-left) -->
+    <rect x="130" y="140" width="46" height="14" fill="#8A6E3A" opacity="0.85" transform="rotate(-8 153 147)"/>
+    <!-- X eye -->
+    <line x1="140" y1="175" x2="200" y2="230" stroke="#0D0D0D" stroke-width="16" stroke-linecap="round"/>
+    <line x1="200" y1="175" x2="140" y2="230" stroke="#0D0D0D" stroke-width="16" stroke-linecap="round"/>
+  </g>
+
+  <!-- L5: right eye patch — blood-red torn paper -->
+  <g id="L5_eye_right_patch">
+    <path d="M295,150 L395,158 L410,190 L402,225 L395,248 L360,252 L322,245 L298,232 L288,205 L290,178 Z"
+          fill="#B01E1E"/>
+    <rect x="360" y="142" width="46" height="14" fill="#8A6E3A" opacity="0.85" transform="rotate(6 383 149)"/>
+    <line x1="315" y1="180" x2="380" y2="235" stroke="#0D0D0D" stroke-width="16" stroke-linecap="round"/>
+    <line x1="380" y1="180" x2="315" y2="235" stroke="#0D0D0D" stroke-width="16" stroke-linecap="round"/>
+  </g>
+
+  <!-- L6: mouth patch — bone-white with jagged red slash -->
+  <g id="L6_mouth_patch">
+    <path d="M115,310 L400,300 L410,342 L400,382 L384,412 L340,418 L280,412 L210,418 L150,412 L110,392 L100,352 Z"
+          fill="#EDE6D3"/>
+    <rect x="150" y="298" width="60" height="14" fill="#8A6E3A" opacity="0.85" transform="rotate(-4 180 305)"/>
+    <rect x="320" y="298" width="60" height="14" fill="#8A6E3A" opacity="0.85" transform="rotate(5 350 305)"/>
+    <!-- jagged red slash grin -->
+    <path d="M140,360 L175,340 L205,375 L240,342 L275,378 L310,340 L345,378 L378,342"
+          stroke="#B01E1E" stroke-width="16" stroke-linecap="square" fill="none"/>
+    <!-- dark inner shadow -->
+    <path d="M144,362 L178,344 L207,376 L242,346 L276,378 L311,344 L346,378 L376,346"
+          stroke="#0D0D0D" stroke-width="4" fill="none" opacity="0.7"/>
+  </g>
+
+  <!-- L7: spatter -->
+  <g id="L7_spatter">
+    <circle cx="60" cy="120" r="7" fill="#B01E1E"/>
+    <circle cx="80" cy="140" r="3" fill="#B01E1E"/>
+    <circle cx="440" cy="420" r="9" fill="#B01E1E"/>
+    <circle cx="465" cy="440" r="4" fill="#B01E1E"/>
+    <circle cx="480" cy="200" r="5" fill="#B01E1E"/>
+    <circle cx="30" cy="380" r="4" fill="#B01E1E"/>
+  </g>
+</svg>

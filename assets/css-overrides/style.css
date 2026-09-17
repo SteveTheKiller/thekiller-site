@@ -1,3 +1,20 @@
+/* ── Palette override (2026-09-16, rev 2): kill the warm brown ground and
+   the residual green. Neutral very-dark base, bone foreground, warm-tan
+   accent. Body carries a subtle torn-newsprint texture so it's not flat. */
+:root {
+  --accent: #C7BFA9;    /* warm tan - swap via accent-picker.html when picked */
+  --background: #141414; /* neutral very-dark, no brown */
+  --foreground: #E8DFC8; /* bone */
+}
+
+body {
+  background:
+    repeating-linear-gradient(0deg, transparent 0 4px, rgba(199,191,169,0.035) 4px 5px),
+    repeating-linear-gradient(90deg, transparent 0 3px, rgba(199,191,169,0.025) 3px 4px),
+    var(--background) !important;
+  background-attachment: fixed !important;
+}
+
 /* ── Page fade on navigation (same 0.28s pageFadeIn as the KillerTools sites) ── */
 @keyframes pageFadeIn { from { opacity: 0; } to { opacity: 1; } }
 
@@ -32,14 +49,14 @@
 
 .logo,
 .logo a {
-  font-family: 'KillerScan', 'Courier New', monospace;
+  font-family: 'KillerScan', monospace;
   font-weight: normal;
   letter-spacing: 1px;
 }
 
 /* S in Steve + K in Killer use CF Punk Forever, 1.5x the other letters */
 .logo .cf {
-  font-family: 'CFPunkForever', 'KillerScan', 'Courier New', monospace;
+  font-family: 'CFPunkForever', 'KillerScan', monospace;
   font-size: 1.5em;
   line-height: 0;               /* big caps overflow instead of growing the bar */
   vertical-align: baseline;
@@ -52,7 +69,7 @@
 
 /* "the" uses PunkEvent, with a gap so it clears "Steve" */
 .logo .pe {
-  font-family: 'PunkEvent', 'KillerScan', 'Courier New', monospace;
+  font-family: 'PunkEvent', 'KillerScan', monospace;
   margin-left: 0.35em;
 }
 
@@ -60,6 +77,202 @@
   font-size: 1.85em;
   line-height: 1;
 }
+
+/* ── Torn-scrap collage wordmark (2026-09-16) ──────────────────────────
+   Replaces the amber slab. The .logo container drops its theme background
+   and lets four taped paper scraps carry their own colors and fonts:
+   STEVE = Frijole on cream, THE = Special Elite on oatmeal, KILLER =
+   Faster One on blood, nav links in Special Elite, smiley = amber SVG (random on load)
+   on bone. Tape lives on unclipped .taped wrappers so the scrap's
+   clip-path doesn't eat it. */
+
+@font-face {
+  font-family: 'DepartureMono';
+  src: url('/fonts/DepartureMono-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'VT323';
+  src: url('/fonts/VT323-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'SpecialElite';
+  src: url('/fonts/SpecialElite-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Frijole';
+  src: url('/fonts/Frijole-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: 'FasterOne';
+  src: url('/fonts/FasterOne-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Rye';
+  src: url('/fonts/Rye-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: 'FrederickaTG';
+  src: url('/fonts/FrederickaTheGreat-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Sixtyfour';
+  src: url('/fonts/Sixtyfour-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.header .logo {
+  background: transparent;
+  color: inherit;
+  padding: 4px 0;
+  font-family: 'DepartureMono', monospace;
+  font-size: 1em;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 0;
+}
+
+.header .logo .taped {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+.header .logo .taped::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  width: 38px;
+  height: 11px;
+  background: rgba(220, 210, 170, 0.65);
+  border-left: 1px dashed rgba(0, 0, 0, 0.18);
+  border-right: 1px dashed rgba(0, 0, 0, 0.18);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  transform: translateX(-50%) rotate(-4deg);
+  pointer-events: none;
+  z-index: 20;
+}
+
+.header .logo .w-smi { transform: rotate(-8deg) translateY(4px); z-index: 2; }
+.header .logo .w-s1  { transform: rotate(-3deg) translate(-2px, 0); z-index: 5; }
+.header .logo .w-s2  { transform: rotate(6deg) translate(-14px, -6px); z-index: 3; }
+.header .logo .w-s3  { transform: rotate(-4deg) translate(-22px, 8px); z-index: 4; }
+
+.header .logo .w-smi::before { transform: translateX(-50%) rotate(-7deg); background: rgba(200, 190, 150, 0.60); }
+.header .logo .w-s2::before  { transform: translateX(-50%) rotate(5deg);  background: rgba(180, 170, 130, 0.55); }
+.header .logo .w-s3::before  { transform: translateX(-50%) rotate(3deg);  background: rgba(220, 210, 170, 0.72); }
+
+.header .logo .scrap,
+.header .logo .smi-scrap {
+  display: inline-block;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.35);
+}
+.header .logo .scrap {
+  padding: 6px 12px;
+  letter-spacing: 0.04em;
+  color: #0F380F;
+  font-size: 26px;
+}
+.header .logo .smi-scrap {
+  background: #EDE6D3;
+  padding: 4px;
+  clip-path: polygon(2% 0, 100% 3%, 96% 100%, 0 96%);
+  display: inline-flex;
+  min-width: 64px;
+  min-height: 64px;
+  align-items: center;
+  justify-content: center;
+}
+.header .logo .smi-scrap img,
+.header .logo .smi-scrap svg {
+  width: 64px;
+  height: 64px;
+  display: block;
+}
+
+.header .logo .s1 {
+  font-family: 'Frijole', monospace;
+  background: #E8DFC8;
+  clip-path: polygon(0 5%, 100% 0, 94% 100%, 6% 94%);
+  font-size: 34px;
+  padding: 6px 14px 4px;
+}
+.header .logo .s2 {
+  font-family: 'SpecialElite', monospace;
+  background: #d9c96f;
+  clip-path: polygon(4% 0, 100% 6%, 96% 96%, 0 100%);
+  font-size: 22px;
+  padding: 8px 10px 4px;
+}
+.header .logo .s3 {
+  font-family: 'Sixtyfour', monospace;
+  font-size: 22px;
+  background: #B01E1E;
+  color: #EDE6D3;
+  clip-path: polygon(0 0, 95% 4%, 100% 100%, 4% 95%);
+  padding: 8px 14px;
+  letter-spacing: 0.06em;
+}
+
+/* ── Header breathing room (2026-09-16) ── */
+.header {
+  padding-top: 24px;
+  padding-bottom: 28px;
+}
+
+/* ── Hover effects: each scrap lifts and unstraightens (2026-09-16) ── */
+.header .logo .taped,
+.taped-nav-item {
+  transition:
+    transform 0.22s cubic-bezier(0.2, 0.9, 0.3, 1.25),
+    filter 0.22s ease;
+}
+
+/* Wordmark scraps - each lifts, tilts a bit straighter, scales up. */
+.header .logo .taped:hover {
+  filter: drop-shadow(0 8px 6px rgba(0, 0, 0, 0.55));
+  z-index: 30 !important;
+}
+.header .logo .w-smi:hover { transform: rotate(-4deg) translateY(-6px) scale(1.10); }
+.header .logo .w-s1:hover  { transform: rotate(-1deg) translate(-2px, -8px) scale(1.08); }
+.header .logo .w-s2:hover  { transform: rotate(3deg) translate(-14px, -12px) scale(1.10); }
+.header .logo .w-s3:hover  { transform: rotate(-2deg) translate(-22px, 2px) scale(1.10); }
+
+/* Nav scraps - same lift-off-the-wall behavior. */
+.taped-nav-item:hover {
+  filter: drop-shadow(0 8px 6px rgba(0, 0, 0, 0.55));
+  z-index: 30 !important;
+}
+.taped-nav-item:nth-child(1):hover { transform: rotate(-1deg) translateY(-6px) scale(1.08); }
+.taped-nav-item:nth-child(2):hover { transform: rotate(2.5deg) translate(-4px, -6px) scale(1.08); }
+.taped-nav-item:nth-child(3):hover { transform: rotate(0deg) translate(-8px, -6px) scale(1.08); }
+
+
 
 .gallery-grid {
   display: grid;
@@ -149,45 +362,6 @@ html {
   padding-top: 6px;
 }
 
-/* Logo title fix */
-.logo {
-  color: var(--background);
-  /* Border on EVERY page so the logo box is the same size everywhere -
-     invisible on home (amber on amber), the frame line on the dark slab
-     elsewhere. Border only on non-home pages made the header 2px shorter on
-     home, a visible vertical jump on navigation. */
-  border: 1px solid var(--accent);
-}
-
-/* Every page EXCEPT home: dark slab, lit amber letters (home keeps the
-   theme's knockout - dark letters on a lit amber slab). Scoped by the body
-   class set in baseof.html; body.photos alone could never cover /software/,
-   whose section is empty. */
-body:not(.home) .logo,
-body:not(.home) .logo a {
-  background: var(--background) !important;
-  color: var(--accent) !important;
-}
-
-/* Software and photos: no frame and no slab, just the lit letters sitting on
-   the page itself, so the CRT grain runs straight through them. The border
-   goes TRANSPARENT rather than to 0 - the box must keep its 1px so the header
-   height stays identical to every other page and navigating does not jump. */
-body.software .logo,
-body.blog .logo,
-body.photos .logo,
-body.software .logo a,
-body.blog .logo a,
-body.photos .logo a {
-  background: transparent !important;
-}
-
-body.software .logo,
-body.blog .logo,
-body.photos .logo {
-  border-color: transparent;
-}
-
 body.blog .index-content {
   margin: 14px 0 4px !important;
   font-size: 0.88em;
@@ -211,256 +385,281 @@ p:has(a[href*="killertools.net"]) {
   margin-bottom: 2rem;
 }
 
-/* ── Amber CRT: P3 phosphor on a neutral black tube ─────────────────────── */
-
-/* The glass is neutral - black to charcoal, no brown. All the warmth comes
-   from the phosphor itself (the text), not from the background. */
-:root {
-  --background: #0b0b0b;   /* unlit glass */
-  --foreground: #d99a1f;   /* dim amber - body text */
-  --accent: #ffb642;       /* bright amber - logo, major titles, borders */
-  --phosphor-red: #ff7a45; /* red-orange phosphor - navigation, emphasis, and structure */
-
-  --amber: #ffb000;        /* reference P3 amber */
-  --charcoal: #1c1c1c;     /* gradient high point */
+/* ── Neutralize amber holdovers from the retired CRT theme (2026-09-16)
+   custom.css still draws the vertical bar strip and outlines the nav buttons
+   in var(--accent). With the CRT palette gone these would flip to LCD-green;
+   the design brief called both to be removed entirely, so hide them here. ── */
+.header .header__logo::after {
+  display: none;
+}
+.navigation-menu a {
+  border: none;
 }
 
-/* Tube: neutral charcoal falling off to black toward the corners, with one
-   very faint phosphor bloom in the upper middle. */
-body {
-  background:
-    radial-gradient(ellipse 90% 60% at 50% 35%, rgba(255, 176, 0, 0.045), transparent 65%),
-    radial-gradient(ellipse at center, var(--charcoal) 0%, #121212 55%, #000 100%);
-  background-attachment: fixed;
-  color: var(--foreground);
+/* Kill the a:focus-visible outline inside the header - it was drawing a
+   green rectangle around the wordmark whenever the link kept focus. */
+.header a:focus,
+.header a:focus-visible {
+  outline: none !important;
 }
 
-/* Phosphor bloom on the text itself. Two shadows: a tight core halo and a
-   wider soft bleed. This is the single thing that sells "amber CRT" - real
-   phosphor smears light into the pixels around it. */
-body {
-  text-shadow:
-    0 0 1px rgba(255, 176, 0, 0.35),
-    0 0 6px rgba(255, 150, 0, 0.16);
-}
-
-/* Major titles keep the amber identity. */
-h1 {
-  color: var(--accent);
-  text-shadow:
-    0 0 1px rgba(255, 182, 66, 0.55),
-    0 0 8px rgba(255, 150, 0, 0.28);
-}
-
-/* Red phosphor breaks up long amber pages and marks navigation within the
-   content: section headings and links. */
-h2, h3, h4, h5, h6,
-a {
-  color: var(--phosphor-red);
-  text-shadow:
-    0 0 1px rgba(255, 122, 69, 0.62),
-    0 0 8px rgba(255, 95, 30, 0.28);
-}
-
-/* Red phosphor is reserved for emphasis and document structure. */
-strong, b,
-.post-meta {
-  color: var(--phosphor-red);
-  text-shadow:
-    0 0 1px rgba(255, 122, 69, 0.62),
-    0 0 8px rgba(255, 95, 30, 0.28);
-}
-
+/* ── Post title divider: swap the theme's double-dotted line for a
+   short piece of tape, matching the wordmark/nav tape strips (2026-09-16).
+   The theme draws two 3px dotted borders (title + ::after) to make the
+   "::::::" band; both get killed and replaced. */
 .post-title {
-  border-bottom-color: var(--phosphor-red);
+  border-bottom: none !important;
+  padding-bottom: 40px !important;
 }
-
-table,
-th,
-td {
-  border-color: var(--phosphor-red);
-}
-
-/* Home logo is knockout - dark letters punched out of a lit amber slab, like
-   an inverse-video field. It must NOT inherit the amber link color or the
-   phosphor glow, or the letters vanish into the block behind them. */
-body.home .logo,
-body.home .logo a {
-  color: var(--background);
-  text-shadow: none;
-}
-
-/* All other pages flip it - dark slab, lit letters with the phosphor glow. */
-body:not(.home) .logo,
-body:not(.home) .logo a {
-  text-shadow:
-    0 0 1px rgba(255, 182, 66, 0.55),
-    0 0 8px rgba(255, 150, 0, 0.28);
-}
-
-hr {
-  background: var(--phosphor-red);
-  border-color: rgba(255, 122, 69, 0.45);
-  box-shadow: 0 0 6px rgba(255, 95, 30, 0.25);
-}
-
-/* The "GPLv3 Tools:" label was dimmed with opacity, which also kills the
-   phosphor glow and reads as muddy on the darker tube. Use a real dimmer
-   amber at full opacity instead, so it still glows - just less. */
-.tools-label {
-  opacity: 1;
-  color: #b8842a;
-  text-shadow:
-    0 0 1px rgba(255, 176, 0, 0.3),
-    0 0 6px rgba(255, 150, 0, 0.14);
-}
-
-::selection {
-  background: var(--amber);
-  color: #000;
-  text-shadow: none;
-}
-
-/* ── Overlay stack (markup in layouts/_default/baseof.html) ───────────────
-   Everything below is decorative, fixed, and pointer-events:none so it never
-   eats a click. Layer order bottom to top:
-     9000  images (sit under the glass, like everything else on screen)
-     9997  glare      - reflection off the curved front glass
-     9998  vignette   - corners falling into shadow
-     9999  mask       - shadow mask + scanlines
-    10000  sweep      - the slow refresh band rolling down
-    10001  flicker    - brightness instability
-    10002  power      - one-shot power-on flash
-   ------------------------------------------------------------------------ */
-
-.crt,
-.crt > div {
-  position: fixed;
-  inset: 0;
+/* Three staggered tape strips in a row, each a slightly different color,
+   angle, size - reads as an actual row of tape rather than a solid bar */
+.post-title::after,
+.post-title::before {
+  content: "";
+  position: absolute;
+  bottom: 10px;
+  height: 15px;
+  border: none;
+  border-left: 2px dashed rgba(40, 25, 10, 0.35);
+  border-right: 2px dashed rgba(40, 25, 10, 0.35);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.35);
   pointer-events: none;
 }
-
-.crt {
-  z-index: 9997;
-}
-
-/* Shadow mask + scanlines. The vertical pitch is the phosphor triad grille,
-   the horizontal pitch is the dark gap between scan rows. Both stay very low
-   contrast so body text is still comfortable to read for more than 10s. */
-.crt__mask {
-  z-index: 9999;
+.post-title::before {
+  left: 0;
+  width: 140px;
   background:
-    repeating-linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.22) 0px,
-      rgba(0, 0, 0, 0.22) 1px,
-      transparent 1px,
-      transparent 3px
-    ),
-    repeating-linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0.14) 0px,
-      rgba(0, 0, 0, 0.14) 1px,
-      transparent 1px,
-      transparent 3px
-    );
+    linear-gradient(90deg,
+      rgba(232, 223, 200, 0.85) 0%,
+      rgba(215, 202, 168, 0.82) 100%);
+  transform: rotate(-2deg);
 }
-
-/* The refresh band: a soft bright horizontal wipe drifting down the tube,
-   the way a phone camera sees a CRT. Slow and faint - it should register as
-   atmosphere, not as a loading bar. */
-.crt__sweep {
-  z-index: 10000;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(255, 176, 0, 0.035) 45%,
-    rgba(255, 200, 90, 0.06) 50%,
-    rgba(255, 176, 0, 0.035) 55%,
-    transparent 100%
-  );
-  background-size: 100% 22vh;
-  background-repeat: no-repeat;
-  animation: crtSweep 9s linear infinite;
-}
-
-@keyframes crtSweep {
-  from { background-position: 0 -25vh; }
-  to   { background-position: 0 125vh; }
-}
-
-/* Brightness instability. A flat amber wash whose opacity wobbles a hair -
-   cheaper than animating the text and it can't cause a text reflow. */
-.crt__flicker {
-  z-index: 10001;
-  background: rgba(255, 176, 0, 0.015);
-  animation: crtFlicker 5.5s steps(1, end) infinite;
-}
-
-@keyframes crtFlicker {
-  0%,  100% { opacity: 0.30; }
-  7%        { opacity: 0.85; }
-  9%        { opacity: 0.25; }
-  23%       { opacity: 0.60; }
-  24%       { opacity: 0.20; }
-  55%       { opacity: 0.75; }
-  57%       { opacity: 0.30; }
-  81%       { opacity: 0.55; }
-  83%       { opacity: 0.28; }
-}
-
-/* Reflection off the front glass: one broad soft highlight up and to the
-   left, like a window behind you in the room. */
-.crt__glare {
-  z-index: 9997;
+.post-title::after {
+  left: 130px;
+  width: 90px;
   background:
-    radial-gradient(ellipse 55% 40% at 22% 8%, rgba(255, 255, 255, 0.035), transparent 70%),
-    radial-gradient(ellipse 80% 60% at 50% 30%, rgba(255, 200, 120, 0.02), transparent 75%);
+    linear-gradient(90deg,
+      rgba(217, 201, 111, 0.80) 0%,
+      rgba(196, 180, 100, 0.78) 100%);
+  transform: rotate(1.5deg);
+  bottom: 6px;
 }
 
-/* Vignette: the curved edge of the glass eating light at the corners.
-   Slightly heavier than before now that the tube is neutral black. */
-.crt__vignette {
-  z-index: 9998;
-  background: radial-gradient(ellipse at center,
-    transparent 52%,
-    rgba(0, 0, 0, 0.22) 80%,
-    rgba(0, 0, 0, 0.55) 100%);
+/* ── Nav links styled as taped ransom-note scraps (2026-09-16, rev 2) ──
+   Each nav link is wrapped in a <span class="taped-nav-item"> (see
+   layouts/partials/menu.html). Tape lives on the wrapper (unclipped);
+   the actual <a> carries the clip-path and paper color. Active page's
+   scrap scales up so it reads as the current spot. */
+.header .navigation-menu {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 4px;
+  padding: 12px 0 6px;
 }
-
-/* Power-on: the tube strikes, blooms, and settles. Runs once on load.
-   Short on purpose - anything longer than half a second is a toll booth. */
-.crt__power {
-  z-index: 10002;
-  background: #ffdca8;
-  opacity: 0;
-  animation: crtPowerOn 0.55s ease-out 1 both;
-}
-
-@keyframes crtPowerOn {
-  0%   { opacity: 0.5;  transform: scaleY(0.004); }
-  35%  { opacity: 0.28; transform: scaleY(0.02); }
-  60%  { opacity: 0.12; transform: scaleY(1); }
-  100% { opacity: 0;    transform: scaleY(1); }
-}
-
-/* Images sit under the glass so photos read as part of the tube, not as
-   stickers pasted on top of it. */
-img {
+.taped-nav-item {
   position: relative;
-  z-index: 9000;
+  display: inline-block;
+  white-space: nowrap;
+}
+.taped-nav-item::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  width: 32px;
+  height: 10px;
+  background: rgba(220, 210, 170, 0.65);
+  border-left: 1px dashed rgba(0, 0, 0, 0.18);
+  border-right: 1px dashed rgba(0, 0, 0, 0.18);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  transform: translateX(-50%) rotate(-4deg);
+  pointer-events: none;
+  z-index: 20;
+}
+.header .navigation-menu a {
+  position: relative;
+  display: inline-block;
+  font-family: 'SpecialElite', monospace;
+  font-size: 16px;
+  color: #0F380F;
+  background: #E8DFC8;
+  padding: 6px 14px;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  clip-path: polygon(0 5%, 100% 0, 96% 100%, 4% 96%);
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.35);
+  transition: transform 0.18s ease, font-size 0.18s ease;
 }
 
-/* Respect the setting. Kill every moving layer, keep the static look. */
-@media (prefers-reduced-motion: reduce) {
-  .crt__sweep,
-  .crt__flicker,
-  .crt__power,
-  .content {
-    animation: none !important;
-  }
-
-  .crt__power { opacity: 0; }
-  .crt__flicker { opacity: 0.3; }
+/* Alternating paper colors, tilts, and tape angles per position */
+/* Software = blue with bone text (matches Software page wallpaper) */
+.taped-nav-item:nth-child(1) { transform: rotate(-2deg) translateY(-2px); }
+.taped-nav-item:nth-child(1) a { background: #1a4a6a; color: #EDE6D3; }
+.taped-nav-item:nth-child(1)::before {
+  transform: translateX(-50%) rotate(-6deg);
+  background: rgba(220, 210, 170, 0.75);
+}
+/* Blog = manila yellow with deep green text */
+.taped-nav-item:nth-child(2) { transform: rotate(1.5deg) translate(-4px, 2px); }
+.taped-nav-item:nth-child(2) a { background: #d9c96f; color: #0F380F; }
+.taped-nav-item:nth-child(2)::before {
+  transform: translateX(-50%) rotate(3deg);
+  background: rgba(180, 170, 130, 0.60);
+}
+/* Photos = muddy plum with bone text */
+.taped-nav-item:nth-child(3) { transform: rotate(-1deg) translate(-8px, -1px); }
+.taped-nav-item:nth-child(3) a { background: #6d4d5c; color: #EDE6D3; }
+.taped-nav-item:nth-child(3)::before {
+  transform: translateX(-50%) rotate(-3deg);
+  background: rgba(220, 210, 170, 0.60);
 }
 
+/* Active page: scrap and its tape scale up VISUALLY via transform on the
+   wrapper (below). font-size/padding kept constant so the header height
+   never changes between pages - eliminates the click-to-click flicker. */
+.header .navigation-menu a.active {
+  box-shadow: 0 5px 0 rgba(0, 0, 0, 0.4);
+}
+.taped-nav-item:has(a.active) { z-index: 6; }
+.taped-nav-item:has(a.active)::before {
+  width: 42px;
+  height: 12px;
+  top: -7px;
+}
+.taped-nav-item:nth-child(1):has(a.active) { transform: rotate(-3deg) translateY(-4px) scale(1.18); transform-origin: center bottom; }
+.taped-nav-item:nth-child(2):has(a.active) { transform: rotate(2deg) translate(-4px, 0) scale(1.18); transform-origin: center bottom; }
+.taped-nav-item:nth-child(3):has(a.active) { transform: rotate(-2deg) translate(-8px, -2px) scale(1.18); transform-origin: center bottom; }
+
+/* Override the theme's amber margin-between rule from custom.css */
+.header .navigation-menu a + a {
+  margin-left: 0;
+}
+.header .navigation-menu .taped-nav-item + .taped-nav-item {
+  margin-left: 6px;
+}
+
+/* ── Per-app accent color inside each software slide (2026-09-16) ──
+   Each <article class="pf-slide" data-app="..."> gets its own --accent so
+   every var(--accent) reference inside the slide (link colors from the
+   theme's `a { color: var(--accent) }`, .pf-osd, .pf-tag, .pf-stats li
+   border via --pf-edge, .pf-links a, etc.) picks up the app's brand color.
+   Sidebar buttons and the language bar sit OUTSIDE .pf-slide so they keep
+   the site-wide accent. */
+.pf-slide[data-app="killerpdf"]   { --accent: #1EA54C; }
+.pf-slide[data-app="killershell"] { --accent: #50AEE8; }
+.pf-slide[data-app="killernotes"] { --accent: #B829FF; }
+.pf-slide[data-app="killerscan"]  { --accent: #E8962C; }
+.pf-slide[data-app="killendar"]   { --accent: #DD504B; }
+
+/* --pf-edge is computed on .pf using --accent, but that resolves at the .pf
+   layer. Re-declare it on .pf-slide so it recomputes with the slide's local
+   --accent (used by chip borders, screen bezel accents inside the slide). */
+.pf-slide {
+  --pf-edge: color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+/* ── Per-app color on the sidebar app buttons (2026-09-16) ──
+   Same trick as the slide: each .pf-dot carries data-app, gets its own
+   local --accent. The existing software.css rules (border-color, color,
+   background on :hover and .is-on) all use var(--accent) and pick up the
+   app color automatically. */
+.pf-dot[data-app="killerpdf"]   { --accent: #1EA54C; }
+.pf-dot[data-app="killershell"] { --accent: #50AEE8; }
+.pf-dot[data-app="killernotes"] { --accent: #B829FF; }
+.pf-dot[data-app="killerscan"]  { --accent: #E8962C; }
+.pf-dot[data-app="killendar"]   { --accent: #DD504B; }
+
+/* Always show the app color as a chunky left stripe, even on inactive
+   buttons, so the sidebar reads as five colored channels. */
+.pf-dot {
+  border-left-width: 5px !important;
+  border-left-style: solid !important;
+  border-left-color: var(--accent) !important;
+  padding-left: 12px !important;
+  opacity: 0.85 !important;
+}
+.pf-dot:hover {
+  opacity: 1 !important;
+}
+
+/* Active pf-dot: keep the text readable in bone. The app color tints the
+   background and stripes the border - not the letters themselves. */
+.pf-dot.is-on {
+  color: #EDE6D3 !important;
+  background: color-mix(in srgb, var(--accent) 22%, transparent) !important;
+  border-color: var(--accent) !important;
+}
+
+/* ── Real generated wordmark SVGs on the software page (2026-09-16, rev 3) ──
+   Uses the actual output of Killer Branding/make-logo-svgs.py (brand-dark
+   variant per app, carrying each app's own signature color). Files copied
+   into static/img/wordmarks/. No font substitution, no CSS tricks - this is
+   the canonical bicolor lockup. */
+.pf-wm {
+  display: block !important;
+  height: 68px !important;
+  width: auto !important;
+  max-height: 68px !important;
+  max-width: 100% !important;
+  margin: 0 0 14px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  filter: none !important;
+  image-rendering: auto !important;
+  align-self: flex-start !important;
+  background: transparent !important;
+}
+
+/* ── Strip the CRT terminal window frame (2026-09-16) ──
+   The .pf-bezel radial gradients + .pf-screen phosphor bloom made the
+   slideshow look like a CRT tube. Steve's asked to drop that entire idea:
+   flatten both containers and let the content sit on the page ground. */
+.pf-bezel {
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+.pf-screen {
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+/* ── Kill the theme's global 8px img border inside the header (2026-09-16)
+   The smiley is an <img>, so themes/terminal/assets/css/main.css:197
+   `img { border: 8px solid var(--accent); ... }` was drawing a box
+   around it. Same rule was also causing any other header img to frame. */
+.header img {
+  border: 0 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+}
+
+
+
+/* HEADER wrap order (all widths):
+   1. logo + nav on one row while they fit
+   2. nav drops to its own row first
+   3. only if STEVE THE KILLER still does not fit, KILLER drops under STEVE/THE
+   The theme's flex:1 1 0% on .header__logo meant the nav never wrapped
+   (a 0 basis always "fits"), so the logo got squeezed instead. flex-basis
+   auto makes the line-break decision use the logo's one-line width. */
+.header__inner { flex-wrap: wrap; }
+.header__logo { flex: 1 1 auto; min-width: 0; }
+.header__logo > a { flex: 1 1 auto; min-width: 0; }
+.header .logo { flex-wrap: nowrap; justify-content: flex-start; align-items: center; min-width: 0; }
+.header .logo:has(.logo-words.killer-wrapped) { align-items: flex-start; }
+.header .logo .w-smi { flex-shrink: 0; }
+.header .logo .logo-words { display: flex; flex-wrap: wrap; align-items: center; min-width: 0; }
+.header .logo .logo-words.killer-wrapped { row-gap: 12px; }
+.header .logo .logo-words.killer-wrapped .w-s3 { transform: rotate(-4deg) translate(22px, 0); }
+.header .logo .logo-words.killer-wrapped .w-s3:hover { transform: rotate(-2deg) translate(22px, -6px) scale(1.10); }
+
+/* Nav pills grouped on the right at every width. The theme's menu.css
+   (space-between) loads after custom.css and spread them across the row. */
+.header .navigation-menu { justify-content: flex-end; margin-left: auto; }
+.header .navigation-menu a { flex: 0 0 auto; }
