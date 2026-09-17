@@ -307,7 +307,7 @@ body.software .wp .s.b { top: 20%; right: 16%; width: 80px; height: 80px; color:
 body.software .wp .s.b::before { content: "{ }"; }
 body.software .wp .s.c { bottom: 22%; left: 20%; width: 76px; height: 88px; background: #a41f1f; clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%); animation: wp-wob-r 6s ease-in-out infinite, wp-wander-c 46s linear infinite; }
 body.software .wp .s.d { bottom: 12%; right: 10%; width: 100px; height: 100px; border: 6px dashed #c9a24a; animation: wp-spin-r 20s linear infinite, wp-wander-d 50s linear infinite; }
-body.software .wp .s.e { top: 46%; left: 44%; width: 64px; height: 64px; background: radial-gradient(circle, #EDE6D3 0 6px, transparent 7px) 0 0 / 14px 14px; animation: wp-spin 24s linear infinite, wp-wander-e 42s linear infinite; }
+body.software .wp .s.e { top: 46%; left: 44%; width: 70px; height: 70px; background: radial-gradient(circle, #EDE6D3 0 6px, transparent 7px) 0 0 / 14px 14px; animation: wp-spin 24s linear infinite, wp-wander-e 42s linear infinite; }
 body.software .wp .s.f { top: 9%; left: 56%; width: 20px; height: 70px; background: #EDE6D3; animation: wp-blink 1.6s ease-in-out infinite, wp-wander-f 38s linear infinite; }
 body.software .wp .s.g { bottom: 35%; right: 36%; width: 28px; height: 28px; background: #c9a24a; rotate: 45deg; animation: wp-spin 10s linear infinite, wp-wander-g 44s linear infinite; }
 body.software .wp .s.h { top: 58%; right: 6%; width: 100px; height: 60px; color: #EDE6D3; font-family: monospace; font-size: 48px; line-height: 1; font-weight: 700; animation: wp-wobble 7s ease-in-out infinite, wp-wander-h 48s linear infinite; }
@@ -566,15 +566,6 @@ body.home .content {
 body.home .content { padding-bottom: 12px; }
 body.home .content > *:last-child,
 body.home .index-content > *:last-child { margin-bottom: 0 !important; }
-
-/* BODY - swap the theme's default mono (which lands on Consolas / Menlo -
-   the "round modern" look Steve dislikes) for Departure Mono, which is
-   already self-hosted for the wordmark. Falls back to the mono stack
-   below it if the font hasn't loaded yet. Applies to body copy across
-   every page. */
-body {
-  font-family: 'DepartureMono', ui-monospace, Menlo, Consolas, monospace;
-}
 
 /* HEADER - drop shadows on every taped scrap now that the wallpaper is
    busy behind them. Uses filter:drop-shadow because scraps carry

@@ -87,9 +87,9 @@ body {
    clip-path doesn't eat it. */
 
 @font-face {
-  font-family: 'DepartureMono';
-  src: url('/fonts/DepartureMono-Regular.woff2') format('woff2');
-  font-weight: normal;
+  font-family: 'KodeMono';
+  src: url('/fonts/KodeMono-Variable.woff2') format('woff2');
+  font-weight: 400 700;
   font-style: normal;
   font-display: swap;
 }
@@ -148,7 +148,7 @@ body {
   background: transparent;
   color: inherit;
   padding: 4px 0;
-  font-family: 'DepartureMono', monospace;
+  font-family: 'KodeMono', monospace;
   font-size: 1em;
   letter-spacing: 0.04em;
   line-height: 1;
@@ -663,3 +663,9 @@ p:has(a[href*="killertools.net"]) {
    (space-between) loads after custom.css and spread them across the row. */
 .header .navigation-menu { justify-content: flex-end; margin-left: auto; }
 .header .navigation-menu a { flex: 0 0 auto; }
+
+/* Kode Mono for all site text, including the footer and code. Lives here
+   because the theme's main.css (Fira Code on body, and on code/kbd with
+   !important) loads after custom.css. */
+body { font-family: 'KodeMono', ui-monospace, Menlo, Consolas, monospace; }
+code, kbd, pre { font-family: 'KodeMono', ui-monospace, Menlo, Consolas, monospace !important; }
