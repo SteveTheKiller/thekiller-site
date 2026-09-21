@@ -4,7 +4,7 @@ title: "Steve the Killer"
 
 ![Steve](/images/profile2.jpg)
 
-MSP Technician. Analog film enthusiast.
+AI engineer. Analog film enthusiast.
 
 Homelab operator. Musician.
 
