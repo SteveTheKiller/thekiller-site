@@ -77,14 +77,18 @@ def release_date(repo: str, tag: str, version: str, published_at: str) -> str:
     return published_at[:10]
 
 
-def count_xaml_files(repo: str, tag: str, directory: str) -> int:
+def count_xaml_files(
+    repo: str, tag: str, directory: str, exclude: frozenset[str] | set[str] = frozenset()
+) -> int:
     entries = github_json(
         f"repos/{repo}/contents/{directory}?ref={quote(tag, safe='')}"
     )
     count = sum(
         1
         for entry in entries
-        if entry.get("type") == "file" and entry.get("name", "").lower().endswith(".xaml")
+        if entry.get("type") == "file"
+        and entry.get("name", "").lower().endswith(".xaml")
+        and entry.get("name", "").lower() not in exclude
     )
     if count < 1:
         raise RuntimeError(f"No XAML files found in {repo}/{directory} at {tag}")
@@ -137,7 +141,7 @@ def synchronize_app(app: dict) -> None:
     exe = max(installer_assets, key=lambda asset: int(asset.get("size", 0)))
 
     languages = count_xaml_files(repo, tag, "Strings")
-    themes = count_xaml_files(repo, tag, "Themes")
+    themes = count_xaml_files(repo, tag, "Themes", exclude={"defaults.xaml"})
 
     app["version"] = version
     app["released"] = release_date(repo, tag, version, str(release["published_at"]))

@@ -188,11 +188,11 @@ sections:
         stack: [HTML, CSS, JavaScript]
         blurb: >-
           One landing page per app, each with its own technical and about pages,
-          hand-written in HTML, CSS and JavaScript. Fourteen languages and thirteen
+          hand-written in HTML, CSS and JavaScript. Up to nineteen languages and thirteen
           themes each.
         stats:
           - 5 sites
-          - 14 languages
+          - Up to 19 languages
           - 13 themes
         tech:
           - { name: HTML5, url: "https://developer.mozilla.org/docs/Web/HTML" }
