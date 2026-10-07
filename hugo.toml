@@ -8,7 +8,7 @@ theme = "terminal"
   fullWidthTheme = false
   centerTheme = true
   title = "Steve the Killer"
-  subtitle = "AI engineer. Analog film enthusiast. Based in Los Angeles."
+  subtitle = "Technologist. Analog film enthusiast. Based in Los Angeles."
   customCSS = ["css/custom.css"]
   menuItems = [
     { name = "Software", url = "/software/" },
