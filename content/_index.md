@@ -12,6 +12,4 @@ Open-source developer.
 
 Based in Los Angeles.
 
----
-
 {{< social-links >}}

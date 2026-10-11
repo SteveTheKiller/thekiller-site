@@ -566,10 +566,21 @@ body.home .content > *:last-child,
 body.home .index-content > *:last-child { margin-bottom: 0 !important; }
 
 /* Home: keep the panel close to the icon row. */
-body.home .index-content { margin-bottom: 0; }
+body.home .index-content { display: flow-root; margin-bottom: 0; }
 body.home .index-content > p:first-child { margin-top: 0; }
-body.home .social-links { margin-left: -8px; }
+body.home .index-content > p:last-of-type { margin-bottom: 8px; }
+body.home .social-links { transform: translateX(-8px); }
 body.home .posts:not(:has(.post)) { display: none; }
+
+@media (min-width: 751px) {
+  body.home .index-content > p:first-child {
+    margin-bottom: 0;
+  }
+  body.home .index-content > p:nth-of-type(2) {
+    margin-top: 0;
+    padding-top: 0;
+  }
+}
 
 /* HEADER - drop shadows on every taped scrap now that the wallpaper is
    busy behind them. Uses filter:drop-shadow because scraps carry
