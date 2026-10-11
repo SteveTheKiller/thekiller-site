@@ -567,6 +567,10 @@ body.home .content { padding-bottom: 12px; }
 body.home .content > *:last-child,
 body.home .index-content > *:last-child { margin-bottom: 0 !important; }
 
+/* Home: keep the panel close to the icon row. */
+body.home .index-content { margin-bottom: 0; }
+body.home .posts:not(:has(.post)) { display: none; }
+
 /* HEADER - drop shadows on every taped scrap now that the wallpaper is
    busy behind them. Uses filter:drop-shadow because scraps carry
    clip-path (which box-shadow doesn't respect - it'd draw a rectangle
