@@ -587,3 +587,43 @@ body.home .index-content > *:last-child { margin-bottom: 0 !important; }
    `isolation: isolate` creates a stacking context on body, which puts
    z-index -1 above body's own background but still below body content. */
 body { isolation: isolate; }
+
+/* Home social links */
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+.index-content .social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+  border: 0;
+  color: var(--foreground);
+  text-decoration: none;
+  opacity: 0.8;
+  transition: color 0.15s ease, opacity 0.15s ease, transform 0.15s ease;
+}
+.social-links svg {
+  display: block;
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
+}
+.index-content .social-links a:hover,
+.index-content .social-links a:focus-visible {
+  color: var(--accent);
+  opacity: 1;
+  transform: translateY(-2px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .index-content .social-links a {
+    transition: none;
+    transform: none;
+  }
+}
