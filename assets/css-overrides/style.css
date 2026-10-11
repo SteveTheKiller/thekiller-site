@@ -81,7 +81,7 @@ body {
 /* ── Torn-scrap collage wordmark (2026-09-16) ──────────────────────────
    Replaces the amber slab. The .logo container drops its theme background
    and lets four taped paper scraps carry their own colors and fonts:
-   STEVE and THE use Lacquer; KILLER uses Punktype. Navigation uses
+   STEVE uses Lacquer; THE and KILLER use Punktype. Navigation uses
    Killer Sans. The smiley is an amber SVG (random on load)
    on bone. Tape lives on unclipped .taped wrappers so the scrap's
    clip-path doesn't eat it. */
@@ -248,7 +248,7 @@ body {
   padding: 6px 14px 4px;
 }
 .header .logo .s2 {
-  font-family: 'Lacquer', Arial, sans-serif;
+  font-family: 'Punktype', Arial, sans-serif;
   background: #d9c96f;
   clip-path: polygon(4% 0, 100% 6%, 96% 96%, 0 100%);
   font-size: 22px;
