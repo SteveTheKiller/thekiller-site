@@ -34,15 +34,14 @@
   <link rel="stylesheet" href="{{ $overrides.Permalink }}">
 {{ end }}
 
-<!-- Icons - SVG for modern browsers uses the ransom-note smiley (03),
-     PNGs below stay as fallback for older clients (Safari <=15, IE) -->
-<link rel="icon" type="image/svg+xml" href="/img/smileys/smiley-03-ransom-face.svg">
-<link rel="shortcut icon" href="{{ "favicon.png" | absURL }}">
-<link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | absURL }}">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+<!-- Matching smiley icons for browsers and touch shortcuts. -->
+<link rel="icon" type="image/svg+xml" href="/img/smileys/smiley-03-ransom-face.svg?v=b4c44637da60">
+<link rel="shortcut icon" href="{{ "favicon.png?v=b4c44637da60" | absURL }}">
+<link rel="apple-touch-icon" href="{{ "apple-touch-icon.png?v=b4c44637da60" | absURL }}">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=b4c44637da60">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=b4c44637da60">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png?v=b4c44637da60">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png?v=b4c44637da60">
 
 <!-- Twitter Card (also used by Telegram) -->
 <meta name="twitter:card" content="summary_large_image"/>
