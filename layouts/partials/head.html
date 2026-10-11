@@ -15,6 +15,10 @@
 
 {{ template "_internal/google_analytics.html" . }}
 
+<link rel="preload" href="/fonts/KillerSans-Regular.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="/fonts/Punktype.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="/fonts/Lacquer-Regular.ttf" as="font" type="font/ttf" crossorigin>
+
 {{ $css := resources.Match "css/*.css" }}
 {{ range $css }}
   {{ $styles := . | minify | fingerprint }}

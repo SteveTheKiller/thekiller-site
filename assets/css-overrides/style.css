@@ -81,10 +81,35 @@ body {
 /* ── Torn-scrap collage wordmark (2026-09-16) ──────────────────────────
    Replaces the amber slab. The .logo container drops its theme background
    and lets four taped paper scraps carry their own colors and fonts:
-   STEVE = Frijole on cream, THE = Special Elite on oatmeal, KILLER =
-   Faster One on blood, nav links in Special Elite, smiley = amber SVG (random on load)
+   STEVE and THE use Lacquer; KILLER uses Punktype. Navigation uses
+   Killer Sans. The smiley is an amber SVG (random on load)
    on bone. Tape lives on unclipped .taped wrappers so the scrap's
    clip-path doesn't eat it. */
+
+/* Killer Sans has a 0.49em cap height. Normalize it to 0.70em so
+   body text retains its established readable size and line spacing. */
+@font-face {
+  font-family: 'KillerSans';
+  src: url('/fonts/KillerSans-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  size-adjust: 142.86%;
+}
+@font-face {
+  font-family: 'Punktype';
+  src: url('/fonts/Punktype.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Lacquer';
+  src: url('/fonts/Lacquer-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
 
 @font-face {
   font-family: 'KodeMono';
@@ -148,7 +173,7 @@ body {
   background: transparent;
   color: inherit;
   padding: 4px 0;
-  font-family: 'KodeMono', monospace;
+  font-family: 'KillerSans', Arial, sans-serif;
   font-size: 1em;
   letter-spacing: 0.04em;
   line-height: 1;
@@ -216,22 +241,22 @@ body {
 }
 
 .header .logo .s1 {
-  font-family: 'Frijole', monospace;
+  font-family: 'Lacquer', Arial, sans-serif;
   background: #E8DFC8;
   clip-path: polygon(0 5%, 100% 0, 94% 100%, 6% 94%);
   font-size: 34px;
   padding: 6px 14px 4px;
 }
 .header .logo .s2 {
-  font-family: 'SpecialElite', monospace;
+  font-family: 'Lacquer', Arial, sans-serif;
   background: #d9c96f;
   clip-path: polygon(4% 0, 100% 6%, 96% 96%, 0 100%);
   font-size: 22px;
   padding: 8px 10px 4px;
 }
 .header .logo .s3 {
-  font-family: 'Sixtyfour', monospace;
-  font-size: 22px;
+  font-family: 'Punktype', Arial, sans-serif;
+  font-size: 26px;
   background: #B01E1E;
   color: #EDE6D3;
   clip-path: polygon(0 0, 95% 4%, 100% 100%, 4% 95%);
@@ -479,7 +504,7 @@ p:has(a[href*="killertools.net"]) {
 .header .navigation-menu a {
   position: relative;
   display: inline-block;
-  font-family: 'SpecialElite', monospace;
+  font-family: 'KillerSans', Arial, sans-serif;
   font-size: 16px;
   color: #0F380F;
   background: #E8DFC8;
@@ -664,8 +689,7 @@ p:has(a[href*="killertools.net"]) {
 .header .navigation-menu { justify-content: flex-end; margin-left: auto; }
 .header .navigation-menu a { flex: 0 0 auto; }
 
-/* Kode Mono for all site text, including the footer and code. Lives here
-   because the theme's main.css (Fira Code on body, and on code/kbd with
-   !important) loads after custom.css. */
-body { font-family: 'KodeMono', ui-monospace, Menlo, Consolas, monospace; }
+/* Shared site text and footer use Killer Sans. Code keeps its monospace face.
+   These declarations load after the theme's typography rules. */
+body { font-family: 'KillerSans', Arial, sans-serif; }
 code, kbd, pre { font-family: 'KodeMono', ui-monospace, Menlo, Consolas, monospace !important; }
