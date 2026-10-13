@@ -621,13 +621,19 @@ p:has(a[href*="killertools.net"]) {
    Uses the actual output of Killer Branding/make-logo-svgs.py (brand-dark
    variant per app, carrying each app's own signature color). Files copied
    into static/img/wordmarks/. No font substitution, no CSS tricks - this is
-   the canonical bicolor lockup. */
+   the canonical bicolor lockup.
+   The Punktype and Lacquer art uses a taller box than the typewriter art did,
+   so the height went from 68px to 96px, which renders "Killer" the height it
+   was (measured against the old art). object-fit keeps the aspect when a long name
+   like "The Killendar" hits max-width. */
 .pf-wm {
   display: block !important;
-  height: 68px !important;
+  height: 96px !important;
   width: auto !important;
-  max-height: 68px !important;
+  max-height: 96px !important;
   max-width: 100% !important;
+  object-fit: contain !important;
+  object-position: left center !important;
   margin: 0 0 14px !important;
   padding: 0 !important;
   border: 0 !important;
