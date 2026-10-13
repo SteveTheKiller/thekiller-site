@@ -130,7 +130,7 @@
 .pf-plate {
   position: relative;
   z-index: 3;
-  padding: 14px 20px 18px;
+  padding: 14px 16px 16px;
   background: #040404;
   border-top: 1px solid var(--pf-edge);
   overflow: hidden;
@@ -239,12 +239,15 @@
 }
 
 /* Stats row and the two links on ONE line, links pinned to the right edge */
+/* One row: stats on the left, links on the right. No wrap, so the links never
+   drop under the stats; if the plate is too narrow the stats wrap among
+   themselves instead. */
 .pf-foot {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.2em;
-  flex-wrap: wrap;
+  gap: 1em;
+  flex-wrap: nowrap;
 }
 
 .pf-stats {
@@ -254,17 +257,22 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.4em;
+  flex: 0 1 auto;
+  min-width: 0;
 }
 
 .pf-stats li {
   border: 1px solid var(--pf-edge);
-  padding: 0.1em 0.55em;
+  padding: 0.1em 0.45em;
   font-size: 0.74em;
   opacity: 0.85;
 }
 
-.pf-links { margin: 0 0 0 auto; font-size: 0.86em; white-space: nowrap; }
-.pf-links a { margin-left: 1.2em; margin-right: 0; }
+/* !important: a site-wide p:has(a[href*="killertools.net"]) rule gives that
+   paragraph 3rem above and 2rem below, which hit KillerMCP's visit site link */
+.pf-links { margin: 0 0 0 auto !important; font-size: 0.86em; white-space: nowrap; flex: 0 0 auto; }
+.pf-links a { margin-left: 0.8em; margin-right: 0; }
+.pf-links a:first-child { margin-left: 0; }
 
 /* ── Signal glitch on channel change ── */
 .pf-glitch {
