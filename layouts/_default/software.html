@@ -241,7 +241,7 @@
               {{ end }}
             </div>
           {{ end }}
-          <h3>{{ with .url }}<a href="{{ . }}">{{ end }}{{ .name }}{{ with .url }}</a>{{ end }}</h3>
+          <h3>{{ with .url }}<a href="{{ . }}">{{ end }}{{ with $item.wordmark }}<img class="pf-web-wm" src="{{ printf "/img/wordmarks/%s" . | absURL }}" alt="{{ $item.name }}">{{ else }}{{ .name }}{{ end }}{{ with .url }}</a>{{ end }}</h3>
           <p class="pf-tag">{{ .tagline }}</p>
           <p class="pf-blurb">{{ .blurb }}</p>
           {{ with .origin }}
@@ -266,6 +266,11 @@
           {{ end }}
           {{ with .hosting }}
             <p class="pf-web-host">hosted on <a href="{{ .url }}">{{ .name }}</a></p>
+          {{ end }}
+          {{ with .smileys }}
+            <div class="pf-web-smileys" aria-hidden="true">
+              {{ range . }}<img src="{{ printf "/img/smileys/%s" . | absURL }}" alt="">{{ end }}
+            </div>
           {{ end }}
         </article>
       {{ end }}
