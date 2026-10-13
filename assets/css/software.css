@@ -18,6 +18,9 @@
 /* ── Bezel: the moulded case around the tube ── */
 .pf-bezel {
   position: relative;
+  /* Column so the screen can grow to the full row height */
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--pf-edge);
   border-radius: 12px;
   padding: 8px;
@@ -41,6 +44,9 @@
      content-sized (~300px), so a shorter tube left the screenshot smaller than
      the text under it. */
   aspect-ratio: 8 / 8.4;
+  /* The ratio is the minimum. When the tabs and built-with column runs taller,
+     the screen grows to match it so both columns end on the same line. */
+  flex: 1 0 auto;
   /* Phosphor bloom hugging the inside of the glass */
   box-shadow:
     0 0 60px color-mix(in srgb, var(--accent) 9%, transparent) inset,
@@ -52,7 +58,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) 168px;
   gap: 10px;
-  align-items: start;
+  align-items: stretch;
 }
 
 /* ── Slides ──
