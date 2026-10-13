@@ -95,6 +95,7 @@
               <div class="pf-copy js-pf-copy">
                 <div class="pf-copy-inner">
                   <p class="pf-blurb">{{ $app.blurb }}</p>
+                  {{ with $app.features }}<ul class="pf-feats">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>{{ end }}
                   {{ with $app.why }}<p class="pf-why">{{ . }}</p>{{ end }}
                 </div>
               </div>

@@ -33,12 +33,17 @@ sections:
           Views, edits, OCRs, fills and signs. Four view modes across unlimited
           tabs, split panes, in-place text editing, annotations, forms and
           digital signatures, page organization and print preview.
-        # FILLER, condensed from pdf-landing/about.html. Replace with final copy.
-        why: >-
-          I got tired of closing the same Adobe ticket. Install it, repair it,
-          license it, work around it: hours every week that never felt like they
-          were actually fixing anything. So I wrote a PDF app that just works,
-          ships as one .exe, and never asks the user to log in.
+        features:
+          - Four view modes and split panes
+          - Inline text editing
+          - Highlights, ink and text boxes
+          - Built-in OCR, no cloud
+          - Merge, split, rotate and crop
+          - Deskew and perspective fixes
+          - Fillable forms and signatures
+          - Print preview and flattening
+          - Unlocks and repairs PDFs
+          - Headless command line
         stats:
           - 11 languages
           - 12 themes
@@ -80,12 +85,17 @@ sections:
           Notes in one file you own, optionally encrypted at rest with AES-256.
           Offline dictation with local speech recognition, syntax highlighting,
           inline images and recordings, groups, tags and instant search.
-        # FILLER, condensed from notes-landing/about.html. Replace with final copy.
-        why: >-
-          My notes hold client credentials and the keys to a hundred networks. The
-          options were cloud notebooks that want an account and sync it somewhere
-          you cannot see, or a folder of .txt files with no search and no pictures.
-          That belongs in one encrypted file that answers to me.
+        features:
+          - Images, tables and checkboxes
+          - Instant search as you type
+          - Nested groups and colored tags
+          - Wikilinks and a note graph
+          - Code highlighting
+          - Native Markdown preview
+          - Version history and backups
+          - Offline dictation
+          - SketchPad and the Killculator
+          - Command line interface
         stats:
           - AES-256 at rest
           - 11 languages
@@ -129,13 +139,17 @@ sections:
           Month, week, day and agenda views with no account, no sync and nothing
           phoning home. Repeating appointments, color categories, iCalendar and
           CSV both ways, optional AES-256 encryption.
-        # FILLER, condensed from killendar-landing/about.html. Replace with final copy.
-        why: >-
-          It started off as a joke. I could not think of a killer feature worth
-          releasing it for. Then it occurred to me that being lightweight, and not
-          wanting anything from you, might be the feature. Every calendar I could
-          have used instead wanted an account, just to remember that the dentist is
-          on Thursday.
+        features:
+          - Month, week, day and agenda
+          - Repeating appointments
+          - Drag to move appointments
+          - Color categories
+          - iCalendar both ways
+          - Outlook CSV both ways
+          - Imports saved email invites
+          - Printable web page export
+          - Separate calendars per file
+          - F1 keyboard shortcut map
         stats:
           - AES-256 at rest
           - 11 languages

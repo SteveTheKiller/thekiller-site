@@ -43,9 +43,11 @@
   /* Stacked layout. Tall enough that the SHOT dominates: the details block is
      content-sized (~300px), so a shorter tube left the screenshot smaller than
      the text under it. */
-  aspect-ratio: 8 / 8.4;
-  /* The ratio is the minimum. When the tabs and built-with column runs taller,
-     the screen grows to match it so both columns end on the same line. */
+  /* Content-sized: the slides share one grid cell, so the screen is as tall
+     as its tallest slide and never squeezes the screenshot to fit the copy.
+     When the tabs and built-with column runs taller, the screen grows to
+     match it so both columns end on the same line. */
+  display: grid;
   flex: 1 0 auto;
   /* Phosphor bloom hugging the inside of the glass */
   box-shadow:
@@ -65,10 +67,10 @@
    Screenshot on TOP, details underneath. Side by side, the text column was
    only 300px and the app wordmark could not fit in it. */
 .pf-slide {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  grid-area: 1 / 1;
   display: grid;
-  grid-template-rows: minmax(0, 1fr) auto;
+  grid-template-rows: minmax(190px, 1fr) auto;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.32s ease, visibility 0s linear 0.32s;
@@ -171,13 +173,14 @@
     drop-shadow(0 0 5px color-mix(in srgb, var(--phosphor-red) 35%, transparent));
 }
 
+/* Tagline and version sit a step above the description text */
 .pf-tag {
-  margin: 0 0 6px;
-  font-size: 0.9em;
-  opacity: 0.72;
+  margin: 0 0 8px;
+  font-size: 1.08em;
+  opacity: 0.8;
 }
 
-.pf-ver { opacity: 0.6; font-size: 0.85em; }
+.pf-ver { opacity: 0.65; font-size: 0.92em; }
 
 /* Copy well: content-sized, tall enough that nothing ever scrolls. The old
    fixed height + drift is retired; the JS drift no-ops when it all fits. */
@@ -196,6 +199,35 @@
   max-width: 62ch;
   font-size: 0.92em;
   line-height: 1.55;
+}
+
+/* Feature list: two columns of short lines under the description */
+.pf-feats {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 3px 22px;
+  font-size: 0.84em;
+  line-height: 1.45;
+  opacity: 0.85;
+}
+
+.pf-feats li {
+  position: relative;
+  margin: 0;
+  padding-left: 14px;
+}
+
+.pf-feats li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 6px;
+  height: 2px;
+  background: var(--accent);
 }
 
 .pf-why {
@@ -1073,6 +1105,7 @@
 
 @media (max-width: 560px) {
   .pf-wm { height: 28px; }
+  .pf-feats { grid-template-columns: 1fr; }
   .pf-blurb { font-size: 0.85em; }
   .pf-dots { gap: 6px; }
   .pf-dot { flex: 1 1 40%; font-size: 0.74em; }

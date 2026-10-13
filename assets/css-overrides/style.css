@@ -634,7 +634,7 @@ p:has(a[href*="killertools.net"]) {
   max-width: 100% !important;
   object-fit: contain !important;
   object-position: left center !important;
-  margin: 0 0 14px !important;
+  margin: 0 0 4px !important;
   padding: 0 !important;
   border: 0 !important;
   border-radius: 0 !important;
