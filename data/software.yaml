@@ -67,10 +67,17 @@ sections:
           File browser, search, terminal, text editor and admin toolkit in one
           window. Process management, live performance monitor, event viewer,
           registry editor and storage analyzer, each one key away.
-        why: >-
-          I built KillerShell to optimize my workflow as a technician. It keeps
-          the tools and information I use every day in one place, so I am never
-          more than a few clicks away from what I need.
+        features:
+          - Tabs, favorites and split panes
+          - Wildcard and content search
+          - PowerShell, CMD and WSL shells
+          - Text editor with highlighting
+          - Browse and edit ZIP archives
+          - Process and service manager
+          - Live CPU, RAM and GPU graphs
+          - Event Viewer and Registry Editor
+          - Storage Analyzer on F4
+          - Read-only JSON command line
         stats:
           - 11 languages
           - 12 themes
@@ -122,10 +129,17 @@ sections:
           It fingerprints services, identifies MAC vendors, classifies devices,
           opens RDP, SSH and web connections, exports CSV or HTML, and includes
           a headless CLI for scripts and RMM work.
-        why: >-
-          KillerScan was the first app I built. I made it out of necessity because
-          the alternatives were all bad. I use it any time I am on a new network
-          and need to see what is plugged in.
+        features:
+          - Scans several networks at once
+          - ARP, ping, mDNS and SSDP
+          - Service fingerprinting
+          - MAC vendors and device types
+          - Network topology map
+          - Keep Alive for up to 16 hosts
+          - Scan history and baselines
+          - Built-in speed test
+          - Host diagnostics for tickets
+          - RDP, SSH and web in one click
         stats:
           - 11 languages
           - 12 themes
@@ -182,7 +196,17 @@ sections:
           calendar tools from whichever apps you have installed, and registers
           itself with Codex, Claude Code, Claude Desktop, Cursor, GitHub Copilot,
           Gemini CLI and Windsurf.
-        # TODO: the why is yours to write. The slide hides it until it is filled in.
+        features:
+          - All 81 KillerTools utilities
+          - PDF merge, OCR and printing
+          - Network scans and diagnostics
+          - Read, write and export notes
+          - Files, processes and registry
+          - Agenda lookup and appointments
+          - Reports saved as PDFs or notes
+          - Signed, verified updates
+          - Repair and clean uninstall
+          - WinGet and Chocolatey packages
         stats:
           - 81 utilities
           - 7 agent clients
