@@ -143,9 +143,9 @@ sections:
 
       - name: KillerMCP
         slug: killermcp
-        shots: 3
-        # TODO: capture these three and commit them to KillerMCP docs/screenshots on main.
-        screenshot_files: ["01.png", "02.png", "03.png"]
+        shots: 1
+        # TODO: capture the installer and commit it to KillerMCP docs/screenshots on main.
+        screenshot_files: ["01.png"]
         screenshot_base: https://raw.githubusercontent.com/SteveTheKiller/KillerMCP/main/docs/screenshots
         count_xaml: false
         tagline: Free local MCP server
