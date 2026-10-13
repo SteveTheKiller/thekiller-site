@@ -86,7 +86,7 @@
               {{/* Generated brand-dark wordmark SVG (bicolor: prefix in bone,
                    suffix in the app's signature color) from make-logo-svgs.py.
                    See /img/wordmarks/. */}}
-              <img class="pf-wm" src="{{ printf "/img/wordmarks/%s-brand-dark.svg" $app.slug | absURL }}" alt="{{ $app.name }}">
+              <img class="pf-wm" src="{{ printf "/img/wordmarks/%s-brand-dark.svg" $app.slug | absURL }}" alt="{{ $app.name }}"{{ with $app.wm_trim }} style="--wm-trim: {{ . }}"{{ end }}>
               <p class="pf-tag">{{ $app.tagline }}{{ with $app.version }} <span class="pf-ver">v{{ . }}</span>{{ end }}</p>
               {{/* Fixed-height copy well. The blurb is what the app does, the
                    why is why it exists. Height is capped so a longer `why` can
@@ -242,7 +242,7 @@
               {{ end }}
             </div>
           {{ end }}
-          <h3>{{ with .url }}<a href="{{ . }}">{{ end }}{{ with $item.wordmark }}<img class="pf-web-wm" src="{{ printf "/img/wordmarks/%s" . | absURL }}" alt="{{ $item.name }}">{{ else }}{{ .name }}{{ end }}{{ with .url }}</a>{{ end }}</h3>
+          <h3>{{ with .url }}<a href="{{ . }}">{{ end }}{{ with $item.wordmark }}<img class="pf-web-wm" src="{{ printf "/img/wordmarks/%s" . | absURL }}" alt="{{ $item.name }}"{{ with $item.wm_trim }} style="--wm-trim: {{ . }}"{{ end }}>{{ else }}{{ .name }}{{ end }}{{ with .url }}</a>{{ end }}</h3>
           <p class="pf-tag">{{ .tagline }}</p>
           <p class="pf-blurb">{{ .blurb }}</p>
           {{ with .origin }}

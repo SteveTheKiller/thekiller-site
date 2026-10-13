@@ -549,7 +549,8 @@
   height: 58px !important;
   width: auto !important;
   max-width: 100% !important;
-  margin: 0 0 6px;
+  /* wm_trim is px of blank under the art at 96px; this mark is 58px */
+  margin: 0 0 calc(6px - var(--wm-trim, 0) * 0.6px);
   padding: 0 !important;
   border: 0 !important;
   border-radius: 0 !important;

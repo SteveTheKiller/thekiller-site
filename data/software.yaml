@@ -15,10 +15,13 @@ sections:
       self-contained exe, runs portable or installs itself, is code-signed and
       verified in-app, is localized, and is GPLv3. No account, no
       subscription, no telemetry.
+    # wm_trim: px of empty space under each wordmark's ink at 96px tall,
+    # measured from the art. Remeasure when the wordmarks are regenerated.
     items:
 
       - name: KillerPDF
         slug: killerpdf
+        wm_trim: 1
         shots: 4
         screenshot_files: ["01.png", "02.png", "03.png", "04.png"]
         tagline: Free PDF editor
@@ -51,6 +54,7 @@ sections:
 
       - name: KillerShell
         slug: killershell
+        wm_trim: 21
         shots: 4
         screenshot_files: ["01.png", "02.png", "03.png", "04.png"]
         tagline: Free shell for power users
@@ -73,6 +77,7 @@ sections:
 
       - name: KillerNotes
         slug: killernotes
+        wm_trim: 6
         shots: 4
         screenshot_files: ["01.png", "02-poster.jpg", "03.png", "04.png"]
         tagline: Free encrypted notepad
@@ -103,6 +108,7 @@ sections:
 
       - name: KillerScan
         slug: killerscan
+        wm_trim: 21
         shots: 4
         screenshot_files: ["01.png", "02.png", "03.png", "04.png"]
         tagline: Free network scanner
@@ -127,6 +133,7 @@ sections:
 
       - name: The Killendar
         slug: killendar
+        wm_trim: 18
         shots: 4
         screenshot_files: ["01.png", "02.png", "03.png", "04.png"]
         tagline: Free encrypted calendar
@@ -157,6 +164,7 @@ sections:
 
       - name: KillerMCP
         slug: killermcp
+        wm_trim: 21
         shots: 1
         # TODO: capture the installer and commit it to KillerMCP docs/screenshots on main.
         screenshot_files: ["01.png"]
@@ -189,6 +197,7 @@ sections:
 
       - name: killertools.net
         wordmark: killertools-brand-dark.svg
+        wm_trim: 24
         langs: [vue]
         tagline: Browser tools for IT techs
         url: https://killertools.net

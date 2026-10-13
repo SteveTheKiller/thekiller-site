@@ -625,7 +625,9 @@ p:has(a[href*="killertools.net"]) {
    The Punktype and Lacquer art uses a taller box than the typewriter art did,
    so the height went from 68px to 96px, which renders "Killer" the height it
    was (measured against the old art). object-fit keeps the aspect when a long name
-   like "The Killendar" hits max-width. */
+   like "The Killendar" hits max-width. The art keeps room under the baseline
+   for the deepest drips, so each app's wm_trim in software.yaml pulls the
+   tagline up over its own empty strip (px of blank at this height). */
 .pf-wm {
   display: block !important;
   height: 96px !important;
@@ -634,7 +636,7 @@ p:has(a[href*="killertools.net"]) {
   max-width: 100% !important;
   object-fit: contain !important;
   object-position: left center !important;
-  margin: 0 0 4px !important;
+  margin: 0 0 calc(4px - var(--wm-trim, 0) * 1px) !important;
   padding: 0 !important;
   border: 0 !important;
   border-radius: 0 !important;
