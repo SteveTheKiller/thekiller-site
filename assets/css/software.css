@@ -543,25 +543,27 @@
   filter: drop-shadow(0 0 5px color-mix(in srgb, var(--accent) 30%, transparent));
 }
 
-/* A card whose site has its own wordmark shows it in place of the name */
+/* A card whose site has its own wordmark shows it in place of the name, at
+   the same size as the app wordmarks */
 .pf-web-card h3 .pf-web-wm {
   display: block;
-  height: 58px !important;
+  height: 96px !important;
   width: auto !important;
   max-width: 100% !important;
-  /* wm_trim is px of blank under the art at 96px; this mark is 58px */
-  margin: 0 0 calc(6px - var(--wm-trim, 0) * 0.6px);
+  /* wm_trim is px of blank under the art at 96px */
+  margin: 0 0 calc(4px - var(--wm-trim, 0) * 1px);
   padding: 0 !important;
   border: 0 !important;
   border-radius: 0 !important;
 }
 
-/* A loose row of the header smileys, each tilted like a taped scrap */
+/* A loose row of the header smileys above the name, each tilted like a
+   taped scrap */
 .pf-web-smileys {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  margin: 22px 0 0;
+  margin: 0 0 12px;
 }
 
 .pf-web-smileys img {
@@ -570,6 +572,7 @@
   max-width: none !important;
   border: 0 !important;
   padding: 0 !important;
+  margin: 0 !important;      /* the theme gives every img 25px above and below */
   border-radius: 0 !important;
   transform: rotate(-6deg);
   filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.55));
