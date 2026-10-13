@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build current software data and screenshots from the five app sources."""
+"""Build current software data and screenshots from the six app sources."""
 
 from __future__ import annotations
 
@@ -140,14 +140,18 @@ def synchronize_app(app: dict) -> None:
         raise RuntimeError(f"The latest {repo} release has no installer EXE asset")
     exe = max(installer_assets, key=lambda asset: int(asset.get("size", 0)))
 
-    languages = count_xaml_files(repo, tag, "Strings")
-    themes = count_xaml_files(repo, tag, "Themes", exclude={"defaults.xaml"})
+    # KillerMCP has no WPF Strings or Themes folders, so its entry opts out of those counts.
+    count_xaml = app.get("count_xaml", True)
+    if count_xaml:
+        languages = count_xaml_files(repo, tag, "Strings")
+        themes = count_xaml_files(repo, tag, "Themes", exclude={"defaults.xaml"})
 
     app["version"] = version
     app["released"] = release_date(repo, tag, version, str(release["published_at"]))
     stats = [str(value) for value in app.setdefault("stats", [])]
-    update_stat(stats, r"\d+\s+languages", f"{languages} languages")
-    update_stat(stats, r"\d+\s+themes", f"{themes} themes")
+    if count_xaml:
+        update_stat(stats, r"\d+\s+languages", f"{languages} languages")
+        update_stat(stats, r"\d+\s+themes", f"{themes} themes")
     update_stat(stats, r"~?[\d.]+\s+MB\s+exe", readable_megabytes(int(exe["size"])))
     app["stats"] = stats
 
@@ -162,10 +166,11 @@ def synchronize_app(app: dict) -> None:
     destination.mkdir(parents=True, exist_ok=True)
 
     generated_paths: list[str] = []
-    base_url = str(app["url"]).rstrip("/")
+    # An app without its own website names where its screenshots live instead.
+    base_url = str(app.get("screenshot_base") or f"{str(app['url']).rstrip('/')}/screenshots").rstrip("/")
     for index, filename in enumerate(screenshot_files, start=1):
         filename = str(filename).lstrip("/")
-        screenshot_url = f"{base_url}/screenshots/{filename}"
+        screenshot_url = f"{base_url}/{filename}"
         image, content_type = request_bytes(screenshot_url)
         if not valid_image(image, content_type):
             raise RuntimeError(f"{screenshot_url} did not return an image")
@@ -184,9 +189,10 @@ def synchronize_app(app: dict) -> None:
 
     app["shots"] = len(generated_paths)
     app["screenshot_paths"] = generated_paths
+    counts = f"{languages} languages, {themes} themes, " if count_xaml else ""
     print(
         f"{app['name']}: v{version}, {app['released']}, "
-        f"{languages} languages, {themes} themes, {len(generated_paths)} screenshots"
+        f"{counts}{len(generated_paths)} screenshots"
     )
 
 
@@ -199,8 +205,8 @@ def main() -> int:
         raise RuntimeError("data/software.yaml must contain exactly one apps section")
 
     apps = app_sections[0].get("items", [])
-    if len(apps) != 5:
-        raise RuntimeError(f"Expected five Windows apps, found {len(apps)}")
+    if len(apps) != 6:
+        raise RuntimeError(f"Expected six Windows apps, found {len(apps)}")
 
     for app in apps:
         synchronize_app(app)

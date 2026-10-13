@@ -575,6 +575,7 @@ p:has(a[href*="killertools.net"]) {
 .pf-slide[data-app="killernotes"] { --accent: #B829FF; }
 .pf-slide[data-app="killerscan"]  { --accent: #E8962C; }
 .pf-slide[data-app="killendar"]   { --accent: #DD504B; }
+.pf-slide[data-app="killermcp"]   { --accent: #FF2BBD; }
 
 /* --pf-edge is computed on .pf using --accent, but that resolves at the .pf
    layer. Re-declare it on .pf-slide so it recomputes with the slide's local
@@ -593,6 +594,7 @@ p:has(a[href*="killertools.net"]) {
 .pf-dot[data-app="killernotes"] { --accent: #B829FF; }
 .pf-dot[data-app="killerscan"]  { --accent: #E8962C; }
 .pf-dot[data-app="killendar"]   { --accent: #DD504B; }
+.pf-dot[data-app="killermcp"]   { --accent: #FF2BBD; }
 
 /* Always show the app color as a chunky left stripe, even on inactive
    buttons, so the sidebar reads as five colored channels. */

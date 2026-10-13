@@ -10,7 +10,8 @@ sections:
   - id: apps
     label: Windows apps
     blurb: >-
-      Five native Windows applications. Each one ships as a single
+      Five native Windows applications, plus KillerMCP to connect them to AI
+      agents. Each app ships as a single
       self-contained exe, runs portable or installs itself, is code-signed and
       verified in-app, is localized, and is GPLv3. No account, no
       subscription, no telemetry.
@@ -139,6 +140,31 @@ sections:
           - AES-256 at rest
           - 11 languages
           - 12 themes
+
+      - name: KillerMCP
+        slug: killermcp
+        shots: 3
+        # TODO: capture these three and commit them to KillerMCP docs/screenshots on main.
+        screenshot_files: ["01.png", "02.png", "03.png"]
+        screenshot_base: https://raw.githubusercontent.com/SteveTheKiller/KillerMCP/main/docs/screenshots
+        count_xaml: false
+        tagline: Free local MCP server
+        version: 0.5.0
+        released: 2026-10-12
+        url: https://killertools.net/mcp
+        repo: https://github.com/SteveTheKiller/KillerMCP
+        stack: [C#, .NET 10, WPF]
+        blurb: >-
+          One local connection between your AI agent and the Killer apps. It
+          brings all 81 KillerTools utilities plus PDF, network, notes, file and
+          calendar tools from whichever apps you have installed, and registers
+          itself with Codex, Claude Code, Claude Desktop, Cursor, GitHub Copilot,
+          Gemini CLI and Windsurf.
+        # TODO: the why is yours to write. The slide hides it until it is filled in.
+        stats:
+          - 81 utilities
+          - 7 agent clients
+          - ~12.2 MB exe
 
   - id: web
     label: Web
