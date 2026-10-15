@@ -86,7 +86,7 @@ sections:
         slug: killernotes
         wm_trim: 6
         shots: 4
-        screenshot_files: ["01.png", "02-poster.jpg", "03.png", "04.png"]
+        screenshot_files: ["01.png", "02.png", "03.png", "04.png"]
         tagline: Free encrypted notepad
         version: 1.2.1
         released: 2026-08-10
