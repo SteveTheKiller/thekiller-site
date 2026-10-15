@@ -1,2 +1,12 @@
 /data/software_generated.yaml
 /static/generated/software/
+
+# Generated output and local build state
+/public/
+/.hugo_build.lock
+__pycache__/
+*.py[cod]
+
+# Local design tools
+/static/_debug-layout.html
+/static/_killer-font-picker.html
