@@ -60,4 +60,3 @@ Be prepared to revise an approved contribution after review. Contributions must 
 ## Project-specific guidance
 
 Preserve the site's established design and Hugo structure. Check affected pages at narrow and wide sizes, and verify links and assets. Deployment is a separate maintainer action.
-
