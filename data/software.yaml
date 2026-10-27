@@ -10,9 +10,9 @@ sections:
   - id: apps
     label: Windows apps
     blurb: >-
-      Five native Windows applications, plus KillerMCP to connect them to AI
+      Six native Windows applications, plus KillerMCP to connect them to AI
       agents. Each app ships as a single
-      self-contained exe, runs portable or installs itself, is code-signed and
+      exe, runs portable or installs itself, is code-signed and
       verified in-app, is localized, and is GPLv3. No account, no
       subscription, no telemetry.
     # wm_trim: px of empty space under each wordmark's ink at 96px tall,
@@ -86,7 +86,7 @@ sections:
         slug: killernotes
         wm_trim: 6
         shots: 4
-        screenshot_files: ["01.png", "02.png", "03.png", "04.png"]
+        screenshot_files: ["01.jpg", "03.jpg", "04.jpg", "05.jpg"]
         tagline: Free encrypted notepad
         version: 1.2.1
         released: 2026-08-10
@@ -176,6 +176,37 @@ sections:
           - 11 languages
           - 12 themes
 
+      - name: KillerShot
+        slug: killershot
+        wm_trim: 21
+        shots: 4
+        screenshot_files: ["01.jpg", "02.jpg", "05.jpg", "08.jpg"]
+        tagline: Free encrypted screenshot album
+        version: 1.0.0
+        released: 2026-10-27
+        url: https://killershot.net
+        repo: https://github.com/SteveTheKiller/KillerShot
+        stack: [C#, WPF, .NET 10, SQLite, SQLCipher]
+        blurb: >-
+          Captures a region, a window or every monitor with Print Screen, marks
+          it up and redacts it, and finds it again by the text inside the
+          picture. Records the screen to MP4 or GIF when a picture is not enough.
+        features:
+          - Region, window and monitor capture
+          - Scrolling and interval capture
+          - Editor with real redaction
+          - Encrypted album with collections
+          - Search by the text in pictures
+          - Local QR reading
+          - MP4 and GIF recording
+          - Shelf, carousel, grid and timeline
+          - Full command line
+          - F1 keyboard shortcut map
+        stats:
+          - AES-256 at rest
+          - 20 languages
+          - 13 themes
+
       - name: KillerMCP
         slug: killermcp
         wm_trim: 21
@@ -259,6 +290,7 @@ sections:
           - { name: killernotes.net, url: "https://killernotes.net" }
           - { name: killerscan.net, url: "https://killerscan.net" }
           - { name: killendar.net, url: "https://killendar.net" }
+          - { name: killershot.net, url: "https://killershot.net" }
         stack: [HTML, CSS, JavaScript]
         blurb: >-
           One landing page per app, each with its own technical and about pages,
