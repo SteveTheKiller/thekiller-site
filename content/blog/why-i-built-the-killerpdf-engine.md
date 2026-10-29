@@ -103,6 +103,8 @@ The engine is still young and doesn't replace every PDF component. PDFium remain
 
 PdfPig may be next on the chopping block but replacing it means interpreting content streams, tracking graphics state and transformations, decoding fonts, and supporting ToUnicode CMaps. That's a real project, not a weekend cleanup, but it would remove another major dependency before the cross-platform work begins.
 
+> **Update, October 2026:** KillerPDF 1.9.0 finished the job. The engine now handles rendering and text extraction too, and PDFium and PdfPig are both gone from the app.
+
 ## What I learned
 
 A PDF is not really a text file... it's closer to a database.

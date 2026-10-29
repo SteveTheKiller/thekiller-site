@@ -43,7 +43,7 @@
   <div class="pf-fam" data-fam="apps">
 
     {{/* Built-with marks: an icon per technology, each linking to its own site.
-         PDFium, Tesseract and SQLCipher have no mark in the icon set, so they
+         Tesseract, SQLCipher and AvalonEdit have no mark in the icon set, so they
          stay as text links rather than getting invented artwork. They sit in
          the right column under the app tabs, which is otherwise dead space. */}}
     {{ $ico := dict
@@ -136,7 +136,7 @@
       <div class="pf-colophon pf-colophon-side">
         <div class="pf-built">
           <a href="https://learn.microsoft.com/dotnet/csharp/" title="C#"><img src="{{ (index $ico "csharp").RelPermalink }}" alt="C#"><span>C#</span></a>
-          <a href="https://learn.microsoft.com/dotnet/desktop/wpf/" title=".NET Framework 4.8 / WPF"><img src="{{ (index $ico "dotnet").RelPermalink }}" alt=".NET"><span>WPF / .NET 4.8</span></a>
+          <a href="https://learn.microsoft.com/dotnet/desktop/wpf/" title="WPF on .NET Framework 4.8 and .NET 10"><img src="{{ (index $ico "dotnet").RelPermalink }}" alt=".NET"><span>WPF / .NET</span></a>
           <a href="https://visualstudio.microsoft.com" title="Visual Studio"><img src="{{ (index $ico "vs").RelPermalink }}" alt="Visual Studio"><span>Visual Studio</span></a>
           <a href="https://www.sqlite.org" title="SQLite"><img src="{{ (index $ico "sqlite").RelPermalink }}" alt="SQLite"><span>SQLite</span></a>
           <a href="https://www.gimp.org" title="GIMP"><img src="{{ (index $ico "gimp").RelPermalink }}" alt="GIMP"><span>GIMP</span></a>
@@ -144,7 +144,6 @@
         </div>
         <p class="pf-built-text">
           <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPLv3</a>
-          <a href="https://pdfium.googlesource.com/pdfium/">PDFium</a>
           <a href="https://github.com/tesseract-ocr/tesseract">Tesseract</a>
           <a href="https://www.zetetic.net/sqlcipher/">SQLCipher</a>
           <a href="http://avalonedit.net">AvalonEdit</a>

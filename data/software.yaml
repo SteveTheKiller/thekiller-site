@@ -31,11 +31,12 @@ sections:
         engine: https://killerpdf.net/engine/
         corpus: https://killerpdf.net/corpus.html
         repo: https://github.com/SteveTheKiller/KillerPDF
-        stack: [C#, WPF, .NET Framework 4.8, PDFium, Tesseract]
+        stack: [C#, WPF, .NET 10, KillerPDF.Engine, Tesseract]
         blurb: >-
-          Views, edits, OCRs, fills and signs. Four view modes across unlimited
-          tabs, split panes, in-place text editing, annotations, forms and
-          digital signatures, page organization and print preview.
+          Views, edits, OCRs, fills and signs, all on its own PDF engine. Four
+          view modes across unlimited tabs, split panes, in-place text editing,
+          annotations, forms and digital signatures, page organization and
+          print preview.
         features:
           - Four view modes and split panes
           - Inline text editing
