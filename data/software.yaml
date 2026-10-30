@@ -55,36 +55,38 @@ sections:
           - 12 themes
           - ~16 MB exe
 
-      - name: KillerShell
-        slug: killershell
+      - name: KillerScan
+        slug: killerscan
         wm_trim: 21
         shots: 4
         screenshot_files: ["01.png", "02.png", "03.png", "04.png"]
-        tagline: Free shell for power users
-        version: 1.2.2
-        released: 2026-08-10
-        url: https://killershell.net
-        repo: https://github.com/SteveTheKiller/KillerShell
-        stack: [C#, WPF, .NET Framework 4.8, AvalonEdit]
-        built: [csharp, net48, vs, gimp, avalonedit, gplv3]
+        tagline: Free network scanner
+        version: 1.6.1
+        released: 2026-08-12
+        url: https://killerscan.net
+        repo: https://github.com/SteveTheKiller/KillerScan
+        stack: [C#, WPF, .NET Framework 4.8]
+        built: [csharp, net48, vs, gimp, gplv3]
         blurb: >-
-          File browser, search, terminal, text editor and admin toolkit in one
-          window. Process management, live performance monitor, event viewer,
-          registry editor and storage analyzer, each one key away.
+          Scans multiple networks using ARP, ping, port probes, mDNS and SSDP.
+          It fingerprints services, identifies MAC vendors, classifies devices,
+          opens RDP, SSH and web connections, exports CSV or HTML, and includes
+          a headless CLI for scripts and RMM work.
         features:
-          - Tabs, favorites and split panes
-          - Wildcard and content search
-          - PowerShell, CMD and WSL shells
-          - Text editor with highlighting
-          - Browse and edit ZIP archives
-          - Process and service manager
-          - Live CPU, RAM and GPU graphs
-          - Event Viewer and Registry Editor
-          - Storage Analyzer on F4
-          - Read-only JSON command line
+          - Scans several networks at once
+          - ARP, ping, mDNS and SSDP
+          - Service fingerprinting
+          - MAC vendors and device types
+          - Network topology map
+          - Keep Alive for up to 16 hosts
+          - Scan history and baselines
+          - Built-in speed test
+          - Host diagnostics for tickets
+          - RDP, SSH and web in one click
         stats:
           - 11 languages
           - 12 themes
+          - Headless CLI
 
       - name: KillerNotes
         slug: killernotes
@@ -118,38 +120,36 @@ sections:
           - 11 languages
           - 12 themes
 
-      - name: KillerScan
-        slug: killerscan
+      - name: KillerShell
+        slug: killershell
         wm_trim: 21
         shots: 4
         screenshot_files: ["01.png", "02.png", "03.png", "04.png"]
-        tagline: Free network scanner
-        version: 1.6.1
-        released: 2026-08-12
-        url: https://killerscan.net
-        repo: https://github.com/SteveTheKiller/KillerScan
-        stack: [C#, WPF, .NET Framework 4.8]
-        built: [csharp, net48, vs, gimp, gplv3]
+        tagline: Free shell for power users
+        version: 1.2.2
+        released: 2026-08-10
+        url: https://killershell.net
+        repo: https://github.com/SteveTheKiller/KillerShell
+        stack: [C#, WPF, .NET Framework 4.8, AvalonEdit]
+        built: [csharp, net48, vs, gimp, avalonedit, gplv3]
         blurb: >-
-          Scans multiple networks using ARP, ping, port probes, mDNS and SSDP.
-          It fingerprints services, identifies MAC vendors, classifies devices,
-          opens RDP, SSH and web connections, exports CSV or HTML, and includes
-          a headless CLI for scripts and RMM work.
+          File browser, search, terminal, text editor and admin toolkit in one
+          window. Process management, live performance monitor, event viewer,
+          registry editor and storage analyzer, each one key away.
         features:
-          - Scans several networks at once
-          - ARP, ping, mDNS and SSDP
-          - Service fingerprinting
-          - MAC vendors and device types
-          - Network topology map
-          - Keep Alive for up to 16 hosts
-          - Scan history and baselines
-          - Built-in speed test
-          - Host diagnostics for tickets
-          - RDP, SSH and web in one click
+          - Tabs, favorites and split panes
+          - Wildcard and content search
+          - PowerShell, CMD and WSL shells
+          - Text editor with highlighting
+          - Browse and edit ZIP archives
+          - Process and service manager
+          - Live CPU, RAM and GPU graphs
+          - Event Viewer and Registry Editor
+          - Storage Analyzer on F4
+          - Read-only JSON command line
         stats:
           - 11 languages
           - 12 themes
-          - Headless CLI
 
       - name: The Killendar
         slug: killendar
