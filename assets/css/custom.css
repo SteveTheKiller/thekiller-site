@@ -306,7 +306,9 @@ body.home .wp .s.h { top: 60%; right: 8%; width: 80px; height: 80px; background:
    and pulses in and out so the fire seems to flare. Both layers are one tile
    oversized on the left and bottom and drift up-right by exactly one tile
    per loop, with transform rather than background-position so the scroll
-   stays on the compositor instead of repainting the viewport every frame. */
+   stays on the compositor instead of repainting the viewport every frame.
+   It animates regardless of prefers-reduced-motion, by Steve's call, the
+   same as the Memphis wallpapers on the other pages. */
 body.software .wp { background: #1a0403; }
 body.software .wp .skw {
   position: absolute;
@@ -326,10 +328,6 @@ body.software .wp .skw.hot {
 }
 @keyframes wp-skull-drift { to { transform: translate(615px, -512px); } }
 @keyframes wp-skull-flare { 0%, 100% { opacity: 0; } 50% { opacity: .7; } }
-@media (prefers-reduced-motion: reduce) {
-  body.software .wp .skw { animation: none; }
-  body.software .wp .skw.hot { display: none; }
-}
 
 /* BLOG - deep blood red, DVD-bounce orbs (bg + orbs recolored so nothing muddies) */
 body.blog .wp { background: #4a0e12; }
