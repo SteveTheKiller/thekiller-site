@@ -51,8 +51,7 @@
          "dotnet"  (resources.Get "images/software/icon-dotnet.svg" | fingerprint)
          "vs"      (resources.Get "images/software/icon-visualstudio.svg" | fingerprint)
          "sqlite"  (resources.Get "images/software/icon-sqlite.svg" | fingerprint)
-         "gimp"    (resources.Get "images/software/icon-gimp.svg" | fingerprint)
-         "github"  (resources.Get "images/software/icon-github.svg" | fingerprint) }}
+         "gimp"    (resources.Get "images/software/icon-gimp.svg" | fingerprint) }}
 
     <div class="pf-stage">
     <div class="pf-bezel">
@@ -140,7 +139,6 @@
           <a href="https://visualstudio.microsoft.com" title="Visual Studio"><img src="{{ (index $ico "vs").RelPermalink }}" alt="Visual Studio"><span>Visual Studio</span></a>
           <a href="https://www.sqlite.org" title="SQLite"><img src="{{ (index $ico "sqlite").RelPermalink }}" alt="SQLite"><span>SQLite</span></a>
           <a href="https://www.gimp.org" title="GIMP"><img src="{{ (index $ico "gimp").RelPermalink }}" alt="GIMP"><span>GIMP</span></a>
-          <a href="https://github.com/SteveTheKiller" title="Source on GitHub"><img src="{{ (index $ico "github").RelPermalink }}" alt="GitHub"><span>source</span></a>
         </div>
         <p class="pf-built-text">
           <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPLv3</a>
