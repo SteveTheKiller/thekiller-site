@@ -323,7 +323,7 @@ sections:
         blurb: >-
           Built with Hugo, the static site generator: content is written in
           Markdown, layouts are Go-templated HTML, and the build compiles it
-          all to plain static pages. The CRT treatment is pure CSS.
+          all to plain static pages.
         tech:
           - { name: Hugo, url: "https://gohugo.io" }
           - { name: Markdown, url: "https://commonmark.org" }
