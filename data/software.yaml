@@ -288,7 +288,7 @@ sections:
           - { name: Vite, url: "https://vitejs.dev" }
           - { name: TypeScript, url: "https://www.typescriptlang.org" }
           - { name: naive-ui, url: "https://www.naiveui.com" }
-        hosting: { name: GitHub Pages, url: "https://pages.github.com" }
+          - { name: GitHub Pages, url: "https://pages.github.com" }
 
       - name: Killer App Websites
         tagline: One landing page per app
@@ -313,21 +313,26 @@ sections:
           - { name: HTML5, url: "https://developer.mozilla.org/docs/Web/HTML" }
           - { name: CSS, url: "https://developer.mozilla.org/docs/Web/CSS" }
           - { name: JavaScript, url: "https://developer.mozilla.org/docs/Web/JavaScript" }
-        hosting: { name: Cloudflare Pages, url: "https://pages.cloudflare.com" }
+          - { name: Cloudflare Pages, url: "https://pages.cloudflare.com" }
 
       - name: thekiller.net
         langs: [hugo, markdown]
         tagline: This site
         url: https://thekiller.net
-        stack: [Hugo, Markdown, HTML]
+        stack: [Hugo, Markdown, Python, GitHub Actions, GitHub Pages]
         blurb: >-
-          Built with Hugo, the static site generator: content is written in
-          Markdown, layouts are Go-templated HTML, and the build compiles it
-          all to plain static pages.
+          Built with Hugo: content is written in Markdown, layouts are
+          Go-templated HTML, and the build compiles it all to plain static
+          pages. A Python sync I wrote pulls every app's latest release, counts
+          its shipped languages and themes, measures the download and fetches
+          fresh screenshots, then GitHub Actions rebuilds and deploys the site
+          to GitHub Pages on every push and every hour.
         tech:
           - { name: Hugo, url: "https://gohugo.io" }
           - { name: Markdown, url: "https://commonmark.org" }
-        hosting: { name: GitHub Pages, url: "https://pages.github.com" }
+          - { name: Python, url: "https://www.python.org" }
+          - { name: GitHub Actions, url: "https://github.com/features/actions" }
+          - { name: GitHub Pages, url: "https://pages.github.com" }
         smileys:
           - smiley-01-slit-smile.svg
           - smiley-03-ransom-face.svg

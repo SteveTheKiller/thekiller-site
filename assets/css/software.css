@@ -605,12 +605,6 @@
 
 .pf-web-tech span { white-space: nowrap; }
 
-.pf-web-host {
-  margin: 0;
-  font-size: 0.8em;
-  opacity: 0.75;
-}
-
 /* ── PowerShell flowchart: two modules on top, scripts hanging off
    KillerScripts. Connectors are plain elements and borders, no images. ── */
 .pf-flow {

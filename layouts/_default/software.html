@@ -270,9 +270,6 @@
               {{ range . }}<span>{{ with .pre }}{{ . }} {{ end }}<a href="{{ .url }}">{{ .name }}</a></span>{{ end }}
             </p>
           {{ end }}
-          {{ with .hosting }}
-            <p class="pf-web-host">hosted on <a href="{{ .url }}">{{ .name }}</a></p>
-          {{ end }}
         </article>
       {{ end }}
       {{/* CRT static burst that covers the card swap, and manual tuning arrows */}}
