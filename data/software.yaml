@@ -31,7 +31,7 @@ sections:
         engine: https://killerpdf.net/engine/
         corpus: https://killerpdf.net/corpus.html
         repo: https://github.com/SteveTheKiller/KillerPDF
-        stack: [C#, WPF, .NET 10, KillerPDF.Engine, Tesseract]
+        stack: [C#, WPF, .NET 10, KillerPDF.Engine, ONNX Runtime, Tesseract]
         blurb: >-
           Views, edits, OCRs, fills and signs, all on its own PDF engine. Four
           view modes across unlimited tabs, split panes, in-place text editing,
@@ -247,7 +247,7 @@ sections:
   - id: web
     label: Web
     blurb: >-
-      Seven sites. killertools.net is a Vue 3 application; the app landing
+      Eight sites. killertools.net is a Vue 3 application; the app landing
       pages and this site are static HTML.
     items:
 
@@ -260,7 +260,7 @@ sections:
         repo: https://github.com/SteveTheKiller/killer-tools-site
         stack: [Vue 3, TypeScript, Vite, naive-ui]
         blurb: >-
-          86 tools that run entirely in the browser: PowerShell command builder,
+          88 tools that run entirely in the browser: PowerShell command builder,
           M365 SKU decoder, Exchange NDR lookup, subnet calculators, converters,
           generators.
         origin:
@@ -272,7 +272,7 @@ sections:
             then substantially expanded with my own Windows and networking tools,
             domain search, and many of the site's most-used utilities.
         stats:
-          - 86 tools
+          - 88 tools
           - 12 themes
           - Installable PWA
         tech:
@@ -295,11 +295,11 @@ sections:
         stack: [HTML, CSS, JavaScript]
         blurb: >-
           One landing page per app, each with its own technical and about pages,
-          hand-written in HTML, CSS and JavaScript. Up to nineteen languages and twelve
+          hand-written in HTML, CSS and JavaScript. Up to twenty languages and twelve
           themes each.
         stats:
-          - 5 sites
-          - Up to 19 languages
+          - 6 sites
+          - Up to 20 languages
           - 12 themes
         tech:
           - { name: HTML5, url: "https://developer.mozilla.org/docs/Web/HTML" }

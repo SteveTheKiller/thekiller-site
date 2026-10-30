@@ -131,14 +131,23 @@ def synchronize_app(app: dict) -> None:
     ]
     if not exe_assets:
         raise RuntimeError(f"The latest {repo} release has no EXE asset")
+    # The size shown is the download people actually get from the release: the
+    # app's own <Repo>.exe. Portable and Microsoft Store builds bundle extra
+    # payload and would overstate it, so they never count.
+    canonical = f"{repo.split('/')[-1]}.exe".lower()
     installer_assets = [
         asset
         for asset in exe_assets
-        if "portable" not in str(asset.get("name", "")).lower()
+        if str(asset.get("name", "")).lower() == canonical
+    ] or [
+        asset
+        for asset in exe_assets
+        if not any(word in str(asset.get("name", "")).lower() for word in ("portable", "store"))
     ]
-    if not installer_assets:
-        raise RuntimeError(f"The latest {repo} release has no installer EXE asset")
-    exe = max(installer_assets, key=lambda asset: int(asset.get("size", 0)))
+    if len(installer_assets) != 1:
+        names = ", ".join(str(asset.get("name", "")) for asset in exe_assets)
+        raise RuntimeError(f"The latest {repo} release has no single installer EXE asset: {names}")
+    exe = installer_assets[0]
 
     # KillerMCP has no WPF Strings or Themes folders, so its entry opts out of those counts.
     count_xaml = app.get("count_xaml", True)
