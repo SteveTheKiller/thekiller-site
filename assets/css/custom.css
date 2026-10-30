@@ -303,10 +303,16 @@ body.home .wp .s.h { top: 60%; right: 8%; width: 80px; height: 80px; background:
 
 /* SOFTWARE - burning skull wall. One seamless 615x512 tile in two
    brightnesses: the dark copy is the wall, the hot copy sits exactly on top
-   and pulses in and out so the fire seems to flare. Both layers are one tile
-   oversized on the left and bottom and drift up-right by exactly one tile
-   per loop, with transform rather than background-position so the scroll
-   stays on the compositor instead of repainting the viewport every frame.
+   and pulses in and out so the fire seems to flare. The hot copy is a CHILD
+   of the moving wall so the two can never drift apart.
+   The wall travels up-right at 45 degrees. Two nested layers each loop on
+   ONE axis: .skw slides right one tile width (615px) and .sky rises one
+   tile height (512px), and the durations are in the tile's 615:512 ratio
+   so both axes move at the same 14.2px/s. Equal speeds make x and y step
+   on the same frames. Unequal speeds (the first version) stepped them on
+   different frames and the edges read as a jagged staircase. A single
+   layer cannot loop a true 45 degrees seamlessly on a 615x512 tile.
+   translate3d keeps both on the GPU compositor.
    It animates regardless of prefers-reduced-motion, by Steve's call, the
    same as the Memphis wallpapers on the other pages. */
 body.software .wp { background: #1a0403; }
@@ -314,19 +320,33 @@ body.software .wp .skw {
   position: absolute;
   top: 0;
   right: 0;
-  bottom: -512px;
+  bottom: 0;
   left: -615px;
-  background: url("/img/wallpaper/skulls-dark.jpg") 0 0 / 615px 512px repeat;
-  animation: wp-skull-drift 120s linear infinite;
+  animation: wp-skull-slide 43.2421875s linear infinite;
   will-change: transform;
+  backface-visibility: hidden;
 }
-body.software .wp .skw.hot {
-  background-image: url("/img/wallpaper/skulls-hot.jpg");
+body.software .wp .sky {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: -512px;
+  left: 0;
+  background: url("/img/wallpaper/skulls-dark.jpg") 0 0 / 615px 512px repeat;
+  animation: wp-skull-rise 36s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+body.software .wp .sky .hot {
+  position: absolute;
+  inset: 0;
+  background: url("/img/wallpaper/skulls-hot.jpg") 0 0 / 615px 512px repeat;
   opacity: 0;
-  animation: wp-skull-drift 120s linear infinite, wp-skull-flare 7s ease-in-out infinite;
-  will-change: transform, opacity;
+  animation: wp-skull-flare 7s ease-in-out infinite;
+  will-change: opacity;
 }
-@keyframes wp-skull-drift { to { transform: translate(615px, -512px); } }
+@keyframes wp-skull-slide { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(615px, 0, 0); } }
+@keyframes wp-skull-rise { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(0, -512px, 0); } }
 @keyframes wp-skull-flare { 0%, 100% { opacity: 0; } 50% { opacity: .7; } }
 
 /* BLOG - deep blood red, DVD-bounce orbs (bg + orbs recolored so nothing muddies) */
@@ -499,14 +519,12 @@ body.blog .content .tags a:hover {
 }
 
 /* SOFTWARE - smoked pane behind the content so the tabs / slides / sidebar
-   sit on top of the wallpaper instead of fighting it. Same approach as
-   the blog pane, tuned to the teal ground: cool near-black wash with a
-   small backdrop blur so shapes still bloom through but don't blink
-   across text. */
+   sit on top of the skull wall instead of fighting it. A warm near-black
+   wash only, NO backdrop blur: the wall moves every frame, so a blur here
+   would be recomputed across the whole pane each frame and the drift
+   stutters. The darker wash does the calming the blur used to. */
 body.software .content {
-  background: rgba(6, 16, 22, 0.55);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  background: rgba(14, 3, 3, 0.66);
   padding: 20px 24px;
   border-radius: 6px;
   border: 1px solid rgba(232, 223, 200, 0.08);
