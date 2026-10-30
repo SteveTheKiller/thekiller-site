@@ -36,21 +36,20 @@ sections:
         # layouts/_default/software.html. Each app lists only what it ships.
         built: [csharp, net10, vs, gimp, onnx, tesseract, gplv3]
         blurb: >-
-          Views, edits, OCRs, fills and signs, all on its own PDF engine. Four
-          view modes across unlimited tabs, split panes, in-place text editing,
-          annotations, forms and digital signatures, page organization and
-          print preview.
+          A full PDF workbench on its own engine. Edit the page's own text,
+          redact and verify it, compare two versions, turn scans into real
+          text, and export to Word, Excel and PowerPoint, all offline.
         features:
-          - Four view modes and split panes
-          - Inline text editing
-          - Highlights, ink and text boxes
-          - Built-in OCR, no cloud
-          - Merge, split, rotate and crop
-          - Deskew and perspective fixes
-          - Fillable forms and signatures
-          - Print preview and flattening
-          - Unlocks and repairs PDFs
-          - Headless command line
+          - Edits the page's own text
+          - Verified redaction
+          - Side-by-side compare
+          - OCR scans into real text
+          - Exports to Office formats
+          - Word and Excel to PDF
+          - Forms with FDF and XFDF
+          - Signatures with chain checks
+          - Password and certificate locks
+          - Macros and watched folders
         stats:
           - 11 languages
           - 12 themes
