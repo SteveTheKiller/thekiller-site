@@ -301,18 +301,35 @@ body.home .wp .s.f { top: 8%; left: 55%; width: 100px; height: 20px; background:
 body.home .wp .s.g { bottom: 34%; right: 38%; width: 26px; height: 26px; background: #EDE6D3; border-radius: 50%; animation: wp-pulse 3s ease-in-out infinite, wp-wander-g 36s linear infinite; }
 body.home .wp .s.h { top: 60%; right: 8%; width: 80px; height: 80px; background: radial-gradient(circle, #c9a24a 0 8px, transparent 9px) 0 0 / 16px 16px; animation: wp-spin 30s linear infinite, wp-wander-h 48s linear infinite; }
 
-/* SOFTWARE - teal blue memphis (tech shapes) */
-body.software .wp { background: #0f2a35; }
-body.software .wp .s.a { top: 10%; left: 8%; width: 80px; height: 80px; background: linear-gradient(#EDE6D3, #EDE6D3) center / 8px 100% no-repeat, linear-gradient(#EDE6D3, #EDE6D3) center / 100% 8px no-repeat; animation: wp-spin 16s linear infinite, wp-wander-a 44s linear infinite; }
-body.software .wp .s.b { top: 20%; right: 16%; width: 80px; height: 80px; color: #c9a24a; font-family: 'SpecialElite', Georgia, serif; font-size: 100px; line-height: .7; font-weight: 700; animation: wp-wobble 5s ease-in-out infinite, wp-wander-b 40s linear infinite; }
-body.software .wp .s.b::before { content: "{ }"; }
-body.software .wp .s.c { bottom: 22%; left: 20%; width: 76px; height: 88px; background: #a41f1f; clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%); animation: wp-wob-r 6s ease-in-out infinite, wp-wander-c 46s linear infinite; }
-body.software .wp .s.d { bottom: 12%; right: 10%; width: 100px; height: 100px; border: 6px dashed #c9a24a; animation: wp-spin-r 20s linear infinite, wp-wander-d 50s linear infinite; }
-body.software .wp .s.e { top: 46%; left: 44%; width: 70px; height: 70px; background: radial-gradient(circle, #EDE6D3 0 6px, transparent 7px) 0 0 / 14px 14px; animation: wp-spin 24s linear infinite, wp-wander-e 42s linear infinite; }
-body.software .wp .s.f { top: 9%; left: 56%; width: 20px; height: 70px; background: #EDE6D3; animation: wp-blink 1.6s ease-in-out infinite, wp-wander-f 38s linear infinite; }
-body.software .wp .s.g { bottom: 35%; right: 36%; width: 28px; height: 28px; background: #c9a24a; rotate: 45deg; animation: wp-spin 10s linear infinite, wp-wander-g 44s linear infinite; }
-body.software .wp .s.h { top: 58%; right: 6%; width: 100px; height: 60px; color: #EDE6D3; font-family: monospace; font-size: 48px; line-height: 1; font-weight: 700; animation: wp-wobble 7s ease-in-out infinite, wp-wander-h 48s linear infinite; }
-body.software .wp .s.h::before { content: "</>"; }
+/* SOFTWARE - burning skull wall. One seamless 615x512 tile in two
+   brightnesses: the dark copy is the wall, the hot copy sits exactly on top
+   and pulses in and out so the fire seems to flare. Both layers are one tile
+   oversized on the left and bottom and drift up-right by exactly one tile
+   per loop, with transform rather than background-position so the scroll
+   stays on the compositor instead of repainting the viewport every frame. */
+body.software .wp { background: #1a0403; }
+body.software .wp .skw {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: -512px;
+  left: -615px;
+  background: url("/img/wallpaper/skulls-dark.jpg") 0 0 / 615px 512px repeat;
+  animation: wp-skull-drift 120s linear infinite;
+  will-change: transform;
+}
+body.software .wp .skw.hot {
+  background-image: url("/img/wallpaper/skulls-hot.jpg");
+  opacity: 0;
+  animation: wp-skull-drift 120s linear infinite, wp-skull-flare 7s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+@keyframes wp-skull-drift { to { transform: translate(615px, -512px); } }
+@keyframes wp-skull-flare { 0%, 100% { opacity: 0; } 50% { opacity: .7; } }
+@media (prefers-reduced-motion: reduce) {
+  body.software .wp .skw { animation: none; }
+  body.software .wp .skw.hot { display: none; }
+}
 
 /* BLOG - deep blood red, DVD-bounce orbs (bg + orbs recolored so nothing muddies) */
 body.blog .wp { background: #4a0e12; }
