@@ -566,7 +566,7 @@ p:has(a[href*="killertools.net"]) {
 /* ── Per-app accent color inside each software slide (2026-09-16) ──
    Each <article class="pf-slide" data-app="..."> gets its own --accent so
    every var(--accent) reference inside the slide (link colors from the
-   theme's `a { color: var(--accent) }`, .pf-osd, .pf-tag, .pf-stats li
+   theme's `a { color: var(--accent) }`, .pf-tag, .pf-stats li
    border via --pf-edge, .pf-links a, etc.) picks up the app's brand color.
    Sidebar buttons and the language bar sit OUTSIDE .pf-slide so they keep
    the site-wide accent. */

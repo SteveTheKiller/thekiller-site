@@ -18,7 +18,7 @@
 
   var slides = [].slice.call(pf.querySelectorAll('.pf-slide'));
   var dots = [].slice.call(pf.querySelectorAll('.pf-dot'));
-  var chOut = pf.querySelector('.js-ch');
+  var builts = [].slice.call(pf.querySelectorAll('.pf-built[data-i]'));
   var count = slides.length;
   var cur = 0;
   var locked = false;          // debounce: one channel change per gesture
@@ -31,8 +31,6 @@
   var shotIdx = 0;
   var hovering = false;
   var lightboxOpen = false;
-
-  function pad(n) { return (n < 10 ? '0' : '') + n; }
 
   // ---- Screenshot cycling -------------------------------------------------
 
@@ -141,7 +139,7 @@
       s.setAttribute('aria-hidden', on ? 'false' : 'true');
     });
     dots.forEach(function (d, i) { d.classList.toggle('is-on', i === cur); });
-    if (chOut) { chOut.textContent = pad(cur + 1); }
+    builts.forEach(function (b) { b.hidden = +b.dataset.i !== cur; });
 
     loadShots(slides[cur]);
     copyDrift(slides[cur]);

@@ -312,20 +312,6 @@
   100% { filter: none; transform: none; }
 }
 
-/* ── On-screen display: channel readout ── */
-.pf-osd {
-  position: absolute;
-  top: 12px;
-  left: 14px;
-  z-index: 4;
-  font-size: 0.74em;
-  letter-spacing: 1.5px;
-  color: var(--accent);
-  opacity: 0.62;
-  text-shadow: 0 0 8px color-mix(in srgb, var(--accent) 60%, transparent);
-  pointer-events: none;
-}
-
 /* ── App tabs: a vertical stack down the right of the tube ── */
 /* Right column: app tabs on top, built-with marks filling the space below them
    so the page does not need a full-width footer row under the tube. */
@@ -1045,16 +1031,9 @@
    row once these ran vertically. */
 .pf-built a img { margin: 0; flex: 0 0 auto; }
 
-.pf-colophon-side .pf-built-text {
-  line-height: 1.9;
-  font-size: 0.92em;
-}
-
-.pf-colophon-side .pf-built-text a {
-  display: block;
-  width: max-content;
-  white-space: nowrap;
-}
+/* One list per app; only the current app's shows. The display rules above
+   would otherwise beat the browser's own [hidden] rule. */
+.pf-built[hidden] { display: none; }
 
 /* Built-with: icon + label per technology, each a link to its own site */
 .pf-built {
@@ -1089,12 +1068,6 @@
   letter-spacing: 0.5px;
   color: var(--foreground);
   white-space: nowrap;
-}
-
-/* The three with no mark in the icon set */
-.pf-built-text {
-  font-size: 0.92em;
-  opacity: 0.7 !important;
 }
 
 /* ── Below a wide desktop: the side panel would eat too much of the width,

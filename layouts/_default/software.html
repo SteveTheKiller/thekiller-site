@@ -43,15 +43,24 @@
   <div class="pf-fam" data-fam="apps">
 
     {{/* Built-with marks: an icon per technology, each linking to its own site.
-         ONNX Runtime, Tesseract, SQLCipher and AvalonEdit have no mark in the icon set, so they
-         stay as text links rather than getting invented artwork. They sit in
+         Each app's `built` list in software.yaml picks from this catalog, and
+         the sidebar swaps to the current app's list. ONNX and GPLv3 use their
+         real marks (ONNX, GNU) from Simple Icons. Tesseract, SQLCipher and
+         AvalonEdit publish no usable mark, so they get plain Tabler glyphs
+         (text scan, lock, code file) rather than invented logos. They sit in
          the right column under the app tabs, which is otherwise dead space. */}}
-    {{ $ico := dict
-         "csharp"  (resources.Get "images/software/lang-csharp.svg" | fingerprint)
-         "dotnet"  (resources.Get "images/software/icon-dotnet.svg" | fingerprint)
-         "vs"      (resources.Get "images/software/icon-visualstudio.svg" | fingerprint)
-         "sqlite"  (resources.Get "images/software/icon-sqlite.svg" | fingerprint)
-         "gimp"    (resources.Get "images/software/icon-gimp.svg" | fingerprint) }}
+    {{ $tech := dict
+         "csharp"     (dict "label" "C#" "url" "https://learn.microsoft.com/dotnet/csharp/" "icon" "lang-csharp.svg")
+         "net48"      (dict "label" "WPF / .NET 4.8" "title" "WPF on .NET Framework 4.8" "url" "https://learn.microsoft.com/dotnet/desktop/wpf/" "icon" "icon-dotnet.svg")
+         "net10"      (dict "label" "WPF / .NET 10" "title" "WPF on .NET 10" "url" "https://learn.microsoft.com/dotnet/desktop/wpf/" "icon" "icon-dotnet.svg")
+         "vs"         (dict "label" "Visual Studio" "url" "https://visualstudio.microsoft.com" "icon" "icon-visualstudio.svg")
+         "gimp"       (dict "label" "GIMP" "url" "https://www.gimp.org" "icon" "icon-gimp.svg")
+         "sqlite"     (dict "label" "SQLite" "url" "https://www.sqlite.org" "icon" "icon-sqlite.svg")
+         "sqlcipher"  (dict "label" "SQLCipher" "url" "https://www.zetetic.net/sqlcipher/" "icon" "icon-sqlcipher.svg")
+         "onnx"       (dict "label" "ONNX Runtime" "url" "https://onnxruntime.ai" "icon" "icon-onnx.svg")
+         "tesseract"  (dict "label" "Tesseract" "url" "https://github.com/tesseract-ocr/tesseract" "icon" "icon-tesseract.svg")
+         "avalonedit" (dict "label" "AvalonEdit" "url" "http://avalonedit.net" "icon" "icon-avalonedit.svg")
+         "gplv3"      (dict "label" "GPLv3" "url" "https://www.gnu.org/licenses/gpl-3.0.html" "icon" "icon-gnu.svg") }}
 
     <div class="pf-stage">
     <div class="pf-bezel">
@@ -115,9 +124,6 @@
           </article>
         {{ end }}
         <div class="pf-glitch" aria-hidden="true"></div>
-        <div class="pf-osd" aria-hidden="true">
-          <span class="pf-osd-ch">CH <b class="js-ch">01</b>/{{ len $apps.items }}</span>
-        </div>
       </div>
     </div>
 
@@ -133,20 +139,16 @@
       </nav>
 
       <div class="pf-colophon pf-colophon-side">
-        <div class="pf-built">
-          <a href="https://learn.microsoft.com/dotnet/csharp/" title="C#"><img src="{{ (index $ico "csharp").RelPermalink }}" alt="C#"><span>C#</span></a>
-          <a href="https://learn.microsoft.com/dotnet/desktop/wpf/" title="WPF on .NET Framework 4.8 and .NET 10"><img src="{{ (index $ico "dotnet").RelPermalink }}" alt=".NET"><span>WPF / .NET</span></a>
-          <a href="https://visualstudio.microsoft.com" title="Visual Studio"><img src="{{ (index $ico "vs").RelPermalink }}" alt="Visual Studio"><span>Visual Studio</span></a>
-          <a href="https://www.sqlite.org" title="SQLite"><img src="{{ (index $ico "sqlite").RelPermalink }}" alt="SQLite"><span>SQLite</span></a>
-          <a href="https://www.gimp.org" title="GIMP"><img src="{{ (index $ico "gimp").RelPermalink }}" alt="GIMP"><span>GIMP</span></a>
-        </div>
-        <p class="pf-built-text">
-          <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPLv3</a>
-          <a href="https://onnxruntime.ai">ONNX Runtime</a>
-          <a href="https://github.com/tesseract-ocr/tesseract">Tesseract</a>
-          <a href="https://www.zetetic.net/sqlcipher/">SQLCipher</a>
-          <a href="http://avalonedit.net">AvalonEdit</a>
-        </p>
+        {{ range $i, $app := $apps.items }}
+          <div class="pf-built" data-i="{{ $i }}"{{ if ne $i 0 }} hidden{{ end }}>
+            {{ range $app.built }}
+              {{ $t := index $tech . }}
+              {{ if not $t }}{{ errorf "software.yaml: %s lists unknown built key %q" $app.name . }}{{ end }}
+              {{ $img := resources.Get (printf "images/software/%s" $t.icon) | fingerprint }}
+              <a href="{{ $t.url }}" title="{{ $t.title | default $t.label }}"><img src="{{ $img.RelPermalink }}" alt=""><span>{{ $t.label }}</span></a>
+            {{ end }}
+          </div>
+        {{ end }}
       </div>
     </div>
     </div>
@@ -293,7 +295,7 @@
     .pf-slide { position: relative !important; opacity: 1 !important; visibility: visible !important; }
     .pf-screen { height: auto !important; }
     .pf-shot { position: relative !important; opacity: 1 !important; }
-    .pf-dots, .pf-hint, .pf-osd, .pf-langbar { display: none !important; }
+    .pf-dots, .pf-hint, .pf-langbar { display: none !important; }
     .pf-web { display: block !important; }
     .pf-web-card { opacity: 1 !important; visibility: visible !important; margin-bottom: 14px !important; }
     .pf-web-static, .pf-web-arrow { display: none !important; }

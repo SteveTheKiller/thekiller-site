@@ -32,6 +32,9 @@ sections:
         corpus: https://killerpdf.net/corpus.html
         repo: https://github.com/SteveTheKiller/KillerPDF
         stack: [C#, WPF, .NET 10, KillerPDF.Engine, ONNX Runtime, Tesseract]
+        # Sidebar marks, keyed into the catalog at the top of the apps family in
+        # layouts/_default/software.html. Each app lists only what it ships.
+        built: [csharp, net10, vs, gimp, onnx, tesseract, gplv3]
         blurb: >-
           Views, edits, OCRs, fills and signs, all on its own PDF engine. Four
           view modes across unlimited tabs, split panes, in-place text editing,
@@ -63,7 +66,8 @@ sections:
         released: 2026-08-10
         url: https://killershell.net
         repo: https://github.com/SteveTheKiller/KillerShell
-        stack: [C#, WPF, .NET Framework 4.8]
+        stack: [C#, WPF, .NET Framework 4.8, AvalonEdit]
+        built: [csharp, net48, vs, gimp, avalonedit, gplv3]
         blurb: >-
           File browser, search, terminal, text editor and admin toolkit in one
           window. Process management, live performance monitor, event viewer,
@@ -94,6 +98,7 @@ sections:
         url: https://killernotes.net
         repo: https://github.com/SteveTheKiller/KillerNotes
         stack: [C#, WPF, .NET Framework 4.8, SQLite, SQLCipher]
+        built: [csharp, net48, vs, gimp, sqlite, sqlcipher, gplv3]
         blurb: >-
           Notes in one file you own, optionally encrypted at rest with AES-256.
           Offline dictation with local speech recognition, syntax highlighting,
@@ -125,6 +130,7 @@ sections:
         url: https://killerscan.net
         repo: https://github.com/SteveTheKiller/KillerScan
         stack: [C#, WPF, .NET Framework 4.8]
+        built: [csharp, net48, vs, gimp, gplv3]
         blurb: >-
           Scans multiple networks using ARP, ping, port probes, mDNS and SSDP.
           It fingerprints services, identifies MAC vendors, classifies devices,
@@ -157,6 +163,7 @@ sections:
         url: https://killendar.net
         repo: https://github.com/SteveTheKiller/Killendar
         stack: [C#, WPF, .NET Framework 4.8, SQLite, SQLCipher]
+        built: [csharp, net48, vs, gimp, sqlite, sqlcipher, gplv3]
         blurb: >-
           Month, week, day and agenda views with no account, no sync and nothing
           phoning home. Repeating appointments, color categories, iCalendar and
@@ -188,6 +195,7 @@ sections:
         url: https://killershot.net
         repo: https://github.com/SteveTheKiller/KillerShot
         stack: [C#, WPF, .NET 10, SQLite, SQLCipher]
+        built: [csharp, net10, vs, gimp, sqlite, sqlcipher, gplv3]
         blurb: >-
           Captures a region, a window or every monitor with Print Screen, marks
           it up and redacts it, and finds it again by the text inside the
@@ -222,6 +230,7 @@ sections:
         url: https://killertools.net/mcp
         repo: https://github.com/SteveTheKiller/KillerMCP
         stack: [C#, .NET 10, WPF]
+        built: [csharp, net10, vs, gimp, gplv3]
         blurb: >-
           One local connection between your AI agent and the Killer apps. It
           brings all 81 KillerTools utilities plus PDF, network, notes, file and
