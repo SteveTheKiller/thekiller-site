@@ -10,7 +10,7 @@ sections:
   - id: apps
     label: Windows apps
     blurb: >-
-      Six native Windows applications, plus KillerMCP to connect them to AI
+      Seven native Windows applications, plus KillerMCP to connect them to AI
       agents. Each app ships as a single
       exe, runs portable or installs itself, is code-signed and
       verified in-app, is localized, and is GPLv3. No account, no
@@ -214,6 +214,39 @@ sections:
           - AES-256 at rest
           - 20 languages
           - 13 themes
+
+      - name: KillerBench
+        slug: killerbench
+        wm_trim: 21
+        shots: 4
+        screenshot_files: ["01.png", "02.png", "03.png", "10.png"]
+        tagline: Windows diagnosis, repair and maintenance
+        version: 1.0.0
+        released: 2026-11-02
+        url: https://killerbench.net
+        engine: https://killerbench.net/engine/
+        repo: https://github.com/SteveTheKiller/KillerBench
+        stack: [C#, WPF, .NET 10, KillerBench.Engine]
+        built: [csharp, net10, vs, gimp, gplv3]
+        blurb: >-
+          Find Windows problems and run supported repairs from one workbench.
+          Start with a full system scan, choose the repair, and click Run repair.
+          Each repair checks its prerequisites, asks for confirmation, and
+          verifies the result. Export a readable report or use the same engine
+          from the command line.
+        features:
+          - Full system diagnostics
+          - Windows Update and servicing repairs
+          - Service, network and printing recovery
+          - Security and device checks
+          - BitLocker and recovery-key backup
+          - Privacy and maintenance tools
+          - Readable reports and raw evidence
+          - Command line and reusable Engine
+        stats:
+          - 20 languages
+          - 13 themes
+          - ~13 MB exe
 
       - name: KillerMCP
         slug: killermcp

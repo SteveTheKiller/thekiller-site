@@ -153,7 +153,7 @@ def synchronize_app(app: dict) -> None:
     count_xaml = app.get("count_xaml", True)
     if count_xaml:
         languages = count_xaml_files(repo, tag, "Strings")
-        themes = count_xaml_files(repo, tag, "Themes", exclude={"defaults.xaml"})
+        themes = count_xaml_files(repo, tag, "Themes", exclude={"defaults.xaml", "instrument.xaml"})
 
     app["version"] = version
     app["released"] = release_date(repo, tag, version, str(release["published_at"]))
