@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build current software data and screenshots from the seven app sources."""
+"""Build current software data and screenshots from the configured app sources."""
 
 from __future__ import annotations
 
@@ -214,8 +214,8 @@ def main() -> int:
         raise RuntimeError("data/software.yaml must contain exactly one apps section")
 
     apps = app_sections[0].get("items", [])
-    if len(apps) != 7:
-        raise RuntimeError(f"Expected seven Windows apps, found {len(apps)}")
+    if not apps:
+        raise RuntimeError("No apps are configured in data/software.yaml")
 
     for app in apps:
         synchronize_app(app)
