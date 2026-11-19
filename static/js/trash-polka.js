@@ -656,6 +656,9 @@
     });
   }
 
+  // The branding banners reuse the same port (thekiller-branding/trash-polka).
+  window.TrashPolka = { Ink: Ink, grainTile: grainTile, SCALE: SCALE, ACCENT: ACCENT };
+  if (window.TRASH_POLKA_NO_PAINT) return;
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', paint);
   else paint();
 })();
