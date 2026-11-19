@@ -294,6 +294,8 @@ sections:
 
       - name: killertools.net
         wordmark: killertools-brand-dark.svg
+        # The app icon beside the wordmark, from killer-tools-site public/app-icon-512.png
+        icon: killertools.png
         wm_trim: 24
         langs: [vue]
         tagline: Browser tools for IT techs
@@ -333,13 +335,14 @@ sections:
           - { name: killerscan.net, url: "https://killerscan.net" }
           - { name: killendar.net, url: "https://killendar.net" }
           - { name: killershot.net, url: "https://killershot.net" }
+          - { name: killerbench.net, url: "https://killerbench.net" }
         stack: [HTML, CSS, JavaScript]
         blurb: >-
           One landing page per app, each with its own technical and about pages,
           hand-written in HTML, CSS and JavaScript. Up to twenty languages and twelve
           themes each.
         stats:
-          - 6 sites
+          - 7 sites
           - Up to 20 languages
           - 12 themes
         tech:

@@ -462,10 +462,10 @@
 }
 
 /* Manual tuning: the arrow pair sits INSIDE the card, bottom-right corner,
-   where the stack's tallest-card sizing leaves plenty of dead room */
+   level with the tech row, which keeps its right end clear for them */
 .pf-web-arrow {
   position: absolute;
-  bottom: 14px;
+  bottom: 20px;              /* centered on the tech row */
   z-index: 6;
   width: 34px;
   height: 30px;
@@ -490,8 +490,15 @@
 .pf-web-arrow[data-dir="-1"] { right: 58px; }
 .pf-web-arrow[data-dir="1"]  { right: 18px; }
 
+/* Only the showing card is in flow, so the show is as tall as that card and a
+   short card does not carry the tallest one's empty space under it. The others
+   lie over it out of flow while they fade; the static burst hides the resize. */
 .pf-web-card {
   grid-area: 1 / 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   border: 1px solid var(--pf-edge);
   border-radius: 8px;
   background: #050505;
@@ -503,6 +510,7 @@
 }
 
 .pf-web-card.is-on {
+  position: relative;
   opacity: 1;
   visibility: visible;
   transition: border-color 0.15s ease, opacity 0.45s ease, visibility 0s;
@@ -551,6 +559,34 @@
   border-radius: 0 !important;
 }
 
+/* A site's app icon sits left of its wordmark, as tall as the wordmark's ink */
+.pf-web-card h3.pf-web-has-icon a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.pf-web-card h3 .pf-web-icon {
+  flex: none;
+  height: 72px !important;
+  width: 72px !important;
+  margin: 0 0 calc(4px - var(--wm-trim-icon, 0px)) !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.55));
+}
+
+/* On a narrow card the wordmark shrinks to fit instead of squashing sideways */
+.pf-web-card h3 .pf-web-wm { object-fit: contain; object-position: left center; }
+.pf-web-card h3.pf-web-has-icon .pf-web-wm { min-width: 0; }
+
+@media (max-width: 560px) {
+  .pf-web-card h3 .pf-web-icon { height: 44px !important; width: 44px !important; }
+  .pf-web-card h3.pf-web-has-icon a { gap: 10px; }
+  .pf-web-card h3 .pf-web-wm { height: auto !important; margin-bottom: 0; }
+}
+
 /* A loose row of the header smileys above the name, each tilted like a
    taped scrap */
 .pf-web-smileys {
@@ -597,6 +633,9 @@
 /* The showcase lines: technologies as links, then where the site runs */
 .pf-web-tech {
   margin: 10px 0 4px;
+  min-height: 30px;          /* as tall as the arrows beside it */
+  align-items: center;
+  padding-right: 92px;       /* the arrow pair's footprint */
   font-size: 0.8em;
   display: flex;
   flex-wrap: wrap;
@@ -1101,6 +1140,8 @@
   /* Web slideshow parks: cards unstack into a plain list, all visible, and
      the static burst and tuning arrows have nothing to do */
   .pf-web { display: block; }
+  .pf-web-card { position: relative; }
+  .pf-web-tech { padding-right: 0; }
   .pf-web-card { opacity: 1; visibility: visible; margin-bottom: 14px; }
   .pf-web-static, .pf-web-arrow { display: none; }
   .pf-slide,

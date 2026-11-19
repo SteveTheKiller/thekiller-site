@@ -247,7 +247,7 @@
               {{ range . }}<img src="{{ printf "/img/smileys/%s" . | absURL }}" alt="">{{ end }}
             </div>
           {{ end }}
-          <h3>{{ with .url }}<a href="{{ . }}">{{ end }}{{ with $item.wordmark }}<img class="pf-web-wm" src="{{ printf "/img/wordmarks/%s" . | absURL }}" alt="{{ $item.name }}"{{ with $item.wm_trim }} style="--wm-trim: {{ . }}"{{ end }}>{{ else }}{{ .name }}{{ end }}{{ with .url }}</a>{{ end }}</h3>
+          <h3{{ with $item.icon }} class="pf-web-has-icon"{{ end }}>{{ with .url }}<a href="{{ . }}">{{ end }}{{ with $item.icon }}<img class="pf-web-icon" src="{{ printf "/img/icons/%s" . | absURL }}" alt="">{{ end }}{{ with $item.wordmark }}<img class="pf-web-wm" src="{{ printf "/img/wordmarks/%s" . | absURL }}" alt="{{ $item.name }}"{{ with $item.wm_trim }} style="--wm-trim: {{ . }}"{{ end }}>{{ else }}{{ .name }}{{ end }}{{ with .url }}</a>{{ end }}</h3>
           <p class="pf-tag">{{ .tagline }}</p>
           <p class="pf-blurb">{{ .blurb }}</p>
           {{ with .origin }}
@@ -294,7 +294,7 @@
     .pf-shot { position: relative !important; opacity: 1 !important; }
     .pf-dots, .pf-hint, .pf-langbar { display: none !important; }
     .pf-web { display: block !important; }
-    .pf-web-card { opacity: 1 !important; visibility: visible !important; margin-bottom: 14px !important; }
+    .pf-web-card { position: relative !important; opacity: 1 !important; visibility: visible !important; margin-bottom: 14px !important; }
     .pf-web-static, .pf-web-arrow { display: none !important; }
   </style>
 </noscript>
