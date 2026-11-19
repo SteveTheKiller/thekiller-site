@@ -291,15 +291,7 @@ html.lightbox-open .crt {
 @keyframes wp-by { 0% { top: -6%; } 50% { top: 100%; } 100% { top: -6%; } }
 
 /* HOME - bottle green memphis */
-body.home .wp { background: #0f2419; }
-body.home .wp .s.a { top: 10%; left: 8%;   width: 80px; height: 80px; border: 5px solid #c9a24a; border-radius: 50%; animation: wp-spin 14s linear infinite, wp-wander-a 42s linear infinite; }
-body.home .wp .s.b { top: 22%; right: 18%; width: 0; height: 0; border-left: 44px solid transparent; border-right: 44px solid transparent; border-bottom: 76px solid #a41f1f; transform-origin: 50% 66%; animation: wp-spin 9s linear infinite, wp-wander-b 38s linear infinite; }
-body.home .wp .s.c { bottom: 22%; left: 22%; width: 70px; height: 70px; background: #EDE6D3; animation: wp-wobble 5s ease-in-out infinite, wp-wander-c 46s linear infinite; }
-body.home .wp .s.d { bottom: 12%; right: 10%; width: 90px; height: 90px; border: 6px dashed #EDE6D3; border-radius: 50%; animation: wp-spin-r 18s linear infinite, wp-wander-d 50s linear infinite; }
-body.home .wp .s.e { top: 48%; left: 44%; width: 60px; height: 60px; background: repeating-linear-gradient(45deg, #c9a24a 0 8px, #0f2419 8px 16px); animation: wp-spin 22s linear infinite, wp-wander-e 44s linear infinite; }
-body.home .wp .s.f { top: 8%; left: 55%; width: 100px; height: 20px; background: #a41f1f; animation: wp-wobble 6s ease-in-out infinite, wp-wander-f 40s linear infinite; }
-body.home .wp .s.g { bottom: 34%; right: 38%; width: 26px; height: 26px; background: #EDE6D3; border-radius: 50%; animation: wp-pulse 3s ease-in-out infinite, wp-wander-g 36s linear infinite; }
-body.home .wp .s.h { top: 60%; right: 8%; width: 80px; height: 80px; background: radial-gradient(circle, #c9a24a 0 8px, transparent 9px) 0 0 / 16px 16px; animation: wp-spin 30s linear infinite, wp-wander-h 48s linear infinite; }
+/* HOME - Trash Polka (2026-11-18): see the HOME TRASH POLKA block at the end. */
 
 /* SOFTWARE - burning skull wall. One seamless 615x512 tile in two
    brightnesses: the dark copy is the wall, the hot copy sits exactly on top
@@ -674,4 +666,124 @@ body { isolation: isolate; }
     transition: none;
     transform: none;
   }
+}
+
+/* ── HOME TRASH POLKA (2026-11-18) ──────────────────
+   KillerPDF's Trash Polka theme, ported (Themes/TrashPolka.xaml,
+   ThemeMotif.cs). static/js/trash-polka.js draws the app's own ink pieces
+   and grain tile and sets --tp-background, --tp-pane, --tp-grain and
+   --tp-size. Layering as in the app: window on BackgroundBrush #000 with
+   piece 162 at 26%, panes on PaneBrush #3a3a3a with piece 160 at 41%, both
+   pinned to the window, grain tile at GrainOpacity 0.24 on those surfaces
+   only. Content sits above it all, so no grain over text, photo or scraps. */
+body.home {
+  --accent: #D7263D;
+  --foreground: #e0e0e0;
+}
+body.home .wp { background: #000; }
+body.home.tp-ready .wp {
+  background: var(--tp-grain) 0 0 / 256px 256px repeat,
+              var(--tp-background) 0 0 / var(--tp-size) no-repeat fixed,
+              #000;
+}
+
+/* The pane: PaneBrush charcoal with its own piece, PaneBorderBrush edge,
+   PanelCornerRadius 6. */
+body.home .content {
+  position: relative;
+  background: #3a3a3a;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px solid #555555;
+  border-radius: 6px;
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.6); /* App.xaml PaneShadow: BlurRadius 16, ShadowDepth 5, PaneShadowOpacity 0.6 */
+  overflow: hidden;
+}
+body.home.tp-ready .content {
+  background: var(--tp-grain) 0 0 / 256px 256px repeat,
+              var(--tp-pane) 0 0 / var(--tp-size) no-repeat fixed,
+              #3a3a3a;
+}
+body.home .index-content { position: relative; z-index: 1; color: #e0e0e0; }
+
+/* Portrait: bone frame offset over a solid accent block. */
+body.home .index-content img[src="/images/profile2.jpg"] {
+  border: 5px solid #EDE8DF !important;
+  border-radius: 0;
+  box-shadow: 10px 10px 0 #D7263D;
+  filter: contrast(1.06) saturate(0.9);
+}
+
+body.home .index-content .social-links a { color: #EDE8DF; }
+
+/* Logo and nav scraps go ink, bone and blood on home. */
+body.home .header .logo .s1 { background: #EDE8DF; color: #050505; }
+body.home .header .logo .s2 { background: #3a3a3a; color: #EDE8DF; }
+body.home .header .logo .s3 { background: #D7263D; color: #EDE8DF; }
+body.home .taped-nav-item:nth-child(1) a { background: #3a3a3a; color: #EDE8DF; }
+body.home .taped-nav-item:nth-child(2) a { background: #EDE8DF; color: #050505; }
+body.home .taped-nav-item:nth-child(3) a { background: #D7263D; color: #EDE8DF; }
+
+/* Buy me a Coffee: its own little pane in the footer row, left of the
+   copyright pill (home only). */
+body.home .footer {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.coffee-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  font-size: 0.8em;
+  white-space: nowrap;
+  color: #e0e0e0;
+  text-decoration: none;
+  background: #3a3a3a;
+  border: 1px solid #555555;
+  border-radius: 6px;
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.6); /* App.xaml PaneShadow: BlurRadius 16, ShadowDepth 5, PaneShadowOpacity 0.6 */
+}
+.coffee-pill svg { width: 18px; height: 18px; flex: none; }
+/* Accent edge always; hover fills with PrimaryHoverBrush and lifts like an
+   app button, press settles it back down. */
+.coffee-pill {
+  border-color: #D7263D;
+  transition: background-color .15s ease, transform .15s ease, box-shadow .15s ease;
+}
+body.home.tp-ready .coffee-pill:hover,
+.coffee-pill:hover,
+.coffee-pill:focus-visible {
+  background: #D7263D;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+.coffee-pill:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+body.home.tp-ready .coffee-pill {
+  background: var(--tp-grain) 0 0 / 256px 256px repeat,
+              var(--tp-pane) 0 0 / var(--tp-size) no-repeat fixed,
+              #3a3a3a;
+}
+
+/* Footer pill: same pane surface as .content. */
+body.home .footer .footer__inner {
+  background: #3a3a3a;
+  border: 1px solid #555555;
+  border-radius: 6px;
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.6); /* App.xaml PaneShadow: BlurRadius 16, ShadowDepth 5, PaneShadowOpacity 0.6 */
+}
+body.home.tp-ready .footer .footer__inner {
+  background: var(--tp-grain) 0 0 / 256px 256px repeat,
+              var(--tp-pane) 0 0 / var(--tp-size) no-repeat fixed,
+              #3a3a3a;
 }

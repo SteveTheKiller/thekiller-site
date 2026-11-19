@@ -17,7 +17,11 @@
 <script>(function(){var wp=document.currentScript.previousElementSibling;if(!wp)return;var orbs=wp.querySelectorAll('.dvd'),n=0;orbs.forEach(function(el,i){for(var k=0;k<2;k++){var c=el.cloneNode(true);var d1=((n*97)%150)/10,d2=((n*53)%150)/10;c.style.animationDelay='-'+d1.toFixed(2)+'s, -'+d2.toFixed(2)+'s';wp.appendChild(c);n++;}});})();</script>
 {{ else if eq $section "software" }}
 <div class="wp" aria-hidden="true"><div class="skw"><div class="sky"><div class="hot"></div></div></div></div>
-{{ else if or (eq $section "home") (eq $section "photos") }}
+{{ else if eq $section "home" }}
+{{/* Home: KillerPDF's Trash Polka theme (2026-11-18). static/js/trash-polka.js ports TrashPolkaInk and the KillerUI grain tile and hands the images to custom.css as --tp-* variables. */}}
+<div class="wp" aria-hidden="true"></div>
+<script src="/js/trash-polka.js" defer></script>
+{{ else if eq $section "photos" }}
 <div class="wp" aria-hidden="true"><div class="s a"></div><div class="s b"></div><div class="s c"></div><div class="s d"></div><div class="s e"></div><div class="s f"></div><div class="s g"></div><div class="s h"></div></div>
 <script>(function(){var wp=document.currentScript.previousElementSibling;if(!wp)return;var shapes=wp.querySelectorAll('.s'),n=0;shapes.forEach(function(el){for(var k=0;k<3;k++){var c=el.cloneNode(true);var t=((n*137.5)%88),l=((n*71.3)%90);var d1=((n*29)%50),d2=((n*17)%50);c.style.top=t.toFixed(1)+'%';c.style.left=l.toFixed(1)+'%';c.style.right='auto';c.style.bottom='auto';c.style.animationDelay='-'+d1.toFixed(2)+'s, -'+d2.toFixed(2)+'s';wp.appendChild(c);n++;}});})();</script>
 {{ end }}
